@@ -1,0 +1,241 @@
+/* Account settings */
+.account {
+  padding: 44px 0 60px;
+}
+
+.account .page-title {
+  font-size: 2rem;
+  color: var(--uk-blue);
+  margin-bottom: .25rem;
+}
+
+.account .lead {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.card.form {
+  background: var(--card);
+  border: 1px solid rgba(1,33,105,.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 16px;
+}
+
+.field-group {
+  border: 0;
+  padding: 0;
+  margin: 0 0 14px 0;
+}
+
+.field-group legend {
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.field {
+  display: grid;
+  gap: .35rem;
+  margin-bottom: .7rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  border: 1.5px solid rgba(1,33,105,.25);
+  border-radius: 10px;
+  padding: .6rem .7rem;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+
+.input:focus {
+  border-color: var(--uk-blue);
+  box-shadow: 0 0 0 3px rgba(1,33,105,.12);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .7rem;
+}
+
+@media (max-width: 800px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note {
+  margin: .5rem 0;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(1,33,105,.12);
+  background: #f6f8ff;
+}
+
+.note--ok {
+  border-color: rgba(30,200,70,.25);
+  background: rgba(30,200,70,.08);
+  color: #195a2a;
+}
+
+.note--error {
+  border-color: #f2c4c4;
+  background: #fff3f3;
+  color: #7a2a2a;
+}
+
+.actions {
+  display: flex;
+  gap: .6rem;
+  justify-content: flex-end;
+}
+
+/* Sekcja strefy zagrożenia */
+.danger-zone {
+    border: 1px solid rgba(220, 53, 69, 0.3) !important;
+    background: linear-gradient(135deg, #fff8f8 0%, #fff3f3 100%) !important;
+    margin-top: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.1);
+}
+
+.danger-legend {
+    color: #dc3545 !important;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 0 8px;
+}
+
+.danger-content {
+    padding: 1.5rem 0 0.5rem 0;
+}
+
+.danger-warning {
+    color: #7a2a2a;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    background: rgba(220, 53, 69, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+}
+
+.btn--danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    border: 1px solid #dc3545;
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.btn--danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+    border-color: #bd2130;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+}
+
+.btn--danger:active {
+    transform: translateY(0);
+}
+
+.btn--danger:disabled {
+    background: #e35d6a;
+    border-color: #e35d6a;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Potwierdzenie usuwania */
+.delete-confirm {
+    background: rgba(220, 53, 69, 0.03);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.delete-warning {
+    color: #7a2a2a;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    background: rgba(220, 53, 69, 0.08);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #dc3545;
+}
+
+.delete-confirm .field {
+    margin-bottom: 1.2rem;
+}
+
+.delete-confirm .label {
+    color: #7a2a2a;
+    font-weight: 600;
+}
+
+.delete-confirm .input {
+    border-color: rgba(220, 53, 69, 0.4);
+    background: #fff;
+}
+
+.delete-confirm .input:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+}
+
+.delete-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(220, 53, 69, 0.1);
+}
+
+/* Responsywność */
+@media (max-width: 800px) {
+    .danger-zone {
+        margin-top: 2rem;
+    }
+
+    .delete-actions {
+        flex-direction: column;
+    }
+
+    .delete-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Dodatkowe style dla przycisków w sekcji usuwania */
+.delete-actions .btn {
+    min-width: 120px;
+}
+
+.delete-actions .btn:not(.btn--danger) {
+    background: #6c757d;
+    color: white;
+    border: 1px solid #6c757d;
+}
+
+.delete-actions .btn:not(.btn--danger):hover {
+    background: #5a6268;
+    border-color: #545b62;
+}

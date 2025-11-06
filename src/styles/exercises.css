@@ -1,0 +1,178 @@
+/* Ogólny kontener ćwiczeń */
+.practice-exercise {
+  --border: 1px solid rgba(0,0,0,0.08);
+  --radius: 14px;
+  --surface: #ffffff;
+  --surface-alt: #fafbff;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --primary: #4f46e5;   /* indigo-600 */
+  --primary-600: #4f46e5;
+  --primary-700: #4338ca;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --muted: #6b7280;
+
+  background: linear-gradient(180deg, var(--surface), var(--surface-alt));
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.practice-exercise .exercise-question h5 {
+  margin: 0 0 12px 0;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+/* Pojedyncze zadanie */
+.exercise-item {
+  background: #fff;
+  border: 1px solid rgba(99, 102, 241, 0.12); /* nawiązanie do indigo */
+  border-radius: 12px;
+  padding: 14px 14px 6px 14px;
+  margin-bottom: 14px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.exercise-item:hover {
+  border-color: rgba(99, 102, 241, 0.28);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.08);
+}
+
+/* Opcje odpowiedzi */
+.options {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0 8px 0;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 120ms ease, box-shadow 160ms ease;
+}
+
+.option:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.option input[type="radio"] {
+  margin-top: 3px;
+}
+
+/* Zaznaczona opcja */
+.option.selected {
+  background: #eef2ff;                    /* indigo-50 */
+  border-color: rgba(79, 70, 229, 0.6);   /* indigo-600 */
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Poprawna / błędna odpowiedź po sprawdzeniu */
+.option.correct-answer {
+  background: #ecfdf5;         /* green-50 */
+  border-color: #16a34a;       /* green-600 */
+}
+
+.option.wrong-answer {
+  background: #fef2f2;         /* red-50 */
+  border-color: #dc2626;       /* red-600 */
+}
+
+/* Feedback i wynik */
+.exercise-feedback {
+  display: none;
+  margin: 6px 2px 8px 2px;
+}
+
+.exercise-feedback .explanation {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: #374151;
+  background: #f3f4f6;
+}
+
+.exercise-feedback .explanation.correct {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.exercise-feedback .explanation.incorrect {
+  background: #fef2f2;
+  color: #7f1d1d;
+  border: 1px solid #ef4444;
+}
+
+.exercise-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.exercise-result {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.exercise-result .result-success {
+  color: #065f46;
+}
+
+.exercise-result .result-failure {
+  color: #7f1d1d;
+}
+
+/* Przyciski */
+.btn.btn-primary.check-answers {
+  background: var(--primary-600);
+  border: 1px solid var(--primary-700);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: transform 100ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.btn.btn-primary.check-answers:disabled {
+  background: #c7cffc;
+  border-color: #b0b8f7;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.btn.btn-primary.check-answers:not(:disabled):hover {
+  background: var(--primary-700);
+  box-shadow: 0 6px 16px rgba(67, 56, 202, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn.btn-secondary.reset-exercise {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.btn.btn-secondary.reset-exercise:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+/* Teksty pytań */
+.exercise-item > p {
+  margin: 0 0 8px 0;
+  color: #111827;
+  font-weight: 500;
+}

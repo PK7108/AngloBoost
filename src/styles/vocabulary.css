@@ -1,0 +1,38 @@
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.vocab-table th,
+.vocab-table td {
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 10px 12px;
+  text-align: left;
+  background: #fff;
+}
+
+.vocab-table thead th {
+  background: #f3f4f6;
+  font-weight: 700;
+}
+
+.vocab-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+.vocab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  border: 1px solid rgba(0,0,0,0.08);
+  font-size: 0.95rem;
+}

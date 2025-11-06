@@ -1,0 +1,198 @@
+.admin-nav {
+    background: #0f172a;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.admin-nav .logo__flag {
+    background: #22c55e;
+}
+
+.admin-menu {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.admin-menu a {
+    color: #e2e8f0;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: background .2s ease, color .2s ease;
+}
+
+.admin-menu a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+.admin-menu a.is-active {
+    background: #334155;
+    color: #fff;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-user__email {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.admin-badge {
+    display: inline-block;
+    font-size: 12px;
+    background: #22c55e;
+    color: #0f172a;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+/* Admin overrides for mobile menu */
+.admin-nav .nav__toggle {
+    color: #e2e8f0;
+    border-color: rgba(255,255,255,0.18);
+    background: linear-gradient(180deg, #0f172a, #111c33);
+    margin-left: auto; /* Dodajemy to, żeby przesunąć ikonkę na prawo */
+}
+
+.admin-nav .nav__toggle:hover {
+    border-color: rgba(255,255,255,0.28);
+    box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
+
+.admin-nav .mobile-menu {
+    background: #0b1222;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.admin-nav .mobile-menu a {
+    color: #e2e8f0;
+}
+
+.admin-nav .mobile-menu a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+/* Mobile menu user info */
+.mobile-menu__user-info {
+    display: none;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 0.5rem;
+}
+
+.mobile-menu__email {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    word-break: break-all;
+}
+
+.mobile-menu__badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    background: #22c55e;
+    color: #0f172a;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+/* Mobile menu logout button */
+.mobile-menu__logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: left;
+}
+
+.mobile-menu__logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.mobile-menu__divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 0.5rem 0;
+}
+
+/* Ensure responsive behavior in admin header as well */
+@media (max-width: 860px) {
+    .admin-nav .menu {
+        display: none;
+    }
+
+    .admin-nav .nav__cta .admin-user .btn--outline {
+        display: none;
+    }
+
+    .mobile-menu__user-info {
+        display: block;
+    }
+
+    /* Ukrywamy email i badge admina w headerze dla małych szerokości */
+    .admin-user__email,
+    .admin-badge {
+        display: none;
+    }
+
+    /* Pokazujemy tylko przycisk wylogowania w headerze dla średnich szerokości */
+    .admin-user {
+        gap: 0;
+    }
+
+    /* Ustawiamy odpowiednie pozycjonowanie dla małych ekranów */
+    .admin-nav .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .admin-nav .nav__toggle {
+        order: 3; /* Upewniamy się, że hamburger jest ostatni */
+        margin-left: auto; /* Przesuwamy na prawo */
+    }
+
+    .admin-nav .nav__cta {
+        order: 2; /* Przycisk wylogowania przed hamburgerem */
+        margin-left: auto;
+    }
+}
+
+/* Dla bardzo małych ekranów dodatkowe dostosowania */
+@media (max-width: 480px) {
+    .admin-user {
+        min-width: auto;
+    }
+}
+
+/* Show logout button in desktop when user info is hidden */
+@media (min-width: 861px) {
+    .mobile-menu__user-info {
+        display: none;
+    }
+
+    .admin-user__email,
+    .admin-badge {
+        display: inline-block;
+    }
+
+    .admin-nav .nav__toggle {
+        display: none; /* Ukrywamy hamburger na desktopie */
+    }
+}

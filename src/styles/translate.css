@@ -1,0 +1,28 @@
+/* src/styles/translate.css */
+/* Ukryj widget Google Translate */
+.goog-te-banner-frame,
+.goog-te-menu-frame,
+.goog-te-ftab-link,
+.goog-text-highlight {
+    display: none !important;
+}
+
+/* Styl dla elementów, które nie powinny być tłumaczone */
+.no-translate,
+.vocabulary-table,
+.grammar-table,
+.exercise-content,
+.data-table,
+.irregular-verbs-table,
+.word-list,
+table,
+code,
+.quiz-container,
+.exercise-questions {
+    translate: none !important;
+}
+
+/* Zapobiegaj flashowaniu nieprzetłumaczonej treści */
+[translate="no"] {
+    translate: none !important;
+}

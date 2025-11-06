@@ -1,0 +1,153 @@
+/* Podstawowe style dla statycznych stron (Regulamin/Polityka/Kontakt) */
+.static-page {
+  padding: 2rem 0 3rem;
+  color: #0f172a;
+}
+
+.static-page__hero {
+  background: linear-gradient(
+    90deg,
+    var(--uk-blue, #1e3a8a),
+    var(--uk-red, #dc2626)
+  );
+  color: #fff;
+  padding: 3rem 1rem;
+  border-radius: 16px;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.static-page__hero h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  letter-spacing: 0.3px;
+}
+
+.static-page__hero p {
+  margin: 0;
+  opacity: 0.95;
+}
+
+.static-page__content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.static-page .card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.25rem 1.25rem 1rem;
+  margin: 0 0 16px 0;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.static-page .card h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+.static-page .card p {
+  margin: 0.25rem 0 0.75rem;
+  line-height: 1.65;
+  color: #334155;
+}
+
+.static-page .list {
+  padding-left: 1.25rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.static-page .list li {
+  margin: 0.25rem 0;
+  line-height: 1.6;
+  color: #334155;
+}
+
+/* Formularz kontaktowy */
+.static-page .form {
+  display: grid;
+  gap: 12px;
+}
+
+.static-page .form-group {
+  display: grid;
+  gap: 6px;
+}
+
+.static-page label {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.static-page input[type="text"],
+.static-page input[type="email"],
+.static-page textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 12px 14px;
+  outline: none;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  color: #0f172a;
+}
+
+.static-page textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.static-page input:focus,
+.static-page textarea:focus {
+  border-color: var(--uk-blue, #1e3a8a);
+  box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.15);
+}
+
+.static-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.2s ease;
+}
+
+.static-page .btn--primary {
+  background: linear-gradient(
+    90deg,
+    var(--uk-blue, #1e3a8a),
+    var(--uk-red, #dc2626)
+  );
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.static-page .btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.static-page .btn--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+}
+
+@media (min-width: 768px) {
+  .static-page__hero {
+    padding: 3.5rem 2rem;
+    border-radius: 20px;
+  }
+  .static-page__hero h1 {
+    font-size: 2.25rem;
+  }
+}

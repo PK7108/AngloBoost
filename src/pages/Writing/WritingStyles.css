@@ -1,0 +1,3252 @@
+/* WritingStyles.css */
+.writing-article {
+    line-height: 1.7;
+    color: #2c3e50;
+}
+
+.writing-article__header {
+    background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+}
+
+.writing-article__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.writing-article__breadcrumb-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.writing-article__breadcrumb-link:hover {
+    color: white;
+}
+
+.writing-article__breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.writing-article__breadcrumb-current {
+    color: white;
+    font-weight: 500;
+}
+
+.writing-article__title {
+    font-size: 2.5rem;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.writing-article__intro {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.writing-article__meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    flex-wrap: wrap;
+}
+
+.writing-article__content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.writing-article__section {
+    margin-bottom: 4rem;
+}
+
+.writing-article__section h2 {
+    color: #8e44ad;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+/* Writing Tip Box */
+.writing-tip-box {
+    background: #e8f4fd;
+    border-left: 4px solid #3498db;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.writing-tip-box h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* Points Grid */
+.writing-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.writing-point-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #9b59b6;
+    text-align: center;
+}
+
+.writing-point-card h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* Story Structure */
+.story-structure {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.structure-phase {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.phase-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.phase-number {
+    background: #3498db;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.phase-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.phase-content {
+    padding: 1.5rem;
+}
+
+.phase-content h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.phase-content ul {
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.phase-content li {
+    margin-bottom: 0.5rem;
+}
+
+.phase-example {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 3px solid #27ae60;
+    font-style: italic;
+}
+
+/* Tenses Guide */
+.tenses-guide {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tense-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tense-header {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tense-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.tense-usage {
+    background: #3498db !important;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.tense-content {
+    padding: 1.5rem;
+}
+
+.tense-examples {
+    margin-top: 1rem;
+}
+
+.example-pair {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.example-pair:last-child {
+    margin-bottom: 0;
+}
+
+.example {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.translation {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Vocabulary Sections */
+.vocabulary-sections {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vocab-category h3 {
+    color: #8e44ad;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.vocab-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.vocab-item:hover {
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.vocab-translation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Sample Story */
+.sample-story {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.story-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.story-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.story-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.story-content {
+    padding: 2rem;
+}
+
+.story-paragraph {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.story-paragraph:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.story-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.story-analysis {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Writing Techniques */
+.writing-techniques {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.technique-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #9b59b6;
+}
+
+.technique-card h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.technique-examples {
+    margin: 1rem 0;
+}
+
+.example-comparison {
+    margin-bottom: 1rem;
+}
+
+.bad-example {
+    background: #fadbd8;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid #e74c3c;
+}
+
+.good-example {
+    background: #d5f4e6;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid #27ae60;
+}
+
+.dialogue-example {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    font-style: italic;
+}
+
+.sensory-example {
+    display: grid;
+    gap: 0.5rem;
+}
+
+/* Writing Tips */
+.writing-tips {
+    display: grid;
+    gap: 2rem;
+}
+
+.tip-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tip-section h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.tip-section ul {
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.tip-section li {
+    margin-bottom: 0.5rem;
+}
+
+.perspective-examples {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.perspective {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    font-style: italic;
+}
+
+/* Writing Exercises */
+.writing-exercises {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.exercise-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #3498db;
+}
+
+.exercise-card h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.exercise-prompt {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    font-style: italic;
+    text-align: center;
+    font-weight: 500;
+}
+
+.exercise-hint {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+    margin-top: 1rem;
+}
+
+.exercise-requirements {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    margin-top: 1rem;
+}
+
+.transformation-exercise {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.transformation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.original {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.hint {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Writing Action Box */
+.writing-action-box {
+    background: linear-gradient(135deg, #9b59b6, #3498db);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.writing-prompts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.prompt-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.prompt-card h4 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.prompt-card p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn--primary {
+    background: white;
+    color: #9b59b6;
+}
+
+.btn--primary:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+.btn--secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn--secondary:hover {
+    background: white;
+    color: #9b59b6;
+}
+
+/* Article Footer */
+.writing-article__footer {
+    border-top: 2px solid #ecf0f1;
+    padding-top: 2rem;
+    margin-top: 3rem;
+}
+
+.writing-article__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.writing-tag {
+    background: #ecf0f1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+.writing-article__next {
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.writing-article__next a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.writing-article__next a:hover {
+    text-decoration: underline;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .writing-article__title {
+        font-size: 2rem;
+    }
+
+    .writing-article__meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .writing-points-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .phase-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .tenses-guide {
+        grid-template-columns: 1fr;
+    }
+
+    .vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .writing-prompts {
+        grid-template-columns: 1fr;
+    }
+
+    .transformation-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Formal Letter Specific Styles */
+.letter-structure {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.structure-element {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.element-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.element-number {
+    background: #3498db;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.element-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.element-content {
+    padding: 1.5rem;
+}
+
+.element-content h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.element-content ul {
+    margin: 1rem 0;
+    padding-left: 1rem;
+}
+
+.element-content li {
+    margin-bottom: 0.5rem;
+}
+
+.element-example {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 3px solid #27ae60;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Phrases Sections */
+.phrases-sections {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.phrases-category h3 {
+    color: #8e44ad;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #ecf0f1;
+}
+
+.phrases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.phrase-item {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.phrase-item:hover {
+    transform: translateY(-2px);
+}
+
+.phrase-english {
+    font-weight: 600;
+    color: #2c3e50;
+    font-style: italic;
+}
+
+.phrase-polish {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    border-left: 2px solid #3498db;
+    padding-left: 0.5rem;
+}
+
+/* Sample Letter */
+.sample-letter {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.letter-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.letter-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.letter-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.letter-content {
+    padding: 2rem;
+}
+
+.letter-address {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.sender-address, .receiver-address {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.receiver-address {
+    text-align: right;
+}
+
+.letter-body {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.salutation {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.paragraph {
+    margin-bottom: 1.5rem;
+}
+
+.paragraph p {
+    margin-bottom: 1rem;
+}
+
+.analysis {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 1rem;
+}
+
+.closing {
+    margin-top: 2rem;
+    font-weight: 600;
+}
+
+.signature {
+    margin-top: 3rem;
+    font-family: 'Courier New', monospace;
+}
+
+/* Letter Types */
+.letter-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.type-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.type-header {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-header h4 {
+    margin: 0;
+    color: white;
+}
+
+.type-difficulty {
+    background: #3498db;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.type-content {
+    padding: 1.5rem;
+}
+
+.type-content p {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.type-features h5, .type-tips h5 {
+    margin: 1rem 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.type-features ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.type-features li {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.type-tips p {
+    background: #fff3cd;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Mistakes Guide */
+.mistakes-guide {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.mistake-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #e74c3c;
+}
+
+.mistake-card h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.mistake-examples {
+    margin: 1rem 0;
+}
+
+.wrong-example {
+    background: #fadbd8;
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid #e74c3c;
+}
+
+.correct-example {
+    background: #d5f4e6;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid #27ae60;
+}
+
+.mistake-card p {
+    margin: 1rem 0 0 0;
+    font-weight: 500;
+}
+
+/* Address Exercise */
+.address-exercise {
+    margin: 1rem 0;
+}
+
+.address-elements {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.address-elements span {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px dashed #3498db;
+    font-family: 'Courier New', monospace;
+}
+
+/* Templates Section */
+.templates-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.template-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.template-card h4 {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 0;
+}
+
+.template-content {
+    padding: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.template-line {
+    margin-bottom: 0.25rem;
+}
+
+/* Writing Scenarios */
+.writing-scenarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.scenario-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.scenario-card h4 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.scenario-card p {
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Responsywność dla listów formalnych */
+@media (max-width: 768px) {
+    .letter-address {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .receiver-address {
+        text-align: left;
+    }
+
+    .letter-types {
+        grid-template-columns: 1fr;
+    }
+
+    .phrases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .templates-section {
+        grid-template-columns: 1fr;
+    }
+
+    .writing-scenarios {
+        grid-template-columns: 1fr;
+    }
+
+    .address-elements {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Informal Letter Specific Styles */
+.letter-structure .structure-element {
+    border-left: 4px solid #e67e22;
+}
+
+.element-example {
+    background: #fef9e7;
+    border-left: 3px solid #f39c12;
+}
+
+/* Comparison Table */
+.comparison-table {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.comparison-table th {
+    background: #e67e22;
+    color: white;
+    font-weight: 500;
+}
+
+.comparison-table tr:hover {
+    background: #fef9e7;
+}
+
+/* Informal Sample Letter */
+.sample-letter.informal {
+    border-left: 4px solid #e67e22;
+}
+
+.letter-address.informal {
+    grid-template-columns: 1fr;
+    text-align: left;
+}
+
+.salutation.informal {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.closing.informal {
+    color: #e67e22;
+}
+
+.postscript {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: #fef9e7;
+    border-radius: 6px;
+    border-left: 3px solid #f39c12;
+    font-style: italic;
+}
+
+/* Informal Expressions */
+.informal-expressions {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.expressions-category h3 {
+    color: #e67e22;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #fef9e7;
+}
+
+.expressions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.expression-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.expression-item:hover {
+    transform: translateY(-2px);
+}
+
+.expression-short {
+    font-weight: 600;
+    color: #e67e22;
+    font-family: 'Courier New', monospace;
+}
+
+.expression-full {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.expression-idiom {
+    font-weight: 600;
+    color: #e67e22;
+    font-style: italic;
+}
+
+.expression-meaning {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.expression-digital {
+    font-weight: 600;
+    color: #3498db;
+    font-family: 'Courier New', monospace;
+}
+
+/* Informal Letter Types */
+.letter-types.informal .type-card {
+    border-left: 4px solid #e67e22;
+}
+
+.letter-types.informal .type-header {
+    background: #e67e22;
+}
+
+/* Letter Completion Exercise */
+.letter-completion {
+    margin: 1rem 0;
+}
+
+.letter-start {
+    background: #fef9e7;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 3px solid #f39c12;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Scenarios Exercise */
+.scenarios-exercise {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.scenario {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #e67e22;
+}
+
+/* Informal Action Box */
+.writing-action-box.informal {
+    background: linear-gradient(135deg, #e67e22, #e74c3c);
+}
+
+/* Responsywność dla listów nieformalnych */
+@media (max-width: 768px) {
+    .expressions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .expression-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .expression-meaning {
+        text-align: left;
+    }
+
+    .scenarios-exercise {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-table {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* General Informal Styles */
+.informal-tag {
+    background: #f39c12 !important;
+}
+
+.informal-highlight {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+/* Animation for informal elements */
+@keyframes informalPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.expression-item:hover,
+.phrase-item:hover {
+    animation: informalPulse 0.3s ease;
+}
+
+/* Email Writing Specific Styles */
+.email-structure .structure-element {
+    border-left: 4px solid #3498db;
+}
+
+.element-example {
+    background: #e8f4fd;
+    border-left: 3px solid #3498db;
+}
+
+/* Tone Guide */
+.tone-guide {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.tone-level {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tone-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tone-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.tone-context {
+    background: #3498db;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.tone-content {
+    padding: 1.5rem;
+}
+
+.do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.do h4, .dont h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.do ul, .dont ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.do li, .dont li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.do {
+    color: #27ae60;
+}
+
+.dont {
+    color: #e74c3c;
+}
+
+.tone-example {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-style: italic;
+}
+
+/* Email Phrases */
+.email-phrases .phrase-item {
+    position: relative;
+}
+
+.phrase-level {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #3498db;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* Email Examples */
+.email-examples {
+    display: grid;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.email-example {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.email-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+}
+
+.email-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.email-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.email-stats .stat {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.email-content {
+    padding: 2rem;
+}
+
+.email-meta {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.email-body {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.email-body p {
+    margin-bottom: 1rem;
+}
+
+.email-body ul {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.email-body li {
+    margin-bottom: 0.5rem;
+}
+
+.email-analysis {
+    background: #e8f4fd;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+}
+
+/* Best Practices */
+.best-practices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.practice-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-top: 4px solid #3498db;
+}
+
+.practice-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.practice-card h4 {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+}
+
+.practice-card p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Email Mistakes */
+.email-mistakes {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.mistake-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #e74c3c;
+}
+
+.mistake-card h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.mistake-content p {
+    margin: 0 0 1rem 0;
+    color: #7f8c8d;
+}
+
+.solution {
+    background: #d5f4e6;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #27ae60;
+}
+
+/* Email Exercises */
+.email-transformation {
+    margin: 1rem 0;
+}
+
+.original-email {
+    background: #fadbd8;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 3px solid #e74c3c;
+    font-family: 'Courier New', monospace;
+}
+
+.transformation-hint {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #ffc107;
+}
+
+.subject-exercise {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.scenario {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+}
+
+.email-prompt {
+    margin: 1rem 0;
+}
+
+.requirements {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 3px solid #3498db;
+}
+
+/* Email Templates */
+.email-templates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.template-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.template-card h4 {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 0;
+}
+
+.template-content {
+    padding: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.template-line {
+    margin-bottom: 0.5rem;
+}
+
+/* Email Action Box */
+.writing-action-box.email {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* Responsywność dla emaili */
+@media (max-width: 768px) {
+    .do-dont {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .tone-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .email-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .best-practices {
+        grid-template-columns: 1fr;
+    }
+
+    .email-templates {
+        grid-template-columns: 1fr;
+    }
+
+    .phrase-level {
+        position: static;
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Email-specific animations */
+@keyframes emailSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.email-example {
+    animation: emailSlide 0.5s ease;
+}
+
+.practice-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Review Writing Specific Styles */
+.review-structure .structure-element {
+    border-left: 4px solid #9b59b6;
+}
+
+.element-example {
+    background: #f4ecf7;
+    border-left: 3px solid #9b59b6;
+}
+
+/* Review Vocabulary */
+.review-vocabulary {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vocab-category h3 {
+    color: #9b59b6;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f4ecf7;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.vocab-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.vocab-item:hover {
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 600;
+    color: #9b59b6;
+}
+
+.vocab-translation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* Rating Systems */
+.rating-systems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.rating-system {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rating-system h3 {
+    color: #9b59b6;
+    margin-top: 0;
+    text-align: center;
+}
+
+.rating-scale {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.rating-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.stars, .score {
+    font-weight: 600;
+    color: #9b59b6;
+    min-width: 80px;
+}
+
+.rating-desc {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+.recommendation-scale {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.recommendation-item {
+    padding: 1rem;
+    border-radius: 6px;
+    display: grid;
+    gap: 0.25rem;
+}
+
+.recommendation-item.positive {
+    background: #d5f4e6;
+    border-left: 4px solid #27ae60;
+}
+
+.recommendation-item.neutral {
+    background: #fff3cd;
+    border-left: 4px solid #f39c12;
+}
+
+.recommendation-item.negative {
+    background: #fadbd8;
+    border-left: 4px solid #e74c3c;
+}
+
+.rec-label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.rec-desc {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+/* Review Examples */
+.review-examples {
+    display: grid;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.review-example {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.review-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+}
+
+.review-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.review-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.rating, .genre, .length {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.review-content {
+    padding: 2rem;
+}
+
+.review-title h4 {
+    margin: 0 0 1.5rem 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.review-body {
+    line-height: 1.6;
+}
+
+.review-paragraph {
+    margin-bottom: 1.5rem;
+}
+
+.review-paragraph p {
+    margin-bottom: 1rem;
+}
+
+.analysis {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 1rem;
+}
+
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.pros h5, .cons h5 {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+}
+
+.pros ul, .cons ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.pros li, .cons li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.pros {
+    color: #27ae60;
+}
+
+.cons {
+    color: #e74c3c;
+}
+
+.review-conclusion {
+    background: #e8f4fd;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+    margin-top: 1.5rem;
+}
+
+.review-conclusion p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Review Tips */
+.review-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.tip-category h3 {
+    color: #9b59b6;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f4ecf7;
+}
+
+.tip-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.tip-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tip-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+}
+
+.tip-item p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Review Exercises */
+.review-scenarios {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.scenario {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #9b59b6;
+}
+
+.structure-reminder {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #f39c12;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Review Action Box */
+.writing-action-box.review {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+/* Responsywność dla recenzji */
+@media (max-width: 768px) {
+    .vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rating-systems {
+        grid-template-columns: 1fr;
+    }
+
+    .pros-cons {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .review-tips {
+        grid-template-columns: 1fr;
+    }
+
+    .review-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .rating-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Review-specific animations */
+@keyframes reviewGlow {
+    0% { box-shadow: 0 4px 6px rgba(155, 89, 182, 0.1); }
+    50% { box-shadow: 0 6px 12px rgba(155, 89, 182, 0.2); }
+    100% { box-shadow: 0 4px 6px rgba(155, 89, 182, 0.1); }
+}
+
+.review-example:hover {
+    animation: reviewGlow 2s ease-in-out infinite;
+}
+
+.tip-item:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* Report Writing Specific Styles */
+.report-structure .structure-element {
+    border-left: 4px solid #e67e22;
+}
+
+.element-example {
+    background: #fef5e7;
+    border-left: 3px solid #e67e22;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* Report Vocabulary */
+.report-vocabulary {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vocab-category h3 {
+    color: #e67e22;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #fef5e7;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.vocab-item {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.vocab-item:hover {
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 600;
+    color: #e67e22;
+    font-style: italic;
+}
+
+.vocab-translation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    border-left: 2px solid #e67e22;
+    padding-left: 0.5rem;
+}
+
+/* Report Style Principles */
+.report-style {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.style-principle {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.principle-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.principle-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.principle-importance {
+    background: #e67e22;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.principle-content {
+    padding: 1.5rem;
+}
+
+.do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.do h4, .dont h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.do ul, .dont ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.do li, .dont li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.do {
+    color: #27ae60;
+}
+
+.dont {
+    color: #e74c3c;
+}
+
+.principle-example {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #e67e22;
+    font-style: italic;
+}
+
+/* Report Examples */
+.report-examples {
+    display: grid;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.report-example {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.report-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+}
+
+.report-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.report-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.type, .section, .audience {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.report-content {
+    padding: 2rem;
+}
+
+.report-section h4 {
+    color: #e67e22;
+    margin: 0 0 1.5rem 0;
+    border-bottom: 2px solid #fef5e7;
+    padding-bottom: 0.5rem;
+}
+
+.report-body {
+    line-height: 1.6;
+}
+
+.report-body p {
+    margin-bottom: 1rem;
+}
+
+.report-body ol, .report-body ul {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.report-body li {
+    margin-bottom: 0.5rem;
+}
+
+.report-analysis {
+    background: #e8f4fd;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+    margin-top: 1.5rem;
+}
+
+/* Data Visualization */
+.data-visualization {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.viz-type {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.viz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #fef5e7;
+}
+
+.viz-header h3 {
+    margin: 0;
+    color: #e67e22;
+}
+
+.viz-best-for {
+    background: #e67e22;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.viz-content p {
+    margin: 0 0 1rem 0;
+    color: #7f8c8d;
+}
+
+.viz-example {
+    margin-top: 1rem;
+}
+
+.viz-placeholder, .table-placeholder {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 6px;
+    text-align: center;
+    color: #7f8c8d;
+    border: 2px dashed #e67e22;
+    margin-bottom: 1rem;
+}
+
+.viz-caption {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Report Exercises */
+.exercise-data {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 3px solid #3498db;
+}
+
+.original-data {
+    background: #fadbd8;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 3px solid #e74c3c;
+    font-family: 'Courier New', monospace;
+}
+
+.report-scenarios {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.scenario {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #e67e22;
+}
+
+.structure-requirements {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 3px solid #f39c12;
+}
+
+/* Report Templates */
+.report-templates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.template-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.template-card h4 {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 0;
+}
+
+.template-content {
+    padding: 1.5rem;
+}
+
+.template-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.template-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Report Action Box */
+.writing-action-box.report {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+}
+
+/* Responsywność dla raportów */
+@media (max-width: 768px) {
+    .vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .principle-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .do-dont {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .data-visualization {
+        grid-template-columns: 1fr;
+    }
+
+    .viz-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .report-templates {
+        grid-template-columns: 1fr;
+    }
+
+    .report-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Report-specific animations */
+@keyframes reportBuild {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.report-example {
+    animation: reportBuild 0.5s ease;
+}
+
+.viz-type:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 15px rgba(230, 126, 34, 0.2);
+}
+
+/* Article Writing Specific Styles */
+.article-structure .structure-element {
+    border-left: 4px solid #27ae60;
+}
+
+.element-example {
+    background: #e8f6f3;
+    border-left: 3px solid #27ae60;
+}
+
+/* Writing Techniques */
+.writing-techniques {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.technique-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.technique-header {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.technique-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.technique-difficulty {
+    background: #27ae60;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.technique-content {
+    padding: 1.5rem;
+}
+
+.technique-content p {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.technique-examples {
+    display: grid;
+    gap: 1rem;
+}
+
+.example {
+    background: #f8f9fa;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border-left: 3px solid #27ae60;
+    font-size: 0.9rem;
+}
+
+/* Article Vocabulary */
+.article-vocabulary {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vocab-category h3 {
+    color: #27ae60;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e8f6f3;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.vocab-item {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.vocab-item:hover {
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 600;
+    color: #27ae60;
+    font-style: italic;
+}
+
+.vocab-translation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    border-left: 2px solid #27ae60;
+    padding-left: 0.5rem;
+}
+
+/* Article Examples */
+.article-examples {
+    display: grid;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.article-example {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.article-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+}
+
+.article-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.article-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.type, .length, .tone {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.article-content {
+    padding: 2rem;
+}
+
+.article-title h4 {
+    margin: 0 0 1.5rem 0;
+    color: #2c3e50;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    border-bottom: 2px solid #e8f6f3;
+    padding-bottom: 0.5rem;
+}
+
+.article-body {
+    line-height: 1.6;
+}
+
+.article-paragraph {
+    margin-bottom: 1.5rem;
+}
+
+.article-paragraph p {
+    margin-bottom: 1rem;
+}
+
+.analysis {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 1rem;
+}
+
+.article-subheading h5 {
+    color: #27ae60;
+    margin: 1.5rem 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.article-conclusion {
+    background: #e8f6f3;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border-left: 4px solid #27ae60;
+    margin-top: 1.5rem;
+}
+
+.article-conclusion p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Formatting and SEO */
+.formatting-seo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.formatting-tips h3, .seo-tips h3, .readability-tips h3 {
+    color: #27ae60;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.tips-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.tip-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tip-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.tip-item p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.8rem;
+}
+
+.seo-checklist {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.seo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.seo-item input[type="checkbox"] {
+    accent-color: #27ae60;
+}
+
+.seo-item label {
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.readability-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.stat {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+/* Article Exercises */
+.title-exercise, .hook-exercise, .article-scenarios {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.topic, .scenario {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #27ae60;
+}
+
+.hook-options {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.option {
+    background: #e8f6f3;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Article Action Box */
+.writing-action-box.article {
+    background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+/* Responsywność dla artykułów */
+@media (max-width: 768px) {
+    .writing-techniques {
+        grid-template-columns: 1fr;
+    }
+
+    .vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .formatting-seo {
+        grid-template-columns: 1fr;
+    }
+
+    .readability-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .article-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .hook-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Article-specific animations */
+@keyframes articleReveal {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.article-example {
+    animation: articleReveal 0.6s ease;
+}
+
+.technique-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 15px rgba(39, 174, 96, 0.2);
+}
+
+/* Picture Description Specific Styles */
+.picture-structure .structure-element {
+    border-left: 4px solid #9b59b6;
+}
+
+.element-example {
+    background: #f4ecf7;
+    border-left: 3px solid #9b59b6;
+}
+
+/* Picture Vocabulary */
+.picture-vocabulary {
+    display: grid;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vocab-category h3 {
+    color: #9b59b6;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f4ecf7;
+}
+
+.vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.vocab-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.vocab-item:hover {
+    transform: translateY(-2px);
+}
+
+.vocab-word {
+    font-weight: 600;
+    color: #9b59b6;
+}
+
+.vocab-translation {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* Grammar Tenses */
+.grammar-tenses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tense-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tense-header {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tense-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.tense-usage {
+    background: #9b59b6;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.tense-content {
+    padding: 1.5rem;
+}
+
+.tense-examples {
+    margin-top: 1rem;
+}
+
+.example-pair {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.example-pair:last-child {
+    margin-bottom: 0;
+}
+
+.example {
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.translation {
+    color: #7f8c8d;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Picture Examples */
+.picture-examples {
+    display: grid;
+    gap: 3rem;
+    margin: 2rem 0;
+}
+
+.picture-example {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.picture-header {
+    background: #34495e;
+    color: white;
+    padding: 1.5rem;
+}
+
+.picture-header h3 {
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.picture-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.type, .time, .mood {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.picture-content {
+    padding: 2rem;
+}
+
+.picture-visual {
+    margin-bottom: 2rem;
+}
+
+.image-placeholder {
+    background: #f8f9fa;
+    padding: 4rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #7f8c8d;
+    border: 2px dashed #9b59b6;
+    font-style: italic;
+}
+
+.picture-description {
+    line-height: 1.6;
+}
+
+.description-paragraph {
+    margin-bottom: 1.5rem;
+}
+
+.description-paragraph p {
+    margin-bottom: 1rem;
+}
+
+.analysis {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 1rem;
+}
+
+/* Practical Tips */
+.practical-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.tip-category h3 {
+    color: #9b59b6;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f4ecf7;
+}
+
+.tip-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.tip-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tip-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+}
+
+.tip-item p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Picture Exercises */
+.position-exercise, .description-exercise, .personal-picture-exercise {
+    margin: 1rem 0;
+}
+
+.exercise-scenario, .scene-description {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 3px solid #9b59b6;
+}
+
+.structure-guide {
+    background: #e8f4fd;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #3498db;
+    font-size: 0.9rem;
+}
+
+.picture-options {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.option {
+    background: #f4ecf7;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.vocabulary-reminder {
+    background: #fff3cd;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border-left: 3px solid #f39c12;
+}
+
+/* Description Templates */
+.description-templates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.template-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.template-card h4 {
+    background: #34495e;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 0;
+}
+
+.template-content {
+    padding: 1.5rem;
+}
+
+.template-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.template-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Picture Action Box */
+.writing-action-box.picture {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+/* Responsywność dla opisów obrazków */
+@media (max-width: 768px) {
+    .vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grammar-tenses {
+        grid-template-columns: 1fr;
+    }
+
+    .practical-tips {
+        grid-template-columns: 1fr;
+    }
+
+    .description-templates {
+        grid-template-columns: 1fr;
+    }
+
+    .picture-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .picture-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Picture-specific animations */
+@keyframes pictureFocus {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.picture-example {
+    animation: pictureFocus 0.5s ease;
+}
+
+.tip-item:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(155, 89, 182, 0.2);
+}

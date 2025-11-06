@@ -1,0 +1,237 @@
+/* Placement test & results styles */
+.placement {
+  padding: 44px 0 60px;
+}
+
+.placement .page-title {
+  font-size: 2rem;
+  color: var(--uk-blue);
+  margin-bottom: .25rem;
+}
+
+.placement .lead {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.placement .panel {
+  background: var(--card);
+  border: 1px solid rgba(1,33,105,.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  padding: 16px;
+}
+
+.progress {
+  position: relative;
+  height: 10px;
+  background: #eef1ff;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 8px 0 2px;
+}
+
+.progress__bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--uk-blue), var(--uk-red));
+  transition: width .3s ease;
+}
+
+.progress__info {
+  display: flex;
+  justify-content: space-between;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.test-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.question-card {
+  background: linear-gradient(180deg, #fff, #fbfbff);
+  border: 1px solid rgba(1,33,105,.12);
+  border-radius: var(--radius);
+  padding: 14px 14px 12px;
+  box-shadow: var(--shadow-1);
+}
+
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .4rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .22rem .55rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  border: 1px solid rgba(1,33,105,.12);
+  background: #fff;
+}
+
+.badge--level {
+  background: linear-gradient(135deg, rgba(1,33,105,.06), rgba(200,16,46,.06));
+}
+
+.badge--cat {
+  background: #f6f8ff;
+}
+
+.q-title {
+  font-weight: 700;
+  margin: .1rem 0 .5rem;
+}
+
+.options {
+  display: grid;
+  gap: .4rem;
+  margin: .2rem 0 .8rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .45rem .6rem;
+  border-radius: 10px;
+  border: 1px solid rgba(1,33,105,.12);
+  background: #fff;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.option:hover {
+  background: rgba(1,33,105,.05);
+  border-color: rgba(1,33,105,.22);
+}
+
+.option input[type="radio"] {
+  accent-color: var(--uk-blue);
+}
+
+.text-input {
+  width: 100%;
+  border: 1.5px solid rgba(1,33,105,.25);
+  border-radius: 10px;
+  padding: .6rem .7rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: var(--uk-blue);
+  box-shadow: 0 0 0 3px rgba(1,33,105,.12);
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.helper {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.alert {
+  margin-top: .6rem;
+  padding: .6rem .8rem;
+  border: 1px solid #f2c4c4;
+  background: #fff3f3;
+  color: #7a2a2a;
+  border-radius: 10px;
+}
+
+/* Results */
+.result-summary {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .result-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: .6rem;
+}
+
+.kpi .tile {
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-height: unset;
+}
+
+.kpi .tile h4 {
+  margin: 0 0 .2rem 0;
+}
+
+.strengths, .weaknesses {
+  margin-top: .6rem;
+}
+
+.review {
+  margin-top: 18px;
+}
+
+.review-item {
+  border-top: 1px dashed rgba(1,33,105,.18);
+  padding: 10px 0;
+}
+
+.review-item.correct {
+  background: linear-gradient(90deg, rgba(30,200,70,.08), transparent);
+}
+
+.review-item.incorrect {
+  background: linear-gradient(90deg, rgba(200,16,46,.08), transparent);
+}
+
+.review-row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 10px;
+}
+
+.answer {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  background: #eef1ff;
+  border: 1px solid rgba(1,33,105,.12);
+}
+
+.answer--ok {
+  background: rgba(30,200,70,.12);
+  border-color: rgba(30,200,70,.25);
+}
+
+.answer--bad {
+  background: rgba(200,16,46,.12);
+  border-color: rgba(200,16,46,.25);
+}

@@ -1,0 +1,218 @@
+/* Navbar user menu */
+.avatar-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(1,33,105,.18);
+  background: linear-gradient(180deg, #fff, #f6f8ff);
+  color: var(--uk-blue);
+  cursor: pointer;
+  transition: box-shadow .2s ease, transform .1s ease, border-color .2s ease, background .2s ease;
+}
+
+.avatar-btn:hover {
+  border-color: rgba(1,33,105,.3);
+  box-shadow: 0 4px 14px rgba(1,33,105,.15);
+}
+
+.avatar-btn:active {
+  transform: translateY(1px);
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 200px;
+  border-radius: 12px;
+  border: 1px solid rgba(1,33,105,.12);
+  background: #fff;
+  box-shadow: var(--shadow-1);
+  padding: 6px;
+  display: none;
+  z-index: 1200;
+}
+
+.user-menu.is-open {
+  display: block;
+}
+
+.user-menu__item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: .6rem .7rem;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-menu__item:hover {
+    background: linear-gradient(90deg, var(--uk-blue), var(--uk-red));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-menu__item:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.user-menu__item:hover::before {
+    left: 100%;
+}
+
+/* Dodatkowe style dla różnych stanów */
+.user-menu__item--danger:hover {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.user-menu__item--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.user-menu__item--disabled:hover {
+    background: transparent;
+    color: var(--ink);
+    transform: none;
+    box-shadow: none;
+}
+
+/*.user-menu__item:hover {*/
+/*  background: rgba(1,33,105,.08);*/
+/*  color: var(--uk-blue);*/
+/*}*/
+
+.premium-link {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000 !important;
+    font-weight: 700;
+    margin: 0.5rem;
+    border-radius: 8px;
+}
+
+.premium-star {
+    margin-right: 0.5rem;
+}
+
+/* Language button */
+.nav__lang {
+  margin-left: 12px;
+}
+.lang-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(1,33,105,.18);
+  background: linear-gradient(180deg, #fff, #f6f8ff);
+  color: var(--uk-blue);
+  cursor: pointer;
+  transition: box-shadow .2s ease, transform .1s ease, border-color .2s ease, background .2s ease;
+}
+.lang-btn:hover {
+  border-color: rgba(1,33,105,.3);
+  box-shadow: 0 4px 14px rgba(1,33,105,.15);
+}
+.lang-btn:active {
+  transform: translateY(1px);
+}
+
+/* Mobile menu placement for language button */
+.mobile-menu__lang {
+  padding: 10px 14px 0 14px;
+  display: none; /* hidden by default on desktop */
+}
+
+/* Nowa sekcja prawa */
+.nav__right-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+/* Responsywność - domyślnie ukrywamy CTA na mobile */
+.nav__cta {
+    display: none;
+}
+
+/* Na większych ekranach pokazujemy CTA, a chowamy prawą sekcję */
+@media (min-width: 901px) {
+    .nav__cta {
+        display: block;
+    }
+    .nav__right-section {
+        display: none;
+    }
+    .mobile-menu__lang {
+        display: none;
+    }
+}
+
+/* Na mniejszych ekranach pokazujemy prawą sekcję */
+@media (max-width: 1000px) {
+    .nav__cta {
+        display: block;
+    }
+
+    .nav__right-section {
+        display: flex;
+    }
+
+    /* Dostosowanie przycisku logowania na mobile */
+    .nav__cta .btn--outline {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        white-space: nowrap;
+    }
+
+    /* Upewniamy się, że avatar jest odpowiednio wyświetlany */
+    .avatar-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Dla bardzo małych ekranów - chowanie w hamburgerze */
+@media (max-width: 480px) {
+    .nav__right-section {
+        gap: 0.75rem;
+    }
+
+    .nav__cta .btn--outline {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    /* Hide the topbar language button and show the one inside hamburger */
+    .nav__lang {
+        display: none;
+    }
+    .mobile-menu__lang {
+        display: block;
+    }
+}
