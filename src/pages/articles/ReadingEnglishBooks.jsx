@@ -231,7 +231,7 @@ const ReadingEnglishBooks = () => {
                                     <div className="step">4. Wracaj do starych rozdziałów</div>
                                 </div>
                                 <div className="technique-tip">
-                                    💡 <strong>Tip:</strong> 5 minut powtórek dziennie > 1 godzina raz w tygodniu
+                                    💡 <strong>Tip:</strong> 5 minut powtórek dziennie &gt; 1 godzina raz w tygodniu
                                 </div>
                             </div>
 
@@ -341,7 +341,7 @@ const ReadingEnglishBooks = () => {
                                 <h4>⏰ Nieregularność</h4>
                                 <p>Czytanie raz na miesiąc nie da efektów</p>
                                 <div className="solution">
-                                    <strong>Rozwiązanie:</strong> 15 minut dziennie > 3 godziny raz w miesiącu
+                                    <strong>Rozwiązanie:</strong> 15 minut dziennie &gt; 3 godziny raz w miesiącu
                                 </div>
                             </div>
 
