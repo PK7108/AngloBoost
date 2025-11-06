@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "node src/index.js"
+    "dev": "node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
