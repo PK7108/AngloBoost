@@ -27,7 +27,7 @@ function Hero() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__flag">
-              <img src="../public/UK.svg" alt="Flaga angielskiego" />
+              <img src="/UK.svg" alt="Flaga angielskiego" />
           </div>
         </div>
       </div>
