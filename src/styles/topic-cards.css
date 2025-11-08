@@ -6713,9 +6713,60 @@ em {
     text-align: center;
 }
 
-.active {
-    background: #fef3c7;
-    border: 1px solid #fcd34d;
+.menu a {
+    display: inline-block;
+    padding: .5rem .7rem;
+    border-radius: 10px;
+    color: var(--ink);
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 1.5px solid transparent;
+}
+
+.menu a:hover {
+    background: rgba(1, 33, 105, 0.08);
+    color: var(--uk-blue);
+    border: 1.5px solid rgba(1, 33, 105, 0.15);
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+.menu a.active {
+    background: linear-gradient(135deg, rgba(1, 33, 105, 0.1), rgba(200, 16, 46, 0.05));
+    border: 1.5px solid transparent;
+    background-clip: padding-box;
+    color: var(--uk-blue);
+    font-weight: 630;
+    position: relative;
+    border-radius: 10px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu a.active::before {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 11px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, var(--uk-blue), var(--uk-red));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu a.active:hover {
+    background: linear-gradient(135deg, rgba(1, 33, 105, 0.15), rgba(200, 16, 46, 0.08));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(1, 33, 105, 0.18);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.menu a.active:hover::before {
+    background: linear-gradient(135deg, var(--uk-blue), #b90f29);
+    box-shadow: 0 4px 15px rgba(1, 33, 105, 0.25);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .passive {

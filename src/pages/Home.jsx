@@ -16,18 +16,20 @@ function Hero() {
           </p>
           <div className="hero__actions">
             <Link className="btn btn--primary" to="/test-poziomujacy">{t('home.ctaPrimary', 'Zrób test poziomujący')}</Link>
-            <a className="btn btn--ghost" href="#sekcje">{t('home.ctaGhost', 'Zobacz możliwości')}</a>
+              <button className="btn btn--ghost" onClick={() => document.getElementById('sekcje')?.scrollIntoView({behavior:'smooth'})}>
+                  {t('home.ctaGhost','Zobacz możliwości')}
+              </button>
           </div>
           <ul className="hero__points">
             <li>{t('home.point1', 'Setki ćwiczeń interaktywnych')}</li>
             <li>{t('home.point2', 'Wyjaśnienia gramatyczne po polsku')}</li>
-            <li>{t('home.point3', 'Fiszki i listy słówek z nagraniami')}</li>
-            <li>{t('home.point4', 'Materiały do druku i notatek')}</li>
+            <li>{t('home.point3', 'Fiszki i listy słówek')}</li>
+              <li>{t('home.point4','Polecane strony, wideo i książki')}</li>
           </ul>
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__flag">
-              <img src="/UK.svg" alt="Flaga angielskiego" />
+              <img src="/UK.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -66,6 +68,99 @@ function SectionsGrid() {
       </div>
     </section>
   )
+}
+
+function WhyChooseSection() {
+    const { t } = useLanguage()
+
+    const features = [
+        {
+            key: 'independence',
+            title: t('home.why.independence.title', 'Pełna niezależność'),
+            desc: t('home.why.independence.desc', 'Ty decydujesz co i jak ćwiczysz — układasz własne ścieżki nauki albo korzystasz z gotowych planów.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 2a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2h3V4a2 2 0 0 1 2-2h0zM9 12h6v2H9v-2z"/>
+                </svg>
+            )
+        },
+        {
+            key: 'exercises',
+            title: t('home.why.exercises.title', 'Pełna baza ćwiczeń'),
+            desc: t('home.why.exercises.desc', 'Setki zadań tematycznych i interaktywnych ćwiczeń od A1 do C1 — natychmiastowy feedback i zapis wyników.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M3 5h18v2H3V5zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/>
+                </svg>
+            )
+        },
+        {
+            key: 'voting',
+            title: t('home.why.voting.title', 'Realny wpływ użytkowników'),
+            desc: t('home.why.voting.desc', 'System zgłaszania i głosowania na pomysły — rozwijamy projekt razem z użytkownikami. Twoja sugestia może stać się częścią strony.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 2l3 7h7l-5.7 4.3L21 22l-9-6-9 6 4.7-8.7L2 9h7z"/>
+                </svg>
+            )
+        },
+        {
+            key: 'paths',
+            title: t('home.why.paths.title', 'Gotowe ścieżki i elastyczne plany'),
+            desc: t('home.why.paths.desc', 'Wybierz gotową 30-dniową ścieżkę, lub zbuduj własny program — krótkie, codzienne moduły zwiększają skuteczność nauki.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M3 11h2v8H3v-8zm4-6h2v14H7V5zm4 10h2V5h-2v10zm4-4h2v4h-2v-4z"/>
+                </svg>
+            )
+        },
+        {
+            key: 'community',
+            title: t('home.why.community.title', 'Społeczność i wsparcie'),
+            desc: t('home.why.community.desc', 'Aktywny serwer Discord, miejsce na pytania, korekty i wymianę materiałów — uczysz się w grupie.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-3 9h2v4H9v-4zm4 0h2v4h-2v-4z"/>
+                </svg>
+            )
+        },
+        {
+            key: 'adfree',
+            title: t('home.why.adfree.title', 'Tryb bez reklam w Premium'),
+            desc: t('home.why.adfree.desc', 'Wersja Premium usuwa reklamy i odblokowuje dodatkowe statystyki oraz ćwiczenia — prosty sposób na koncentrację.'),
+            icon: (
+                <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M5 12h14v2H5v-2zm7-9v2h2V3h-2zm0 16v2h2v-2h-2zM3 7h2v2H3V7zm16 0h2v2h-2V7z"/>
+                </svg>
+            )
+        }
+    ]
+
+    return (
+        <section className="why" aria-labelledby="why-heading">
+            <div className="container">
+                <div className="why__intro">
+                    <h2 id="why-heading">{t('home.why.title', 'Co nas wyróżnia — dlaczego warto wybrać AngloBoost')}</h2>
+                    <p className="why__lead">
+                        {t('home.why.lead', 'AngloBoost to miejsce, gdzie to Ty masz kontrolę nad swoją nauką. Oferujemy pełne zasoby, realny wpływ na rozwój platformy i narzędzia, które pomagają uczyć się efektywniej.')}
+                    </p>
+                    <div className="why__cta">
+                        <Link to="/logowanie" className="btn btn--ghost">{t('home.why.ctaJoin', 'Zaloguj się i zgłoś pomysł')}</Link>
+                    </div>
+                </div>
+
+                <div className="why__grid" role="list">
+                    {features.map((f) => (
+                        <article key={f.key} className="why__card" role="listitem" tabIndex={0} aria-labelledby={`why-${f.key}-title`}>
+                            <div className="why__icon" aria-hidden="true">{f.icon}</div>
+                            <h3 id={`why-${f.key}-title`} className="why__title">{f.title}</h3>
+                            <p className="why__desc">{f.desc}</p>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
 }
 
 function Newsletter() {
@@ -203,7 +298,7 @@ function HowToUseSection() {
 function EarlyAccessSection() {
     const { t } = useLanguage()
     const featuresInProgress = [
-        { name: t('home.earlyAccess.feature1', 'Gramtyka i słownictwo'), progress: 80 },
+        { name: t('home.earlyAccess.feature1', 'Gramatyka i słownictwo'), progress: 80 },
         { name: t('home.earlyAccess.feature2', 'Ćwiczenia'), progress: 75 },
         { name: t('home.earlyAccess.feature3', 'Ulepszanie interfejsu'), progress: 45 },
         { name: t('home.earlyAccess.feature4', 'Fiszki'), progress: 20 }
@@ -353,8 +448,9 @@ export default function Home() {
     <main>
       <Hero />
       <SectionsGrid />
+        <WhyChooseSection />
       <HowToUseSection />
-      <EarlyAccessSection />
+      {/*<EarlyAccessSection />*/}
         <CoffeeSupport />
         <Newsletter />
     </main>

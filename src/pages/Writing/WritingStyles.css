@@ -583,6 +583,7 @@
 }
 
 .btn--primary:hover {
+    color: black;
     background: #f8f9fa;
     transform: translateY(-2px);
 }
