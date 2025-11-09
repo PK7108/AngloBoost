@@ -1,0 +1,12 @@
+# robots.txt for AngloBoost
+User-agent: *
+Allow: /
+
+# Zablokuj nieistotne katalogi (jeśli istnieją)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /tmp/
+Disallow: /private/
+
+# Lokalizacja mapy witryny
+Sitemap: https://angloboost.pl/sitemap.xml

@@ -100,9 +100,9 @@ a:hover {
     box-shadow: var(--shadow-2);
 }
 
-.btn--primary:hover {
-    filter: brightness(0.98);
-}
+/*.btn--primary:hover {*/
+/*    filter: brightness(0.98);*/
+/*}*/
 
 .btn--outline {
     --btn-bg: #fff;

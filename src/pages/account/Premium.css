@@ -459,9 +459,17 @@
     transition: all 0.3s ease;
 }
 
-.btn--outline:hover {
-    background: white;
-    color: #667eea;
+.nav__cta .btn--outline:hover {
+    background: linear-gradient(#f8faff, #f8faff) padding-box,
+    linear-gradient(135deg, #021a4e, #b90f29) border-box;
+    color: #021a4e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(1, 33, 105, 0.2);
+}
+
+.nav__cta .btn--outline:active {
+    transform: translateY(0);
+    transition: all 0.2s ease;
 }
 
 .cta-note {

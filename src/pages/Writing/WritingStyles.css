@@ -583,8 +583,8 @@
 }
 
 .btn--primary:hover {
-    color: black;
-    background: #f8f9fa;
+    color: white;
+    background: #db4058;
     transform: translateY(-2px);
 }
 
@@ -768,6 +768,11 @@
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #ecf0f1;
+    margin-top: 20px;
+}
+
+h5{
+    font-size: 1.1rem;
 }
 
 .phrases-grid {
@@ -1354,6 +1359,7 @@
 /* Email Writing Specific Styles */
 .email-structure .structure-element {
     border-left: 4px solid #3498db;
+    margin: 20px 0;
 }
 
 .element-example {

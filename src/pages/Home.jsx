@@ -11,7 +11,7 @@ function Hero() {
           <h1>{t('home.heroTitle', 'Nauka angielskiego za darmo')}</h1>
           <p className="lead">
             {t('home.heroLead1', 'AngloBoost to Twoje centrum nauki języka angielskiego: gramatyka, słownictwo,')}<br/>
-            {t('home.heroLead2', 'artykuły, praktyczne ćwiczenia, gotowe materiały i wspierająca społeczność na forum.')}<br/>
+            {t('home.heroLead2', 'artykuły, praktyczne ćwiczenia, gotowe materiały i wspierająca społeczność.')}<br/>
             {t('home.heroLead3', 'Bez opłat, bez haczyków — ucz się skutecznie w rytmie dopasowanym do Ciebie.')}
           </p>
           <div className="hero__actions">
