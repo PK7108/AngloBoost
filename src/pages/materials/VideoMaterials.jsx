@@ -12,27 +12,188 @@ const VideoMaterials = () => {
     const videoMaterials = [
         {
             id: 1,
-            title: 'LEARN ENGLISH FAST | Basic Vocabulary A1 | Comprehensible input',
-            channel: 'EnglishSponge',
-            youtubeId: '0SeZFnmLvW4',
-            level: 'A1-A2',
-            duration: '7:29',
-            category: 'grammar',
-            views: '14K',
-            uploadDate: '2025-02-14'
+            title: '7 tips for speaking better in any language',
+            channel: 'Benny Lewis / English With Benny (polyglot resources)',
+            youtubeId: 'vnnT3E6zKos',
+            level: 'A2-B1',
+            duration: '10:12',
+            category: 'speaking',
+            views: '1.2M',
+            uploadDate: '2019-07-10',
+            description:
+                'Praktyczne, uniwersalne techniki poprawy płynności mówienia — dobre do codziennych ćwiczeń ustnych.'
         },
         {
             id: 2,
-            title: 'Q&A With Benji English Comprehensible Input',
-            channel: 'Learn English With Benji',
-            youtubeId: 's8h_JBgGVng',
-            level: 'B1-B2',
-            duration: '9:16',
-            category: 'study plan',
-            views: '1.8K',
-            uploadDate: '2022-09-26'
+            title: 'How to Learn Any Language Faster (5 Powerful Methods)',
+            channel: 'Language Learning Tips',
+            youtubeId: 'acn1HaWbFAk',
+            level: 'A2-B2',
+            duration: '12:34',
+            category: 'study methods',
+            views: '850K',
+            uploadDate: '2020-03-05',
+            description:
+                'Konkretny zestaw metod, które przyspieszają naukę (sposoby powtórek, immersion, shadowing i więcej).'
         },
+        {
+            id: 3,
+            title: 'I ranked language learning methods to get you fluent FAST',
+            channel: 'Matt vs. Languages',
+            youtubeId: '0g6jP-KYArU',
+            level: 'B1-B2',
+            duration: '14:20',
+            category: 'methods review',
+            views: '470K',
+            uploadDate: '2021-11-02',
+            description:
+                'Analiza i porównanie popularnych metod nauki — które naprawdę działają i w jakich sytuacjach je stosować.'
+        },
+        {
+            id: 4,
+            title: 'English study plan – 20-minute daily English learning routine',
+            channel: 'Practical English',
+            youtubeId: 'axYAW7PuSIM',
+            level: 'A2-B1',
+            duration: '9:05',
+            category: 'study plan',
+            views: '230K',
+            uploadDate: '2022-06-18',
+            description:
+                'Krótka, wykonalna dzienna rutyna (20 minut) — idealna jeśli masz mało czasu, ale chcesz regularności.'
+        },
+        {
+            id: 5,
+            title: 'The secrets of learning a new language | Lýdia Machová | TED',
+            channel: 'TED',
+            youtubeId: 'o_XVt5rdpFY',
+            level: 'B2-C1',
+            duration: '16:47',
+            category: 'motivation',
+            views: '3.5M',
+            uploadDate: '2018-03-27',
+            description:
+                'Motywujący wykład TED z praktycznymi wnioskami o tym, jak uczyć się skuteczniej i z większą motywacją.'
+        },
+        {
+            id: 6,
+            title: '5 Science-Enhanced Language Learning Techniques',
+            channel: 'Language Learning Tips',
+            youtubeId: 'nR3lDe7m6eU',
+            level: 'A2-B1',
+            duration: '11:03',
+            category: 'learning science',
+            views: '412K',
+            uploadDate: '2021-05-14',
+            description:
+                'Naukowo potwierdzone techniki nauki języków — świetne dla tych, którzy chcą prowadzić skuteczną naukę.'
+        },
+        {
+            id: 7,
+            title: 'How to use Anki for beginners! (Anki tutorial for language learning)',
+            channel: 'The AnKing',
+            youtubeId: 'ixD9RWpFuk4',
+            level: 'A1-A2',
+            duration: '8:02',
+            category: 'anki',
+            views: '690K',
+            uploadDate: '2020-09-22',
+            description:
+                'Wprowadzenie do Anki — idealne jeśli chcesz zacząć używać fiszek i powtórek w nauce języka.'
+        },
+        {
+            id: 8,
+            title: "The ONLY Anki tutorial you'll EVER need - Complete setup",
+            channel: 'Refold Community',
+            youtubeId: '6BJgxHC3Yuc',
+            level: 'A2-B1',
+            duration: '17:41',
+            category: 'anki',
+            views: '510K',
+            uploadDate: '2021-04-12',
+            description:
+                'Szczegółowy przewodnik po Anki — od instalacji po dodatki i synchronizację mobilną.'
+        },
+        {
+            id: 9,
+            title: 'How To Use Anki To Remember New Vocabulary',
+            channel: 'Gabriel Wyner / Fluent Forever',
+            youtubeId: 'IdrXITfIPs0',
+            level: 'A2-B2',
+            duration: '7:30',
+            category: 'anki',
+            views: '260K',
+            uploadDate: '2019-11-18',
+            description:
+                'Jak używać Anki, by skutecznie zapamiętywać nowe słowa — idealne dla rozwoju słownictwa.'
+        },
+        {
+            id: 10,
+            title: 'The SECRET to Learning Languages 10× FASTER | How to Use Anki',
+            channel: 'Jouzu Juls',
+            youtubeId: 'DcY2Svs3h8M',
+            level: 'B1-B2',
+            duration: '13:12',
+            category: 'anki',
+            views: '200K',
+            uploadDate: '2022-02-09',
+            description:
+                'Na przykładzie japońskiego — metodologia i wykorzystanie Anki, które można zastosować do każdego języka.'
+        },
+        {
+            id: 11,
+            title: 'How to REALLY learn a language in 2024 (a linguist explains)',
+            channel: 'languagejones',
+            youtubeId: 'a2M-AFq5lxo',
+            level: 'B2-C1',
+            duration: '14:20',
+            category: 'science',
+            views: '98K',
+            uploadDate: '2024-01-14',
+            description:
+                'Lingwista tłumaczy, co naprawdę działa przy nauce języka — z przykładami i badaniami naukowymi.'
+        },
+        {
+            id: 12,
+            title: 'Unique ways to learn languages (without textbooks)',
+            channel: 'Lindie Botes',
+            youtubeId: '7cCW8Dddvjc',
+            level: 'A2-B1',
+            duration: '10:07',
+            category: 'creative learning',
+            views: '420K',
+            uploadDate: '2023-02-21',
+            description:
+                'Kreatywne podejścia do nauki — journaling, media, AI — dla tych, którzy chcą uczyć się nowocześnie.'
+        },
+        {
+            id: 13,
+            title: 'How Polyglots Actually Learn Languages with @SpeakingFluently',
+            channel: 'Luca Lampariello',
+            youtubeId: 'XmYfvK8s4tE',
+            level: 'B1-B2',
+            duration: '22:15',
+            category: 'polyglot talk',
+            views: '175K',
+            uploadDate: '2021-09-19',
+            description:
+                'Rozmowa z poliglotą o tym, jakie strategie stosują osoby uczące się wielu języków — praktyczne i inspirujące.'
+        },
+        {
+            id: 14,
+            title: 'Ex-Professor Reveals Way to REALLY Learn Languages (according to science)',
+            channel: 'Matt Brooks-Green',
+            youtubeId: '9Olt2FO99SQ',
+            level: 'B2-C1',
+            duration: '25:04',
+            category: 'science-based',
+            views: '312K',
+            uploadDate: '2023-11-22',
+            description:
+                'Były profesor pokazuje naukowe podstawy efektywnej nauki języka — świetne dla ambitnych uczniów.'
+        }
     ];
+
 
     // Filtrowanie materiałów
     const filteredVideos = videoMaterials.filter(video => {

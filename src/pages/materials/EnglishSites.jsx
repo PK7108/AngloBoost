@@ -10,9 +10,22 @@ const EnglishSites = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     // Tablica z pomocnymi stronami
+// Tablica z pomocnymi stronami
     const helpfulSites = [
         {
             id: 1,
+            title: 'AnkiDroid',
+            url: 'https://apps.ankiweb.net',
+            description: 'Zaawansowana aplikacja do nauki z fiszkami wykorzystująca system powtórek spacjowanych - niezwykle efektywna do zapamiętywania słownictwa',
+            category: 'vocabulary',
+            level: 'A1-C2',
+            price: 'free',
+            features: ['Powtórki spacjowane', 'Fiszki multimedialne', 'Własne talie', 'Synchronizacja między urządzeniami', 'Statystyki nauki'],
+            rating: 5,
+            language: 'multilingual'
+        },
+        {
+            id: 2,
             title: 'British Council - LearnEnglish',
             url: 'https://learnenglish.britishcouncil.org',
             description: 'Oficjalna strona British Council z darmowymi kursami, grami, podcastami i ćwiczeniami na wszystkich poziomach',
@@ -24,7 +37,7 @@ const EnglishSites = () => {
             language: 'english'
         },
         {
-            id: 2,
+            id: 3,
             title: 'BBC Learning English',
             url: 'https://www.bbc.co.uk/learningenglish',
             description: 'Bogata kolekcja materiałów video, audio i artykułów do nauki współczesnego angielskiego',
@@ -36,7 +49,7 @@ const EnglishSites = () => {
             language: 'english'
         },
         {
-            id: 3,
+            id: 4,
             title: 'Duolingo',
             url: 'https://www.duolingo.com',
             description: 'Popularna aplikacja do nauki języków przez gamifikację, idealna dla początkujących',
@@ -48,7 +61,7 @@ const EnglishSites = () => {
             language: 'polish'
         },
         {
-            id: 4,
+            id: 5,
             title: 'Memrise',
             url: 'https://www.memrise.com',
             description: 'Platforma do nauki słownictwa z wykorzystaniem memów i powtórek spacjowanych',
@@ -60,7 +73,7 @@ const EnglishSites = () => {
             language: 'polish'
         },
         {
-            id: 5,
+            id: 6,
             title: 'Grammarly',
             url: 'https://www.grammarly.com',
             description: 'Zaawansowany korektor tekstu pomagający pisać poprawnie i naturalnie po angielsku',
@@ -72,7 +85,7 @@ const EnglishSites = () => {
             language: 'english'
         },
         {
-            id: 6,
+            id: 7,
             title: 'Quizlet',
             url: 'https://quizlet.com',
             description: 'Platforma do tworzenia fiszek i interaktywnych quizów do nauki słownictwa',
@@ -84,7 +97,7 @@ const EnglishSites = () => {
             language: 'polish'
         },
         {
-            id: 7,
+            id: 8,
             title: 'LingQ',
             url: 'https://www.lingq.com',
             description: 'Platforma do nauki przez czytanie i słuchanie autentycznych materiałów',
@@ -96,7 +109,7 @@ const EnglishSites = () => {
             language: 'english'
         },
         {
-            id: 8,
+            id: 9,
             title: 'SpeakingPal',
             url: 'https://www.speakingpal.com',
             description: 'Aplikacja do ćwiczenia wymowy i mówienia przez interaktywne dialogi',
@@ -108,7 +121,7 @@ const EnglishSites = () => {
             language: 'english'
         },
         {
-            id: 9,
+            id: 10,
             title: 'Lang-8',
             url: 'https://lang-8.com',
             description: 'Społeczność, w której native speakerzy poprawiają Twoje teksty w zamian za poprawianie ich tekstów w Twoim języku',
@@ -120,7 +133,7 @@ const EnglishSites = () => {
             language: 'multilingual'
         },
         {
-            id: 10,
+            id: 11,
             title: 'Elllo',
             url: 'https://www.elllo.org',
             description: 'Bogata kolekcja nagrań audio z native speakerami z całego świata z ćwiczeniami',
@@ -130,18 +143,6 @@ const EnglishSites = () => {
             features: ['Nagrania audio', 'Różne akcenty', 'Transkrypcje', 'Quizy'],
             rating: 4,
             language: 'english'
-        },
-        {
-            id: 11,
-            title: 'Ang.pl',
-            url: 'https://www.ang.pl',
-            description: 'Polski portal z ćwiczeniami gramatycznymi, testami i słownikiem',
-            category: 'grammar',
-            level: 'A1-C1',
-            price: 'free',
-            features: ['Ćwiczenia gramatyczne', 'Testy poziomujące', 'Słownik', 'Forum dyskusyjne'],
-            rating: 4,
-            language: 'polish'
         },
         {
             id: 12,
@@ -154,6 +155,54 @@ const EnglishSites = () => {
             features: ['Definicje', 'Przykłady zdań', 'Wymowa brytyjska/amerykańska', 'Tłumaczenia'],
             rating: 5,
             language: 'multilingual'
+        },
+        {
+            id: 13,
+            title: 'HelloTalk',
+            url: 'https://www.hellotalk.com',
+            description: 'Aplikacja do wymiany językowej z native speakerami z całego świata',
+            category: 'speaking',
+            level: 'A2-C2',
+            price: 'freemium',
+            features: ['Czat z native speakerami', 'Korekta wiadomości', 'Połączenia głosowe', 'Społeczność międzynarodowa'],
+            rating: 4,
+            language: 'multilingual'
+        },
+        {
+            id: 14,
+            title: 'Lingoda',
+            url: 'https://www.lingoda.com',
+            description: 'Platforma z lekcjami online z certyfikowanymi nauczycielami',
+            category: 'comprehensive',
+            level: 'A1-C2',
+            price: 'premium',
+            features: ['Lekcje z nauczycielami', 'Certyfikaty', 'Grupy lub zajęcia indywidualne', 'Strukturalny program'],
+            rating: 4,
+            language: 'english'
+        },
+        {
+            id: 15,
+            title: 'WordReference',
+            url: 'https://www.wordreference.com',
+            description: 'Zaawansowany słownik z forami dyskusyjnymi i kontekstowymi tłumaczeniami',
+            category: 'dictionary',
+            level: 'A2-C2',
+            price: 'free',
+            features: ['Słownik kontekstowy', 'Fora dyskusyjne', 'Koniugacje czasowników', 'Wiele języków'],
+            rating: 5,
+            language: 'multilingual'
+        },
+        {
+            id: 16,
+            title: 'FluentU',
+            url: 'https://www.fluentu.com',
+            description: 'Nauka przez autentyczne filmy z interaktywnymi napisami',
+            category: 'media',
+            level: 'A2-C2',
+            price: 'premium',
+            features: ['Filmy z napisami', 'Interaktywne fiszki', 'Śledzenie postępów', 'Różne kategorie filmów'],
+            rating: 4,
+            language: 'english'
         }
     ];
 
