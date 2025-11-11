@@ -92,6 +92,17 @@ import Terms from "./pages/Terms.jsx";
 import Privacy from "./pages/Privacy.jsx";
 import Contact from "./pages/Contact.jsx";
 
+import VocabularyStrategies from './pages/articles/VocabularyStrategies.jsx'   // Jak skutecznie uczyć się słownictwa
+import IdiomsMustKnow from './pages/articles/IdiomsMustKnow.jsx'               // Idiomy angielskie, które musisz znać
+import CommonMistakes from './pages/articles/CommonMistakes.jsx'               // Najczęstsze błędy Polaków w angielskim
+import BusinessAtWork from './pages/articles/BusinessAtWork.jsx'               // Angielski w pracy i biznesie
+import ListeningNative from './pages/articles/ListeningNative.jsx'            // Jak słuchać i rozumieć native speakerów
+import ReadingOriginal from './pages/articles/ReadingOriginal.jsx'            // Czytanie literatury w oryginale
+import MoviesSeries from './pages/articles/MoviesSeries.jsx'                  // Uczenie przez filmy i seriale
+import TravelPhrases from './pages/articles/TravelPhrases.jsx'                // Angielski w podróży – praktyczne zwroty
+import WritingEnglish from './pages/articles/WritingEnglish.jsx'              // Jak pisać w języku angielskim
+import BestApps from './pages/articles/BestApps.jsx'                          // Najlepsze aplikacje i narzędzia
+
 function AppContent() {
     const location = useLocation()
     const { user } = useAuth()
@@ -168,6 +179,17 @@ function AppContent() {
           <Route path="/artykuly/daty-po-angielsku" element={<DatesInEnglish />} />
           <Route path="/artykuly/godziny-po-angielsku" element={<TimeInEnglish />} />
           <Route path="/artykuly/angielski-od-zera" element={<EnglishFromZero />} />
+
+            <Route path="/artykuly/uczenie-sie-slownictwa" element={<VocabularyStrategies />} />
+            <Route path="/artykuly/idiomy-angielskie" element={<IdiomsMustKnow />} />
+            <Route path="/artykuly/najczestsze-bledy" element={<CommonMistakes />} />
+            <Route path="/artykuly/angielski-w-pracy" element={<BusinessAtWork />} />
+            <Route path="/artykuly/sluchanie-native-speaker" element={<ListeningNative />} />
+            <Route path="/artykuly/czytanie-literatury" element={<ReadingOriginal />} />
+            <Route path="/artykuly/angielski-przez-filmy" element={<MoviesSeries />} />
+            <Route path="/artykuly/angielski-w-podrozy" element={<TravelPhrases />} />
+            <Route path="/artykuly/pisanie-po-angielsku" element={<WritingEnglish />} />
+            <Route path="/artykuly/aplikacje-nauka-angielskiego" element={<BestApps />} />
 
             {/*Materials*/}
             <Route path="/materialy/materialy-video" element={<VideoMaterials />} />
