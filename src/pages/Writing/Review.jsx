@@ -654,7 +654,7 @@ const Review = () => {
                             <span className="writing-tag">#krytyka</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/raport">Jak pisać raporty po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/raport">Jak pisać raporty po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 import Navbar from './components/Navbar.jsx'
@@ -108,6 +108,12 @@ function AppContent() {
     const { user } = useAuth()
     const isAdminPath = location.pathname.startsWith('/admin')
     const isAdminUser = user?.email === 'admin1927@gmail.com'
+
+    // Scroll to top on route change (global behavior, also covers article "next" links)
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }, [location.pathname])
+
     return (
         <>
             <GoogleTranslateProvider>

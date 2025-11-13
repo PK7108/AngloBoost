@@ -202,8 +202,8 @@ const PictureDescription = () => {
                                         <span className="vocab-translation">wydaje się być...</span>
                                     </div>
                                     <div className="vocab-item">
-                                        <span className="vocab-word">looks happy/sad/tired</span>
-                                        <span className="vocab-translation">wygląda na szczęśliwego/smutnego/zmęczonego</span>
+                                        <span className="vocab-word">looks happy/tired</span>
+                                        <span className="vocab-translation">wygląda na szczęśliwego/zmęczonego</span>
                                     </div>
                                     <div className="vocab-item">
                                         <span className="vocab-word">is wearing...</span>
@@ -374,9 +374,16 @@ const PictureDescription = () => {
 
                                 <div className="picture-content">
                                     <div className="picture-visual">
-                                        <div className="image-placeholder">
-                                            [Zdjęcie: Ulica w nowoczesnym mieście wieczorem]
+                                        <div className="picture-visual">
+                                            <div className="image-placeholder">
+                                                <img
+                                                    src="../../public/UrbanArea.png"
+                                                    alt="Ulica w nowoczesnym mieście wieczorem"
+                                                    className="w-full h-auto rounded-2xl shadow-lg"
+                                                />
+                                            </div>
                                         </div>
+
                                     </div>
 
                                     <div className="picture-description">
@@ -431,7 +438,11 @@ const PictureDescription = () => {
                                 <div className="picture-content">
                                     <div className="picture-visual">
                                         <div className="image-placeholder">
-                                            [Zdjęcie: Jezioro o wschodzie słońca]
+                                            <img
+                                                src="../../public/LakePhoto.png"
+                                                alt="Jezioro o wschodzie słońca"
+                                                className="w-full h-auto rounded-2xl shadow-lg"
+                                            />
                                         </div>
                                     </div>
 
@@ -684,7 +695,7 @@ const PictureDescription = () => {
                             <span className="writing-tag">#egzaminy</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>To wszystkie tematy w sekcji Pisanie! 🎉</strong></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/rozprawka">Jak pisać rozprawki po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

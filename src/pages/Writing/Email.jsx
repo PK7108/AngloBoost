@@ -758,7 +758,7 @@ const Email = () => {
                             <span className="writing-tag">#korespondencja</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/recenzja">Jak pisać recenzje po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/recenzja">Jak pisać recenzje po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

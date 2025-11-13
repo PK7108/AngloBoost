@@ -789,7 +789,7 @@ const Report = () => {
                             <span className="writing-tag">#sprawozdanie</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/opis-obrazka">Jak opisywać obrazki po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/opis-obrazka">Jak opisywać obrazki po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

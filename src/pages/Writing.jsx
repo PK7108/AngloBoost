@@ -59,6 +59,13 @@ const tiles = [
     enDesc: 'How to describe pictures and photos in detail.',
     to: '/writing/opis-obrazka',
   },
+    {
+        pl: 'Rozprawka',
+        en: 'Essay',
+        plDesc: 'For and against oraz opinion essay - struktura i techniki pisania.',
+        enDesc: 'For and against and opinion essay - structure and writing techniques.',
+        to: '/writing/rozprawka',
+    },
 ]
 
 export default function Writing() {

@@ -638,7 +638,7 @@ const FormalLetter = () => {
                             <span className="writing-tag">#korespondencja</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/list-nieformalny">Jak pisać listy nieformalne po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/list-nieformalny">Jak pisać listy nieformalne po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

@@ -10,7 +10,7 @@ const StoryWriting = () => {
                     <nav className="writing-article__breadcrumb">
                         <Link to="/pisanie" className="writing-article__breadcrumb-link">Pisanie</Link>
                         <span className="writing-article__breadcrumb-separator">/</span>
-                        <span className="writing-article__breadcrumb-current">Opowiadanie</span>
+                        <span className="writing-article__breadcrumb-current" id="start">Opowiadanie</span>
                     </nav>
                     <h1 className="writing-article__title">Jak pisać opowiadanie po angielsku? 📖</h1>
                     <p className="writing-article__intro">Kompletny przewodnik po tworzeniu ciekawych i poprawnych językowo opowiadań w języku angielskim</p>
@@ -524,7 +524,7 @@ const StoryWriting = () => {
                             <span className="writing-tag">#narrative</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/list-formalny">Jak pisać list formalny po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/list-formalny">Jak pisać list formalny po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>

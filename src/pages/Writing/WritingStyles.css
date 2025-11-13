@@ -1174,9 +1174,9 @@ h5{
 }
 
 /* Informal Sample Letter */
-.sample-letter.informal {
-    border-left: 4px solid #e67e22;
-}
+/*.sample-letter.informal {*/
+/*    border-left: 4px solid #e67e22;*/
+/*}*/
 
 .letter-address.informal {
     grid-template-columns: 1fr;
@@ -1743,6 +1743,7 @@ h5{
 
 /* Review Writing Specific Styles */
 .review-structure .structure-element {
+    margin: 20px 0;
     border-left: 4px solid #9b59b6;
 }
 
@@ -2111,6 +2112,7 @@ h5{
 
 /* Report Writing Specific Styles */
 .report-structure .structure-element {
+    margin: 20px 0;
     border-left: 4px solid #e67e22;
 }
 
@@ -2890,12 +2892,19 @@ h5{
 
 /* Picture Description Specific Styles */
 .picture-structure .structure-element {
+    margin: 20px 0;
     border-left: 4px solid #9b59b6;
 }
 
 .element-example {
     background: #f4ecf7;
     border-left: 3px solid #9b59b6;
+}
+
+@media (max-width: 600px) {
+    .image-placeholder {
+        padding: 0 !important;
+    }
 }
 
 /* Picture Vocabulary */

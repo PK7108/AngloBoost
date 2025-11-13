@@ -170,7 +170,7 @@
 .stat {
     text-align: center;
     padding: 1rem;
-    background: #3498db;
+    background: #3498db !important;
     color: white;
     border-radius: 8px;
     min-width: 100px;

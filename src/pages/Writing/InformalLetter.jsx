@@ -696,7 +696,7 @@ const InformalLetter = () => {
                             <span className="writing-tag">#korespondencja</span>
                         </div>
                         <div className="writing-article__next">
-                            <p><strong>Następny temat:</strong> <Link to="/pisanie/email">Jak pisać emaile po angielsku?</Link></p>
+                            <p><strong>Następny temat:</strong> <Link to="/writing/email">Jak pisać emaile po angielsku?</Link></p>
                         </div>
                     </footer>
                 </div>
