@@ -16,28 +16,25 @@
     />
     <meta name="author" content="AngloBoost" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://angloboost.pl/" />
 
-    <!-- Favicon (Twoja flaga UK) -->
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/UK.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/UK-32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/UK-16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/UK-180.png" />
 
-    <!-- Open Graph / Twitter -->
-    <meta property="og:image" content="https://angloboost.pl/UK-social.png" />
-    <meta name="twitter:image" content="https://angloboost.pl/UK-social.png" />
-
-    <!-- Open Graph (Facebook, LinkedIn, Messenger) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="AngloBoost — Nauka angielskiego za darmo" />
     <meta
             property="og:description"
             content="Gramatyka, słownictwo, ćwiczenia i materiały do nauki angielskiego — wszystko za darmo w AngloBoost."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://twojadomena.pl/" />
-    <meta property="og:image" content="https://twojadomena.pl/UK.png" />
+    <meta property="og:url" content="https://angloboost.pl/" />
+    <meta property="og:image" content="https://angloboost.pl/UK-social.png" />
     <meta property="og:locale" content="pl_PL" />
+    <meta property="og:locale:alternate" content="en_GB" />
     <meta property="og:site_name" content="AngloBoost" />
 
     <!-- Twitter Cards -->
@@ -47,13 +44,52 @@
             name="twitter:description"
             content="Darmowa platforma do nauki języka angielskiego: gramatyka, słownictwo, ćwiczenia, artykuły i materiały."
     />
-    <meta name="twitter:image" content="https://twojadomena.pl/UK.png" />
+    <meta name="twitter:image" content="https://angloboost.pl/UK-social.png" />
 
     <!-- Manifest (jeśli chcesz dodać PWA w przyszłości) -->
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Kolor paska adresu (Android/Windows) -->
-    <meta name="theme-color" content="#1a1a1a" />
+    <!-- Theme color (light/dark) -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+
+    <!-- Early theme init to avoid flash -->
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (!theme) {
+            theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- JSON-LD structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "AngloBoost",
+            "url": "https://angloboost.pl/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://angloboost.pl/?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "Organization",
+            "name": "AngloBoost",
+            "url": "https://angloboost.pl/",
+            "logo": "https://angloboost.pl/UK-180.png"
+          }
+        ]
+      }
+    </script>
 </head>
 <body>
 <div id="root"></div>

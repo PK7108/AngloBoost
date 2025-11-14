@@ -141,11 +141,38 @@
   transform: translateY(1px);
 }
 
+/* Theme button: same visual behavior as language button */
+/*.theme-btn {*/
+/*  display: inline-grid;*/
+/*  place-items: center;*/
+/*  width: 36px;*/
+/*  height: 36px;*/
+/*  border-radius: 50%;*/
+/*  border: 1px solid rgba(1,33,105,.18);*/
+/*  background: linear-gradient(180deg, #fff, #f6f8ff);*/
+/*  color: var(--uk-blue);*/
+/*  cursor: pointer;*/
+/*  transition: box-shadow .2s ease, transform .1s ease, border-color .2s ease, background .2s ease;*/
+/*  margin-left: 8px; !* small gap after flag button *!*/
+/*}*/
+/*.theme-btn:hover {*/
+/*  border-color: rgba(1,33,105,.3);*/
+/*  box-shadow: 0 4px 14px rgba(1,33,105,.15);*/
+/*}*/
+/*.theme-btn:active {*/
+/*  transform: translateY(1px);*/
+/*}*/
+
 /* Mobile menu placement for language button */
 .mobile-menu__lang {
   padding: 10px 14px 0 14px;
   display: none; /* hidden by default on desktop */
 }
+
+/* Ensure mobile theme button sits next to flag */
+/*.theme-btn--mobile {*/
+/*  margin-left: 8px;*/
+/*}*/
 
 /* Nowa sekcja prawa */
 .nav__right-section {

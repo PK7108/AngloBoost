@@ -40,6 +40,43 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const menuRef = useRef(null)
 
+  // Theme state: persist in localStorage and apply to document
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = localStorage.getItem('theme')
+      if (saved) return saved
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'
+    } catch (e) {
+      return 'light'
+    }
+  })
+
+  useEffect(() => {
+    try {
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem('theme', theme)
+    } catch (e) {
+      // noop
+    }
+  }, [theme])
+
+  const toggleTheme = () => setTheme((v) => (v === 'dark' ? 'light' : 'dark'))
+
+  function SunIcon() {
+    return (
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M6.76 4.84l-1.8-1.79L3.17 4.84l1.79 1.8 1.8-1.8zM1 13h3v-2H1v2zm10 10h2v-3h-2v3zm7.03-1.17l1.79-1.8-1.79-1.79-1.8 1.79 1.8 1.8zM17 13h6v-2h-6v2zM6.76 19.16l-1.79 1.79 1.79 1.79 1.8-1.79-1.8-1.79zM12 6a6 6 0 1 0 0 12A6 6 0 0 0 12 6z"/>
+      </svg>
+    )
+  }
+  function MoonIcon() {
+    return (
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    )
+  }
+
   useEffect(() => {
     const onClick = (e) => {
       if (!menuRef.current) return
@@ -91,6 +128,7 @@ export default function Navbar() {
         </button>
 
         <div className="nav__lang">
+          {/* Language flag button */}
           <button
             className="lang-btn"
             onClick={toggle}
@@ -99,6 +137,16 @@ export default function Navbar() {
           >
             {lang === 'pl' ? <PolandFlag/> : <UKFlag/>}
           </button>
+
+          {/* Theme toggle button - visually identical to language button */}
+          {/*<button*/}
+          {/*  className="theme-btn"*/}
+          {/*  onClick={toggleTheme}*/}
+          {/*  aria-label={theme === 'dark' ? t('aria.themeToLight', 'Przełącz na jasny motyw') : t('aria.themeToDark', 'Przełącz na ciemny motyw')}*/}
+          {/*  title={theme === 'dark' ? t('aria.themeToLight', 'Przełącz na jasny motyw') : t('aria.themeToDark', 'Przełącz na ciemny motyw')}*/}
+          {/*>*/}
+          {/*  {theme === 'light' ? <SunIcon/> : <MoonIcon/>}*/}
+          {/*</button>*/}
         </div>
 
         <div className="nav__cta" ref={menuRef}>
@@ -140,6 +188,15 @@ export default function Navbar() {
             >
               {lang === 'pl' ? <PolandFlag/> : <UKFlag/>}
             </button>
+            {/* mobile theme toggle (next to flag) */}
+            {/*<button*/}
+            {/*  className="theme-btn theme-btn--mobile"*/}
+            {/*  onClick={toggleTheme}*/}
+            {/*  aria-label={theme === 'dark' ? t('aria.themeToLight', 'Przełącz na jasny motyw') : t('aria.themeToDark', 'Przełącz na ciemny motyw')}*/}
+            {/*  title={theme === 'dark' ? t('aria.themeToLight', 'Przełącz na jasny motyw') : t('aria.themeToDark', 'Przełącz na ciemny motyw')}*/}
+            {/*>*/}
+            {/*  {theme === 'light' ? <SunIcon/> : <MoonIcon/>}*/}
+            {/*</button>*/}
           </div>
           <ul className="mobile-menu__list">
             <li><NavLink to="/gramatyka" onClick={() => setMobileOpen(false)}>{t('nav.grammar', 'Gramatyka')}</NavLink></li>
