@@ -107,8 +107,8 @@ function WhyChooseSection() {
         },
         {
             key: 'paths',
-            title: t('home.why.paths.title', 'Gotowe ścieżki i elastyczne plany'),
-            desc: t('home.why.paths.desc', 'Wybierz gotową 30-dniową ścieżkę, lub zbuduj własny program — krótkie, codzienne moduły zwiększają skuteczność nauki.'),
+            title: t('home.why.paths.title', 'Brak blokad funkcji'),
+            desc: t('home.why.paths.desc', 'W aktualnej, bezpłatnej wersji korzystasz z kluczowych narzędzi bez ograniczeń i opłat.'),
             icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path fill="currentColor" d="M3 11h2v8H3v-8zm4-6h2v14H7V5zm4 10h2V5h-2v10zm4-4h2v4h-2v-4z"/>
@@ -117,8 +117,8 @@ function WhyChooseSection() {
         },
         {
             key: 'community',
-            title: t('home.why.community.title', 'Społeczność i wsparcie'),
-            desc: t('home.why.community.desc', 'Aktywny serwer Discord, miejsce na pytania, korekty i wymianę materiałów — uczysz się w grupie.'),
+            title: t('home.why.community.title', 'Otwarte zasoby'),
+            desc: t('home.why.community.desc', 'Ćwiczenia, artykuły i materiały dostępne bez paywalla — uczysz się za darmo, kiedy chcesz.'),
             icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm-3 9h2v4H9v-4zm4 0h2v4h-2v-4z"/>
@@ -127,8 +127,8 @@ function WhyChooseSection() {
         },
         {
             key: 'adfree',
-            title: t('home.why.adfree.title', 'Tryb bez reklam w Premium'),
-            desc: t('home.why.adfree.desc', 'Wersja Premium usuwa reklamy i odblokowuje dodatkowe statystyki oraz ćwiczenia — prosty sposób na koncentrację.'),
+            title: t('home.why.adfree.title', 'Lekka i szybka strona'),
+            desc: t('home.why.adfree.desc', 'Bez ciężkich reklam i śledzących skryptów — maksimum koncentracji na nauce.'),
             icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path fill="currentColor" d="M5 12h14v2H5v-2zm7-9v2h2V3h-2zm0 16v2h2v-2h-2zM3 7h2v2H3V7zm16 0h2v2h-2V7z"/>
