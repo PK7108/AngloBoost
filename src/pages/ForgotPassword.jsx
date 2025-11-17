@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+//const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || 'https://api007.angloboost.pl'
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('')

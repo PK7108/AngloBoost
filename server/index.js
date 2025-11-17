@@ -9,6 +9,7 @@ import jwt from 'jsonwebtoken'
 import db, { dbPath } from './db.js' // <-- added db import for inspection
 import fs from 'fs'
 import bcrypt from 'bcryptjs'
+import {sendNewsletterWelcome} from "./mailer.js";
 
 // Load .env even if running from server/src directory
 const __filename = fileURLToPath(import.meta.url)
@@ -17,9 +18,34 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 const app = express()
 
-const origin = process.env.CORS_ORIGIN || 'http://localhost:5173'
+// Jeśli działa za reverse proxy (np. Nginx), ufaj nagłówkom X-Forwarded-*
+app.set('trust proxy', 1)
+
+// Produkcyjne CORS: whitelist z .env (+ domena angloboost.pl i subdomeny)
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean)
+
 app.use(cors({
-  origin: (origin, callback) => callback(null, true), // pozwól na dowolny origin w dev
+  origin: (requestOrigin, callback) => {
+    // Pozwól na narzędzia bez nagłówka Origin (np. curl/Postman)
+    if (!requestOrigin) return callback(null, true)
+    try {
+      const hostname = new URL(requestOrigin).hostname
+      const isAngloboost =
+        hostname === 'angloboost.pl' ||
+        hostname === 'www.angloboost.pl' ||
+        hostname.endsWith('.angloboost.pl')
+
+      if (allowedOrigins.includes(requestOrigin) || isAngloboost) {
+        return callback(null, true)
+      }
+    } catch (e) {
+      // Błąd parsowania Origin -> traktuj jako niedozwolone
+    }
+    return callback(new Error('Not allowed by CORS'))
+  },
   credentials: true
 }))
 app.use(express.json())

@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 const AuthContext = createContext(null)
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+//const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || 'https://api007.angloboost.pl'
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
