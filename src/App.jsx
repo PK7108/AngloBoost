@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import AdminNavbar from './components/AdminNavbar.jsx'
+import GoogleAnalytics from './GoogleAnalytics';
 
 import Home from './pages/Home.jsx'
 import Grammar from './pages/Grammar.jsx'
@@ -291,6 +292,7 @@ function AppContent() {
 export default function App() {
     return (
         <AuthProvider>
+            <GoogleAnalytics />
             <BrowserRouter>
                 <AppContent />
             </BrowserRouter>
