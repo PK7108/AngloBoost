@@ -292,8 +292,8 @@ function AppContent() {
 export default function App() {
     return (
         <AuthProvider>
-            <GoogleAnalytics />
             <BrowserRouter>
+                <GoogleAnalytics />
                 <AppContent />
             </BrowserRouter>
         </AuthProvider>

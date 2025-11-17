@@ -6,7 +6,7 @@ const GoogleAnalytics = () => {
 
     useEffect(() => {
         if (window.gtag) {
-            window.gtag('config', 'G-1N12G0Q0B8', {
+            window.gtag('config', 'G-4PFPE54KR1', {
                 page_path: location.pathname,
             });
         }
