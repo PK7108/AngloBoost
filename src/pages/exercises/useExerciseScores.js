@@ -20,7 +20,8 @@ export function useExerciseScores() {
 
         setLoading(true)
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+            // const API_URL = import.meta.env.VITE_API_URL || 'https://api007.angloboost.pl'
+            const API_URL = 'https://api007.angloboost.pl'
             const response = await fetch(`${API_URL}/api/exercise/scores`, {
                 headers: {
                     'Authorization': `Bearer ${token}`

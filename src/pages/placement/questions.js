@@ -126,8 +126,8 @@ export const QUESTIONS = [
     level: 'A1',
     category: 'vocabulary',
     type: 'text',
-    question: 'Napisz po angielsku: „siedem”.',
-    acceptableAnswers: ['seven'],
+    question: 'Napisz po angielsku: „piętnaście”.',
+    acceptableAnswers: ['fifteen'],
   },
 
   // A2 (7)
@@ -154,8 +154,8 @@ export const QUESTIONS = [
     level: 'A2',
     category: 'grammar',
     type: 'mcq',
-    question: "Choose the past form of 'go'.",
-    options: ['went', 'goed', 'gone', 'going'],
+      question: 'Complete the sentence: "Yesterday I ______ to the supermarket."',
+      options: ["go", "went", "gone", "going"],
     answerIndex: 0,
   },
   {

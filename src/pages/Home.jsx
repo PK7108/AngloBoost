@@ -6,7 +6,7 @@ import './home.css'
 function Hero() {
   const { t } = useLanguage()
   return (
-    <section className="hero">
+    <section className="hero" aria-labelledby="hero-title">
       <div className="container hero__inner">
         <div className="hero__content">
           <h1>{t('home.heroTitle', 'Nauka angielskiego za darmo')}</h1>
@@ -30,7 +30,7 @@ function Hero() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__flag">
-              <img src="/UK.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img src="/UK.svg" alt="Flaga Wielkiej Brytanii – nauka języka angielskiego" fetchpriority="high" decoding="sync"/>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@ function SectionsGrid() {
     { href: '/test-poziomujacy', title: t('home.tile.placement', 'Test poziomujący'), desc: t('home.tile.placement.desc', 'Poznaj swój poziom i dobierz plan nauki.') },
   ]
   return (
-    <section id="sekcje" className="sections">
+    <section id="sekcje" className="sections" aria-labelledby="sections-heading">
       <div className="container">
         <h2>{t('home.sectionsTitle', 'Odkryj wszystkie możliwości')}</h2>
         <p className="sections__intro">
@@ -203,7 +203,7 @@ function Newsletter() {
     }
 
     return (
-        <section className="newsletter">
+        <section className="newsletter" aria-labelledby="newsletter-heading">
             <div className="container newsletter__inner">
                 <div className="newsletter__text">
                     <h2>{t('home.newsletter.title', 'Zapisz się na newsletter')}</h2>
@@ -242,7 +242,7 @@ function Newsletter() {
                         </button>
 
                         {error && (
-                            <div style={{
+                            <div role="alert" style={{
                                 color: '#dc3545',
                                 fontSize: '14px',
                                 marginTop: '10px',

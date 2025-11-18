@@ -7,6 +7,7 @@ export default function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const navigate = useNavigate()
@@ -16,6 +17,13 @@ export default function Register() {
     const onSubmit = async (e) => {
         e.preventDefault()
         setError('')
+
+        // Walidacja hasła
+        if (password !== confirmPassword) {
+            setError(t('register.passwordMismatch', 'Hasła nie są identyczne'))
+            return
+        }
+
         setLoading(true)
         try {
             await register(name, email, password)
@@ -68,6 +76,17 @@ export default function Register() {
                             placeholder={t('register.passwordPlaceholder', 'Hasło')}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <label htmlFor="confirmPassword" className="visually-hidden">
+                            {t('register.confirmPasswordLabel', 'Powtórz hasło')}
+                        </label>
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            required
+                            placeholder={t('register.confirmPasswordPlaceholder', 'Powtórz hasło')}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                         <div className="auth-actions">
                             <button className="btn btn--primary" type="submit" disabled={loading}>
