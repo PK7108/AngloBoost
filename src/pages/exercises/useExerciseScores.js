@@ -63,7 +63,8 @@ export function useExerciseScores() {
 
         // Dla zalogowanych - wyślij na serwer
         try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+            // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+            const API_URL = 'https://api007.angloboost.pl'
             await fetch(`${API_URL}/api/exercise/save-score`, {
                 method: 'POST',
                 headers: {

@@ -27,6 +27,8 @@ const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173')
   .map((o) => o.trim())
   .filter(Boolean)
 
+allowedOrigins.push('https://angloboost.pl', 'https://www.angloboost.pl')
+
 app.use(cors({
   origin: (requestOrigin, callback) => {
     // Pozwól na narzędzia bez nagłówka Origin (np. curl/Postman)
