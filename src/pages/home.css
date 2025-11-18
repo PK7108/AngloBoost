@@ -141,3 +141,34 @@
     color: var(--muted);
   }
 }
+
+@media (min-width: 500px) and (max-width: 1024px) {
+    .hero__flag img {
+        height: auto;
+        max-width: 1024px;
+    }
+
+    .hero__inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero__content {
+        margin-bottom: 1.5rem;
+    }
+
+    .hero__visual{
+        min-height: 360px !important;
+    }
+
+    .hero__actions{
+        justify-content: center;
+    }
+}
+
+@media (min-width: 820px) and (max-width: 1024px){
+    .hero__visual{
+        min-height: 460px !important;
+    }
+}
