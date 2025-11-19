@@ -11,13 +11,69 @@
   ],
   "routes": [
     {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/site.webmanifest",
+      "dest": "/site.webmanifest"
+    },
+    {
+      "src": "/browserconfig.xml",
+      "dest": "/browserconfig.xml"
+    },
+
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "dest": "/apple-touch-icon.png"
+    },
+    {
+      "src": "/icon-192.png",
+      "dest": "/icon-192.png"
+    },
+    {
+      "src": "/icon-512.png",
+      "dest": "/icon-512.png"
+    },
+    {
+      "src": "/UK.svg",
+      "dest": "/UK.svg"
+    },
+    {
+      "src": "/UK-32.png",
+      "dest": "/UK-32.png"
+    },
+    {
+      "src": "/UK-16.png",
+      "dest": "/UK-16.png"
+    },
+    {
+      "src": "/UK-180.png",
+      "dest": "/UK-180.png"
+    },
+    {
+      "src": "/UK-social.png",
+      "dest": "/UK-social.png"
+    },
+
+    {
       "src": "/assets/(.*)",
       "dest": "/assets/$1"
     },
+
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json))",
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|json|webp|avif|woff|woff2|ttf|eot|xml|txt|webmanifest))",
       "dest": "/$1"
     },
+
     {
       "src": "/(.*)",
       "dest": "/index.html"
