@@ -1,11 +1,9 @@
 // exercise-interactions-optimized.js
 export function initializeGrammarExercises() {
-    console.log('🔄 Inicjalizacja ćwiczeń gramatycznych...');
 
     const exerciseContainers = document.querySelectorAll('.practice-exercise');
 
     if (exerciseContainers.length === 0) {
-        console.log('❌ Nie znaleziono kontenerów ćwiczeń');
         return;
     }
 
@@ -13,10 +11,7 @@ export function initializeGrammarExercises() {
 
     exerciseContainers.forEach((container, index) => {
         if (container.dataset.initialized !== 'true') {
-            console.log(`🎯 Inicjalizacja ćwiczenia ${index + 1}`);
             initializeExercise(container);
-        } else {
-            console.log(`⏭️ Ćwiczenie ${index + 1} już zainicjalizowane`);
         }
     });
 }
@@ -29,7 +24,6 @@ function initializeExercise(exerciseContainer) {
     const resultDisplay = exerciseContainer.querySelector('.exercise-result');
 
     if (!checkButton) {
-        console.error('❌ Nie znaleziono przycisku "Sprawdź odpowiedzi"');
         return;
     }
 
@@ -67,7 +61,6 @@ function initializeExercise(exerciseContainer) {
 
     // Sprawdź odpowiedzi
     checkButton.addEventListener('click', function() {
-        console.log('🔍 Sprawdzanie odpowiedzi...', selectedAnswers);
         const score = checkAnswers(exerciseContainer, selectedAnswers, correctAnswers);
         showResult(score, Object.keys(correctAnswers).length, resultDisplay);
 

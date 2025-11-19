@@ -122,7 +122,6 @@ app.post('/api/feedback', authenticateToken, async (req, res) => {
 
         // Nagroda w postaci premium na 7 dni za wartościowy feedback
         if (description.length > 50 && title.length > 5) {
-            console.log(`Użytkownik ${userId} otrzymałby premium za feedback ID: ${result.lastInsertRowid}`)
             // Tutaj później dodasz logikę nadawania premium
         }
 
@@ -133,7 +132,6 @@ app.post('/api/feedback', authenticateToken, async (req, res) => {
         })
 
     } catch (error) {
-        console.error('Feedback error:', error)
         res.status(500).json({ error: 'Błąd podczas zapisywania feedbacku' })
     }
 })
