@@ -16,6 +16,35 @@
 }
 
 /* ========== Base reset ========== */
+
+.goog-te-banner-frame,
+.goog-te-menu-frame {
+    font-size: 16px !important;
+}
+
+/* Wyłącz deprecated feature */
+* {
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Naprawa flow */
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden !important;
+}
+
+/* Zapobiegaj wyciekaniu treści wizualnych */
+* {
+    box-sizing: border-box;
+}
+
+.container, .section, .card, .component {
+    overflow: hidden;
+}
+
 *,
 *::before,
 *::after {
