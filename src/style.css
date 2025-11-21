@@ -15,7 +15,7 @@
     --shadow-2: 0 10px 30px rgba(200, 16, 46, 0.16);
 }
 
-/* ========== Base reset ========== */
+/*!* ========== Base reset ========== *!*/
 
 .goog-te-banner-frame,
 .goog-te-menu-frame {
@@ -28,7 +28,7 @@
     text-size-adjust: none;
 }
 
-/* Naprawa flow */
+/*!* Naprawa flow *!*/
 img, video, canvas {
     max-width: 100%;
     height: auto;
@@ -36,13 +36,9 @@ img, video, canvas {
     overflow: hidden !important;
 }
 
-/* Zapobiegaj wyciekaniu treści wizualnych */
+/*!* Zapobiegaj wyciekaniu treści wizualnych *!*/
 * {
     box-sizing: border-box;
-}
-
-.container, .section, .card, .component {
-    overflow: hidden;
 }
 
 *,

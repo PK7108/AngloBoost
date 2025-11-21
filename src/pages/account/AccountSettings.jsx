@@ -53,7 +53,7 @@ export default function AccountSettings() {
 
         setDeleteLoading(true)
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/auth/account`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'https://api007.angloboost.pl'}/api/auth/account`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

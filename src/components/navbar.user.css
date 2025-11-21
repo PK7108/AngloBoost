@@ -169,6 +169,15 @@
   display: none; /* hidden by default on desktop */
 }
 
+/* Ensure hidden mobile menu doesn't block clicks */
+.mobile-menu {
+  pointer-events: none;
+}
+.mobile-menu.is-open {
+  pointer-events: auto;
+  z-index: 1100;
+}
+
 /* Ensure mobile theme button sits next to flag */
 /*.theme-btn--mobile {*/
 /*  margin-left: 8px;*/
@@ -185,6 +194,8 @@
 /* Responsywność - domyślnie ukrywamy CTA na mobile */
 .nav__cta {
     display: none;
+    position: relative;
+    z-index: 1300; /* keep above mobile menu overlay */
 }
 
 /* Na większych ekranach pokazujemy CTA, a chowamy prawą sekcję */
