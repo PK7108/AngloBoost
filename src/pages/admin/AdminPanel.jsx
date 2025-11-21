@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API_URL = import.meta.env.VITE_API_URL || 'https://api007.angloboost.pl'
 
 const statusOptions = [
     { value: 'planned', label: 'Planowane', color: '#3b82f6', bgColor: '#dbeafe' },
