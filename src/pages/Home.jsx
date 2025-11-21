@@ -152,7 +152,7 @@ function WhyChooseSection() {
 
                 <div className="why__grid" role="list">
                     {features.map((f) => (
-                        <article key={f.key} className="why__card" role="listitem" tabIndex={0} aria-labelledby={`why-${f.key}-title`}>
+                        <article key={f.key} className="why__card" role="listitem" tabIndex={0}>
                             <div className="why__icon" aria-hidden="true">{f.icon}</div>
                             <h3 id={`why-${f.key}-title`} className="why__title">{f.title}</h3>
                             <p className="why__desc">{f.desc}</p>

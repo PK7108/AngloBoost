@@ -18,7 +18,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="footer__col">
-          <h4>{t('footer.links', 'Linki')}</h4>
+          <h3>{t('footer.links', 'Linki')}</h3>
           <ul>
             <li><Link to="/gramatyka">{t('footer.link.grammar', 'Gramatyka')}</Link></li>
             <li><Link to="/slownictwo">{t('footer.link.vocabulary', 'Słownictwo')}</Link></li>
@@ -29,7 +29,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer__col">
-          <h4>{t('footer.info', 'Informacje')}</h4>
+          <h3>{t('footer.info', 'Informacje')}</h3>
           <ul>
             <li><Link to="/regulamin">{t('footer.info.terms', 'Regulamin')}</Link></li>
             <li><Link to="/polityka-prywatnosci">{t('footer.info.privacy', 'Polityka prywatności')}</Link></li>
