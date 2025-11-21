@@ -30,7 +30,7 @@ function Hero() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__flag">
-              <img src="/UK.svg" alt="Flaga Wielkiej Brytanii – nauka języka angielskiego" fetchpriority="high" decoding="sync"/>
+              <img loading="eager" src="/UK.svg" alt="Flaga Wielkiej Brytanii – nauka języka angielskiego" fetchpriority="high"/>
           </div>
         </div>
       </div>
