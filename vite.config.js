@@ -12,7 +12,6 @@ export default defineConfig({
                 manualChunks: {
                     vendor: ['react', 'react-dom'],      // Core React
                     router: ['react-router-dom'],         // Routing osobno
-                    utils: ['lodash', 'axios'],           // Utilities osobno
                 }
             }
         }
