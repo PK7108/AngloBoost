@@ -78,6 +78,7 @@
   border-radius: 10px;
   border: 1px solid rgba(1,33,105,.12);
   background: #f6f8ff;
+    width: 100%;
 }
 
 .note--ok {

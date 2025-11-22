@@ -5546,7 +5546,10 @@ const TOPICS = {
                                                 <span className="plural">farther/further</span>
                                                 <span className="arrow">→</span>
                                                 <span className="plural">farthest/furthest</span>
-                                                <span className="note">farther - fizyczna odległość<br/>further - abstrakcyjna</span>
+                                            </div>
+                                            <div className="note">
+                                                farther - fizyczna odległość<br/>
+                                                further - abstrakcyjna
                                             </div>
                                         </div>
                                     </div>
@@ -10371,22 +10374,22 @@ const TOPICS = {
                                             <div className="rule-item">
                                                 <span className="pattern">1, 21, 31, 41...</span>
                                                 <span className="ending">-st</span>
-                                                <span className="examples">1st, 21st, 31st, 41st</span>
+                                                <span className="examples"> 1st, 21st, 31st, 41st</span>
                                             </div>
                                             <div className="rule-item">
                                                 <span className="pattern">2, 22, 32, 42...</span>
                                                 <span className="ending">-nd</span>
-                                                <span className="examples">2nd, 22nd, 32nd, 42nd</span>
+                                                <span className="examples"> 2nd, 22nd, 32nd, 42nd</span>
                                             </div>
                                             <div className="rule-item">
                                                 <span className="pattern">3, 23, 33, 43...</span>
                                                 <span className="ending">-rd</span>
-                                                <span className="examples">3rd, 23rd, 33rd, 43rd</span>
+                                                <span className="examples"> 3rd, 23rd, 33rd, 43rd</span>
                                             </div>
                                             <div className="rule-item">
                                                 <span className="pattern">4-20, 24-30, 34-40...</span>
                                                 <span className="ending">-th</span>
-                                                <span className="examples">4th-20th, 24th-30th</span>
+                                                <span className="examples"> 4th-20th, 24th-30th</span>
                                             </div>
                                         </div>
                                     </div>
@@ -11196,23 +11199,23 @@ const TOPICS = {
                                 <h5>💡 Złote zasady:</h5>
                                 <div className="golden-rules">
                                     <div className="rule-item-golden">
-                                        <span className="rule-phrase">Przyimki w datach</span>
+                                        <span className="rule-phrase">Przyimki w datach: </span>
                                         <span className="rule-meaning">ON + konkretna data, IN + miesiąc/rok, AT + godzina</span>
                                     </div>
                                     <div className="rule-item-golden">
-                                        <span className="rule-phrase">Godziny</span>
+                                        <span className="rule-phrase">Godziny: </span>
                                         <span className="rule-meaning">AT + godzina, użyj a.m./p.m. lub system 24-godzinny</span>
                                     </div>
                                     <div className="rule-item-golden">
-                                        <span className="rule-phrase">Lata</span>
+                                        <span className="rule-phrase">Lata: </span>
                                         <span className="rule-meaning">czytaj po dwóch cyfrach: 1999 → nineteen ninety-nine</span>
                                     </div>
                                     <div className="rule-item-golden">
-                                        <span className="rule-phrase">Wieki</span>
+                                        <span className="rule-phrase">Wieki: </span>
                                         <span className="rule-meaning">zawsze liczebnik porządkowy: 21st century</span>
                                     </div>
                                     <div className="rule-item-golden">
-                                        <span className="rule-phrase">Dekady</span>
+                                        <span className="rule-phrase">Dekady: </span>
                                         <span className="rule-meaning">the + liczba mnoga: the nineties (90s)</span>
                                     </div>
                                 </div>

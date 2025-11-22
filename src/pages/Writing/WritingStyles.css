@@ -207,13 +207,6 @@
     color: white;
 }
 
-.tense-usage {
-    background: #3498db !important;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-}
-
 .tense-content {
     padding: 1.5rem;
 }
@@ -233,11 +226,6 @@
 
 .example-pair:last-child {
     margin-bottom: 0;
-}
-
-.example {
-    font-weight: 500;
-    color: #2c3e50;
 }
 
 .translation {
@@ -570,11 +558,11 @@
 }
 
 .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    /*padding: 0.75rem 1.5rem;*/
+    /*border-radius: 6px;*/
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    /*font-weight: 500;*/
+    /*transition: all 0.3s ease;*/
 }
 
 .btn--primary {
@@ -2983,10 +2971,8 @@ h5{
 }
 
 .tense-usage {
-    background: #9b59b6;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    font-size: 0.8rem;
 }
 
 .tense-content {
@@ -2995,15 +2981,6 @@ h5{
 
 .tense-examples {
     margin-top: 1rem;
-}
-
-.example-pair {
-    display: grid;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
 }
 
 .example-pair:last-child {

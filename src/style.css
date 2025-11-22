@@ -74,9 +74,9 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    color: #021a4e;
-}
+/*a:hover {*/
+/*    color: #021a4e;*/
+/*}*/
 
 .visually-hidden {
     position: absolute !important;
@@ -102,6 +102,7 @@ a:hover {
 
     display: inline-flex;
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     gap: .5rem;
     padding: .8rem 1.2rem;

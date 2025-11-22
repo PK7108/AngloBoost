@@ -339,10 +339,10 @@
     color: #2ecc71;
 }
 
-.btn--primary:hover {
-    background: #f8f9fa;
-    transform: translateY(-2px);
-}
+/*.btn--primary:hover {*/
+/*    background: #f8f9fa;*/
+/*    transform: translateY(-2px);*/
+/*}*/
 
 .btn--secondary {
     background: transparent;
@@ -3785,11 +3785,6 @@
 
 .wrong {
     color: #e74c3c;
-    font-weight: 500;
-}
-
-.correct {
-    color: #27ae60;
     font-weight: 500;
 }
 

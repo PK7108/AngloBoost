@@ -77,11 +77,7 @@
 }
 
 .subnav {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
     border-bottom: 1px solid rgba(0,0,0,0.08);
-    margin: 10px 0 12px;
     padding-bottom: 6px;
 }
 
@@ -144,14 +140,8 @@
     line-height: 1.7;
 }
 
-/* Reusable content helpers */
 .card {
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 12px;
-    padding: 24px;
-    margin: 20px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin: 35px 0;
 }
 
 /* SINGLE COLUMN LAYOUT - removed grid */
@@ -180,8 +170,6 @@ h3{
 
 .usage-case {
     margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .usage-case:last-child {
@@ -250,21 +238,6 @@ h3{
     border-bottom: none;
 }
 
-/* Grammar tips */
-.grammar-tip {
-    background: #f0f9ff;
-    border: 1px solid #bae6fd;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.grammar-tip h5 {
-    color: #0369a1;
-    margin-bottom: 12px;
-    font-size: 1.1em;
-}
-
 .grammar-tip ul {
     margin: 10px 0 0 20px;
     padding: 0;
@@ -305,14 +278,6 @@ h3{
 .tense-comparison {
     display: block;
     margin-top: 20px;
-}
-
-.comparison-case {
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-left: 4px solid #3b82f6;
 }
 
 .comparison-case h5 {
@@ -483,14 +448,14 @@ h3{
     margin-top: 12px;
 }
 
-.btn {
-    border: 1px solid rgba(0,0,0,0.12);
-    background: #fff;
-    color: #111827;
-    border-radius: 10px;
-    padding: 10px 14px;
-    cursor: pointer;
-}
+/*.btn {*/
+/*    border: 1px solid rgba(0,0,0,0.12);*/
+/*    background: #fff;*/
+/*    color: #111827;*/
+/*    border-radius: 10px;*/
+/*    padding: 10px 14px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 .btn--primary {
     background: var(--primary, #2563eb);
@@ -544,7 +509,7 @@ h3{
 
 .rule-item {
     margin: 10px 0;
-    padding: 10px 12px;
+    padding: 15px;
     background: white;
     border-radius: 6px;
     border: 1px solid #e5e7eb;
@@ -561,6 +526,7 @@ h3{
 
 .grammar-tip.warning h5 {
     color: #b42318;
+    margin-top: 20px;
 }
 
 .quiz-examples p {
@@ -678,21 +644,10 @@ h3{
     margin-top: 15px;
 }
 
-.example-pair {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 16px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
 .correct {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 600;
 }
 
 .article {
@@ -701,20 +656,10 @@ h3{
     min-width: 30px;
 }
 
-.example {
-    color: #1f2937;
-}
-
 .phonetic {
     color: #6b7280;
     font-size: 0.9em;
     font-style: italic;
-}
-
-.explanation {
-    color: #6b7280;
-    font-size: 0.9em;
-    margin-left: auto;
 }
 
 .phonetic-examples {
@@ -799,46 +744,14 @@ h3{
 
 .mistake-group h5 {
     margin-bottom: 15px;
-    color: #dc2626;
     font-size: 1.1em;
 }
 
-.mistake-list {
-    display: grid;
-    gap: 12px;
-}
-
-.mistake-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: #fef2f2;
-    border-radius: 8px;
-    border: 1px solid #fecaca;
-}
-
-.incorrect {
-    color: #dc2626;
-    text-decoration: line-through;
-    font-weight: 600;
-    min-width: 100px;
-}
-
-.arrow {
-    color: #6b7280;
-    font-weight: 600;
-}
-
 .correct {
-    color: #059669;
-    font-weight: 600;
     min-width: 100px;
 }
 
 .reason {
-    color: #6b7280;
-    font-size: 0.9em;
     margin-left: auto;
     text-align: right;
 }
@@ -849,22 +762,7 @@ h3{
 }
 
 .exercise-question h5 {
-    margin-bottom: 20px;
-    color: #1f2937;
-    font-size: 1.1em;
     text-align: center;
-}
-
-.exercise-items {
-    display: grid;
-    gap: 20px;
-}
-
-.exercise-item {
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
 }
 
 .exercise-item p {
@@ -948,30 +846,11 @@ h3{
     background: #f0f9ff;
 }
 
-/* Grammar Tip Improvements */
-.grammar-tip {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    border: 1px solid #bae6fd;
-    border-radius: 12px;
-    padding: 24px;
-    margin: 25px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
 .grammar-tip h5 {
     color: #0369a1;
-    margin-bottom: 15px;
+    margin: 20px 0 25px 0;
     font-size: 1.1em;
     font-weight: 700;
-}
-
-.grammar-tip.warning {
-    background: linear-gradient(135deg, #fef3f2 0%, #ffe4e6 100%);
-    border: 1px solid #fda4af;
-}
-
-.grammar-tip.warning h5 {
-    color: #b91c1c;
 }
 
 /* Responsive Design */
@@ -1192,11 +1071,6 @@ h3{
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.grammar-tip.warning {
-    background: linear-gradient(135deg, #fef3f2 0%, #ffe4e6 100%);
-    border: 1px solid #fda4af;
-}
-
 .grammar-tip.warning::before {
     content: "⚠️";
 }
@@ -1286,12 +1160,7 @@ h3{
 }
 
 .example-pair {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 12px;
-    background: white;
-    border-radius: 6px;
     border: 1px solid #e5e7eb;
 }
 
@@ -1299,12 +1168,6 @@ h3{
 .plural {
     font-weight: 600;
     color: #1f2937;
-}
-
-.singular em,
-.plural em {
-    color: #dc2626;
-    font-style: normal;
 }
 
 .categories-grid {
@@ -1385,9 +1248,11 @@ h3{
 .meaning {
     display: block;
     font-weight: 600;
-    color: #374151;
     margin-bottom: 16px !important;
-    font-size: 0.9em;
+}
+
+.plural-item .meaning{
+    text-align: center;
 }
 
 /* Common Mistakes Detailed */
@@ -1405,41 +1270,9 @@ h3{
     font-size: 1.1em;
 }
 
-.mistake-list {
-    display: grid;
-    gap: 10px;
-}
-
 .mistake-item {
-    display: flex;
-    align-items: center;
     gap: 15px;
-    padding: 12px 16px;
-    background: #fef2f2;
-    border-radius: 8px;
     border: 1px solid #fecaca;
-}
-
-.polish {
-    font-weight: 600;
-    color: #374151;
-    min-width: 100px;
-}
-
-.incorrect {
-    color: #dc2626;
-    text-decoration: line-through;
-    font-weight: 600;
-}
-
-.arrow {
-    color: #6b7280;
-    font-weight: 600;
-}
-
-.correct {
-    color: #059669;
-    font-weight: 600;
 }
 
 /* Measurement Examples */
@@ -1463,11 +1296,6 @@ h3{
     font-weight: 600;
     color: #1f2937;
     margin-bottom: 4px;
-}
-
-.meaning {
-    color: #6b7280;
-    font-size: 0.9em;
 }
 
 /* Plural Rules Expanded */
@@ -1518,8 +1346,6 @@ h3{
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid #f3f4f6;
 }
 
 .example-group:last-child {
@@ -1582,19 +1408,11 @@ h3{
 
 .noun {
     font-weight: 700;
-    color: #dc2626;
     margin-bottom: 4px;
 }
 
-.meaning {
-    color: #374151;
-    margin-bottom: 6px;
-}
-
-.example {
-    color: #6b7280;
-    font-size: 0.9em;
-    font-style: italic;
+.plural-item .noun{
+    text-align: center;
 }
 
 /* Pair Examples */
@@ -1611,19 +1429,6 @@ h3{
     padding: 12px;
     background: white;
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
-}
-
-/* Exercise Improvements */
-.exercise-items {
-    display: grid;
-    gap: 20px;
-}
-
-.exercise-item {
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 8px;
     border: 1px solid #e5e7eb;
 }
 
@@ -1718,7 +1523,7 @@ h3{
 .card h4 {
     font-size: 1.3rem !important;
     color: #374151;
-    margin-bottom: 25px;
+    margin: 25px 0 25px 0 !important;
     font-weight: 600;
     padding-bottom: 12px;
     border-bottom: 2px solid #e5e7eb;
@@ -1745,7 +1550,7 @@ h3{
     padding: 20px;
     background: #f8fafc;
     border-radius: 8px;
-    border-left: 4px solid #8b5cf6;
+    border-left: 4px solid white;
 }
 
 .advanced-case h5 {
@@ -2038,20 +1843,6 @@ h3{
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-top: 15px;
-}
-
-.usage-type {
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
-.usage-type h6 {
-    margin-bottom: 10px;
-    color: #374151;
-    font-size: 0.95em;
-    font-weight: 600;
 }
 
 /* Enhanced comparison for semi-modals */
@@ -2510,13 +2301,6 @@ h3{
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin-top: 20px;
-}
-
-.usage-type {
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
 }
 
 .usage-type h5 {
@@ -2988,13 +2772,6 @@ h3{
     min-width: 80px;
 }
 
-.decimal-spoken {
-    font-weight: 600;
-    color: #1f2937;
-    line-height: 1.4;
-    flex: 1;
-}
-
 .decimal-usage {
     color: #6b7280;
     font-size: 0.9em;
@@ -3025,13 +2802,6 @@ h3{
     border-radius: 8px;
     border: 1px solid #e5e7eb;
     text-align: center;
-}
-
-.scale-number {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #dc2626;
-    margin-bottom: 8px;
 }
 
 .scale-word {
@@ -3084,12 +2854,6 @@ h3{
     background: white;
     border-radius: 6px;
     border: 1px solid #e5e7eb;
-}
-
-.measurement-value {
-    font-weight: 600;
-    color: #dc2626;
-    min-width: 60px;
 }
 
 .measurement-spoken {
@@ -3195,7 +2959,6 @@ h3{
 
 .numeral-item-detailed .number {
     font-weight: 700;
-    color: #dc2626;
     font-size: 0.9em;
     margin-bottom: 4px;
 }
@@ -3270,7 +3033,6 @@ h3{
 
 .usage-group h6 {
     margin-bottom: 8px;
-    color: #dc2626;
     font-size: 0.95em;
     font-weight: 600;
 }
@@ -3304,13 +3066,6 @@ h3{
     margin-bottom: 15px;
     color: #374151;
     font-size: 1.1em;
-}
-
-.language-comparison,
-.usage-comparison {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
 }
 
 .language-version,
@@ -3433,7 +3188,6 @@ h3{
 
 .digital {
     font-weight: 600;
-    color: #dc2626;
     min-width: 60px;
 }
 
@@ -3506,7 +3260,6 @@ h3{
 .decimal-spoken {
     font-weight: 600;
     color: #1f2937;
-    line-height: 1.4;
     flex: 1;
 }
 
@@ -3552,7 +3305,6 @@ h3{
 .scale-number {
     font-size: 1.1em;
     font-weight: 700;
-    color: #dc2626;
     margin-bottom: 8px;
 }
 
@@ -3612,11 +3364,6 @@ h3{
     min-width: 50px;
 }
 
-.measurement-spoken {
-    color: #1f2937;
-    font-weight: 500;
-}
-
 /* Practice Exercises */
 .practice-exercise-detailed {
     margin-top: 20px;
@@ -3632,6 +3379,10 @@ h3{
     background: #f8fafc;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
+}
+
+.special-item .example{
+    margin-top: 0px;
 }
 
 .exercise-item-detailed p {
@@ -3762,6 +3513,11 @@ h3{
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    margin: 20px 0;
+}
+
+.period-item-detailed .example{
+    margin: 0px;
 }
 
 .time-range {
@@ -3772,13 +3528,6 @@ h3{
 .period-name {
     min-width: 200px;
     font-weight: 500;
-}
-
-.example {
-    font-style: italic;
-    color: #666;
-    flex: 1;
-    word-break: break-word;
 }
 
 h6{
@@ -3839,8 +3588,6 @@ h6{
 
 .example {
     flex: 1;
-    font-style: italic;
-    color: #666;
     word-break: break-word;
     line-height: 1.4;
 }
@@ -3923,11 +3670,6 @@ h6{
     font-weight: 500;
     color: #555;
     font-size: 0.9em;
-}
-
-.example {
-    flex: 1;
-    color: #666;
 }
 
 .movement-prepositions {
@@ -4027,9 +3769,7 @@ h6{
 }
 
 .preposition {
-    min-width: 80px;
     font-weight: bold;
-    color: #007bff;
 }
 
 .usage {
@@ -4066,16 +3806,6 @@ h6{
     border-radius: 6px;
 }
 
-.correct {
-    color: #28a745;
-    font-weight: 500;
-}
-
-.incorrect {
-    color: #dc3545;
-    text-decoration: line-through;
-}
-
 .practice-exercises {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -4099,9 +3829,6 @@ h6{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
-    background: white;
-    border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -4174,7 +3901,7 @@ h6{
     padding: 20px;
     background: white;
     border-radius: 8px;
-    border: 1px solid #e5e7eb;
+    margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
 
@@ -4185,6 +3912,10 @@ h6{
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 2px solid #e5e7eb;
+}
+
+.expression-group:nth-child(3){
+    border-left: 4px solid #1bcf1b;
 }
 
 .real-life-examples {
@@ -4267,15 +3998,6 @@ h6{
         font-size: 0.9em;
         padding: 15px;
     }
-}
-
-/* Interactive Exercise Styles */
-.exercise-item {
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 15px;
 }
 
 .exercise-item p {
@@ -4361,10 +4083,6 @@ h6{
 }
 
 .exercise-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 25px;
     padding-top: 20px;
     border-top: 2px solid #e5e7eb;
 }
@@ -4476,9 +4194,9 @@ h6{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 0 0 auto;
     font-size: 1.5em;
-    font-weight: bold;
-    color: #6b7280;
+    padding: 1rem 0;
 }
 
 .structure-rules {
@@ -4488,13 +4206,6 @@ h6{
 .rules-list {
     display: grid;
     gap: 15px;
-}
-
-.rule-item {
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
 }
 
 .rule-item strong {
@@ -4869,15 +4580,8 @@ h6{
 
 .usage-case {
     padding: 20px;
-    background: #f0f9ff;
     border-radius: 8px;
     border: 1px solid #e5e7eb;
-}
-
-.usage-case h5 {
-    margin-bottom: 15px;
-    color: #374151;
-    font-size: 1.1em;
 }
 
 /* Color coding for different cleft types */
@@ -4933,14 +4637,6 @@ h6{
     display: grid;
     gap: 20px;
     margin-top: 15px;
-}
-
-.example {
-    padding: 18px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-    border-left: 4px solid #3b82f6;
 }
 
 .example h5 {
@@ -5028,9 +4724,7 @@ h6{
 }
 
 .example-pair {
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
     margin-top: 15px;
 }
 
@@ -5042,11 +4736,6 @@ h6{
 .correct {
     background: #ecfdf5;
     border: 1px solid #10b981;
-}
-
-.incorrect {
-    background: #fef2f2;
-    border: 1px solid #ef4444;
 }
 
 .original {
@@ -5146,13 +4835,6 @@ h6{
     margin-top: 15px;
 }
 
-.example-group {
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
 .example-group h5 {
     margin-bottom: 15px;
     color: #374151;
@@ -5162,11 +4844,8 @@ h6{
 }
 
 .example {
-    padding: 15px;
-    background: white;
-    border-radius: 6px;
     border: 1px solid #e5e7eb;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .example:last-child {
@@ -5226,13 +4905,6 @@ h6{
     margin-bottom: 12px;
     color: #374151;
     font-size: 1.1em;
-}
-
-.example-pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 15px;
 }
 
 .normal, .inverted {
@@ -5620,6 +5292,10 @@ h6{
     gap: 15px;
 }
 
+.time-expressions .example-group, .tense-grid .example-group, .special-usage .example-group, .conditional-usage .example-group{
+    border: 0;
+}
+
 .change-item-detailed {
     display: flex;
     align-items: center;
@@ -5644,17 +5320,6 @@ h6{
 .changed {
     background: #ecfdf5;
     color: #059669;
-}
-
-.arrow {
-    color: #6b7280;
-    font-weight: 600;
-}
-
-.example {
-    color: #6b7280;
-    font-size: 0.85em;
-    /*margin-left: auto;*/
 }
 
 .contextual-examples {
@@ -5823,14 +5488,6 @@ h6{
     font-weight: bold;
 }
 
-.example {
-    background: #e8f4fc;
-    padding: 12px 15px;
-    border-radius: 6px;
-    border-left: 4px solid #3498db;
-    font-size: 0.95em;
-}
-
 .example strong {
     color: #2c3e50;
 }
@@ -5970,13 +5627,6 @@ h6{
     border-radius: 6px;
     border: 1px solid #dee2e6;
     font-style: italic;
-}
-
-.arrow {
-    color: #e74c3c;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 1rem 0;
 }
 
 /* Exceptions Section */
@@ -6180,7 +5830,6 @@ h6{
 /* Additional styling for emphasized text */
 em {
     font-style: italic;
-    color: #e74c3c;
     font-weight: 500;
 }
 
@@ -6230,10 +5879,6 @@ em {
     color: #495057;
     margin-bottom: 1rem;
     font-size: 1.1em;
-}
-
-.usage-type {
-    margin-bottom: 1rem;
 }
 
 .usage-type:last-child {
@@ -6364,13 +6009,6 @@ em {
     .special-case {
         padding: 1rem;
     }
-}
-
-/* Emphasized text */
-em {
-    font-style: italic;
-    color: #e74c3c;
-    font-weight: 500;
 }
 
 /* Exceptions Styles */
@@ -6515,13 +6153,6 @@ em {
         padding: 10px 12px;
         font-size: 0.9em;
     }
-}
-
-/* Emphasized text */
-em {
-    font-style: italic;
-    color: #e74c3c;
-    font-weight: 500;
 }
 
 /* Additional styles for comprehensive passive voice */
@@ -6772,12 +6403,6 @@ em {
 .passive {
     background: #dcfce7;
     border: 1px solid #86efac;
-}
-
-.arrow {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #6b7280;
 }
 
 .tense-matching {
@@ -7491,14 +7116,6 @@ em {
     margin-top: 15px;
 }
 
-.language-version,
-.usage-type {
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
-
 .language-version h6,
 .usage-type h6 {
     margin-bottom: 10px;
@@ -7780,10 +7397,6 @@ em {
     margin-top: 20px;
 }
 
-.mistake-category {
-    margin-bottom: 25px;
-}
-
 .mistake-category h5 {
     margin-bottom: 15px;
     font-size: 1.1em;
@@ -7795,17 +7408,6 @@ em {
     gap: 10px;
 }
 
-.mistake-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: #fef2f2;
-    border-radius: 8px;
-    border: 1px solid #fecaca;
-}
-
 .polish {
     font-weight: 600;
     color: #374151;
@@ -7814,31 +7416,19 @@ em {
 }
 
 .incorrect {
-    color: #dc2626;
     text-decoration: line-through;
-    font-weight: 600;
     flex: 1 0 150px;
-}
-
-.arrow {
-    color: #6b7280;
-    font-weight: 600;
-    flex: 0 0 auto;
+    border: 1px solid #ef4444;
+    min-width: 100px;
 }
 
 .correct {
-    color: #059669;
-    font-weight: 600;
     flex: 1 0 150px;
 }
 
 .example {
-    color: #6b7280;
-    font-size: 0.9em;
     font-style: italic;
-    /*flex: 1 0 100%;*/
     margin-top: 8px;
-    padding-top: 8px;
     border-top: 1px solid #fecaca;
     text-align: left;
 }
@@ -8091,7 +7681,6 @@ em {
 
 .grammar-tip .year {
     font-weight: 700;
-    color: #dc2626;
     min-width: 80px;
     font-size: 1.1em;
     font-family: 'Courier New', monospace;
@@ -8129,7 +7718,6 @@ em {
 .grammar-tip .century,
 .grammar-tip .decade {
     font-weight: 600;
-    color: #059669;
     min-width: 120px;
     font-size: 1em;
 }
