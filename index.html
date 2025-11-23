@@ -29,9 +29,9 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://angloboost.pl/" />
 
-    <link rel="preload" href="/src/main.jsx" as="script">
-<!--    <link rel="preconnect" href="https://translate.google.com">-->
-<!--    <link rel="preconnect" href="https://www.googletagmanager.com">-->
+<!--    <link rel="preload" href="/src/main.jsx" as="script">-->
+    <link rel="preconnect" href="https://translate.google.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://api007.angloboost.pl">
 
     <link rel="icon" type="image/png" href="/UK.png" />
@@ -44,7 +44,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/UK-16.png" />
     <link rel="apple-touch-icon" sizes="630x630" href="/UK-32.png" />
 
-    <link rel="preload" href="/assets/index-iPxmD8s3.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/assets/index-iPxmD8s3.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/assets/index-iPxmD8s3.css"></noscript>
 
     <!-- Open Graph -->
@@ -126,6 +126,6 @@
             });
         }
     </script>
-    <script type="module" src="./src/main.jsx"></script>
+    <script type="module" src="./src/main.jsx" defer></script>
 </body>
 </html>

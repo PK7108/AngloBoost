@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 
 const tiles = [
   {
@@ -49,6 +50,23 @@ const tiles = [
 
 export default function Grammar() {
   const { lang, t } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Gramatyka — AngloBoost' : 'Grammar — AngloBoost',
+        description: lang === 'pl'
+            ? 'Przejrzyste wyjaśnienia i przykłady gramatyczne. Wybierz dział.'
+            : 'Clear grammar explanations and examples. Pick a section.',
+        canonical: lang === 'pl' ? 'https://angloboost.pl/pl/gramatyka' : 'https://angloboost.pl/en/grammar',
+        og: {
+            title: lang === 'pl' ? 'Gramatyka — AngloBoost' : 'Grammar — AngloBoost',
+            description: lang === 'pl'
+                ? 'Przejrzyste wyjaśnienia gramatyczne: czasy, części mowy, okresy warunkowe i więcej.'
+                : 'Clear grammar explanations and examples.',
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
   return (
     <main className="sections">
       <div className="container">
