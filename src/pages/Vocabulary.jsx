@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta.jsx'
 
 const tiles = [
   {
@@ -58,6 +59,23 @@ function slugFromPolish(pl) {
 
 export default function Vocabulary() {
   const { lang, t } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Słownictwo – AngloBoost' : 'Vocabulary – AngloBoost',
+        description:
+            lang === 'pl'
+                ? 'Rozwijaj słownictwo praktycznie: tematyczne listy słówek, idiomy, przysłowia, czasowniki nieregularne i slang.'
+                : 'Learn vocabulary effectively: thematic word lists, idioms, proverbs, irregular verbs and slang.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/slownictwo'
+            : 'https://angloboost.pl/en/vocabulary',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/slownictwo' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en/vocabulary' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
+
   return (
     <main className="sections">
       <div className="container">

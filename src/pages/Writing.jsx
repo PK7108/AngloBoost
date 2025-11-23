@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 
 const tiles = [
   {
@@ -70,6 +71,23 @@ const tiles = [
 
 export default function Writing() {
   const { lang, t } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Pisanie – AngloBoost' : 'Writing – AngloBoost',
+        description:
+            lang === 'pl'
+                ? 'Poznaj różne formy wypowiedzi pisemnych: opowiadania, listy, emaile, recenzje, artykuły i rozprawki.'
+                : 'Explore various forms of writing: short stories, letters, emails, reviews, articles, and essays.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/writing'
+            : 'https://angloboost.pl/en/writing',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/writing' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en/writing' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
+
   return (
     <main className="sections">
       <div className="container">

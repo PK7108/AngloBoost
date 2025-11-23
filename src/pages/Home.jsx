@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 import './home.css'
 
 function Hero() {
@@ -445,6 +446,23 @@ function CoffeeSupport() {
 }
 
 export default function Home() {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'AngloBoost – Darmowa nauka angielskiego online' : 'AngloBoost – Free English Learning Online',
+        description: lang === 'pl'
+            ? 'AngloBoost oferuje darmowe materiały do nauki angielskiego: gramatykę, słownictwo, ćwiczenia, artykuły i społeczność.'
+            : 'AngloBoost provides free English learning resources: grammar, vocabulary, exercises, articles, and community.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/'
+            : 'https://angloboost.pl/en',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
+
   return (
     <main>
       <Hero />

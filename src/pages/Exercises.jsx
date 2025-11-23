@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 
 const grammar = [
   { pl: 'Wymowa', en: 'Pronunciation' },
@@ -25,6 +26,22 @@ const vocabulary = [
 export default function Exercises() {
   const { user } = useAuth()
   const { lang, t } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Ćwiczenia – AngloBoost' : 'Exercises – AngloBoost',
+        description:
+            lang === 'pl'
+                ? 'Ćwicz gramatykę i słownictwo praktycznie i skutecznie. Zadania utrwalające dla wszystkich poziomów.'
+                : 'Practice grammar and vocabulary effectively. Reinforcement exercises for all levels.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/cwiczenia'
+            : 'https://angloboost.pl/en/exercises',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/cwiczenia' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en/exercises' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
 
   return (
     <main className="sections">

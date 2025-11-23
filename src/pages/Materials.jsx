@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 
 const tiles = [
     {
@@ -46,6 +47,22 @@ function slugFromPolish(pl) {
 
 export default function Materials() {
     const { lang, t } = useLanguage()
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Materiały – AngloBoost' : 'Materials – AngloBoost',
+        description:
+            lang === 'pl'
+                ? 'Zestaw sprawdzonych źródeł do nauki języka angielskiego – wideo, literatura i serwisy online.'
+                : 'A set of verified resources for learning English – videos, literature, and online services.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/materialy'
+            : 'https://angloboost.pl/en/materials',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/materialy' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en/materials' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
 
     return (
         <main className="sections">

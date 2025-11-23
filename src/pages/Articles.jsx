@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
+import useDocumentMeta from '../useDocumentMeta'
 
 function getTiles(lang) {
   const pl = [
@@ -59,6 +60,23 @@ function getTiles(lang) {
 export default function Articles() {
   const { t, lang } = useLanguage()
   const tiles = getTiles(lang)
+
+    useDocumentMeta({
+        title: lang === 'pl' ? 'Artykuły – AngloBoost' : 'Articles – AngloBoost',
+        description:
+            lang === 'pl'
+                ? 'Czytaj artykuły o nauce angielskiego, gramatyce, słownictwie i technikach nauki.'
+                : 'Read articles about learning English, grammar, vocabulary, and learning techniques.',
+        canonical: lang === 'pl'
+            ? 'https://angloboost.pl/artykuly'
+            : 'https://angloboost.pl/en/articles',
+        alternates: [
+            { hrefLang: 'pl', href: 'https://angloboost.pl/artykuly' },
+            { hrefLang: 'en', href: 'https://angloboost.pl/en/articles' },
+            { hrefLang: 'x-default', href: 'https://angloboost.pl/' },
+        ],
+    })
+
   return (
     <main className="sections">
       <div className="container">
