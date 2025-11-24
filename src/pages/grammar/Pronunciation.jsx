@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 
 const sections = [
@@ -1197,12 +1199,25 @@ function TopicDetail({ topic, onBack }) {
 export default function Pronunciation() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'alfabet'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
 
     const basePath = `/gramatyka/wymowa/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1237,4 +1252,94 @@ export default function Pronunciation() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            alfabet: 'Alfabet angielski - wymowa liter',
+            'gloski-nieme': 'Głoski nieme w angielskim',
+            'koncowki-wyrazow': 'Końcówki wyrazów - wymowa',
+            'rozne-wymowy': 'Różnice wymowy brytyjski vs amerykański'
+        },
+        en: {
+            alfabet: 'English Alphabet - Letter Pronunciation',
+            'gloski-nieme': 'Silent Letters in English',
+            'koncowki-wyrazow': 'Word Endings - Pronunciation',
+            'rozne-wymowy': 'British vs American Pronunciation Differences'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            alfabet: 'Nauka alfabetu angielskiego: nazwy liter, wymowa, różnice BrE/AmE. Kompleksowy przewodnik z przykładami.',
+            'gloski-nieme': 'Głoski nieme w języku angielskim: kiedy nie wymawiamy liter k, w, b, gh. Zasady i przykłady.',
+            'koncowki-wyrazow': 'Wymowa angielskich końcówek: -s, -ed, -ate, -ough. Zasady wymowy z przykładami.',
+            'rozne-wymowy': 'Różnice w wymowie między British English a American English. Samogłoski, spółgłoski, akcent.'
+        },
+        en: {
+            alfabet: 'Learn English alphabet: letter names, pronunciation, BrE/AmE differences. Comprehensive guide with examples.',
+            'gloski-nieme': 'Silent letters in English: when not to pronounce k, w, b, gh. Rules and examples.',
+            'koncowki-wyrazow': 'Pronunciation of English word endings: -s, -ed, -ate, -ough. Rules with examples.',
+            'rozne-wymowy': 'Pronunciation differences between British and American English. Vowels, consonants, accent.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/wymowa/${activeSection}`
+        : `https://angloboost.pl/en/grammar/pronunciation/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'alfabet-nazwy-liter': 'Alphabet Letter Names',
+        'problematic-consonants': 'Problematic Consonants',
+        'silent-letters-basic': 'Silent Letters - Basics',
+        'silent-letters-advanced': 'Silent Letters - Advanced',
+        'homofony': 'Homophones',
+        'common-endings': 'Word Endings',
+        'bre-ame-differences': 'BrE vs AmE Pronunciation'
+    }
+    return englishTitles[topicId] || 'English Pronunciation'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'alfabet-nazwy-liter': 'Learn letter names and pronunciation in British and American English.',
+        'problematic-consonants': 'English consonants that differ from Polish - th, r, w, and others.',
+        'silent-letters-basic': 'When not to pronounce letters in English: k, w, gh, b and others.',
+        'silent-letters-advanced': 'Less obvious silent letters: L, P, H, T, D, G, N and others.',
+        'homofony': 'Words that sound the same but have different spelling and meaning.',
+        'common-endings': 'Comprehensive guide to pronunciation of English word endings.',
+        'bre-ame-differences': 'Key pronunciation differences between British English and American English.'
+    }
+    return englishExcerpts[topicId] || 'English pronunciation guide with examples.'
 }

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 
 const sections = [
@@ -4432,11 +4434,24 @@ function TopicDetail({ topic, onBack }) {
 export default function Tenses() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'present'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/gramatyka/czasy-angielskie/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -4476,4 +4491,102 @@ export default function Tenses() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            present: 'Czasy teraźniejsze angielskie',
+            past: 'Czasy przeszłe angielskie',
+            future: 'Czasy przyszłe angielskie'
+        },
+        en: {
+            present: 'English Present Tenses',
+            past: 'English Past Tenses',
+            future: 'English Future Tenses'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            present: 'Kompletny przewodnik po czasach teraźniejszych: Present Simple, Continuous, Perfect. Zasady, przykłady, ćwiczenia.',
+            past: 'Szczegółowe wyjaśnienia czasów przeszłych: Past Simple, Continuous, Perfect. Kiedy używać i jak tworzyć.',
+            future: 'Wszystkie sposoby wyrażania przyszłości: Future Simple, Continuous, Perfect, be going to. Praktyczne przykłady.'
+        },
+        en: {
+            present: 'Complete guide to present tenses: Present Simple, Continuous, Perfect. Rules, examples, exercises.',
+            past: 'Detailed explanations of past tenses: Past Simple, Continuous, Perfect. When to use and how to form.',
+            future: 'All ways to express future: Future Simple, Continuous, Perfect, be going to. Practical examples.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady z ćwiczeniami.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples with exercises.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/czasy-angielskie/${activeSection}`
+        : `https://angloboost.pl/en/grammar/tenses/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'present-simple': 'Present Simple Tense',
+        'present-continuous': 'Present Continuous Tense',
+        'present-perfect-simple': 'Present Perfect Simple',
+        'present-perfect-continuous': 'Present Perfect Continuous',
+        'past-simple': 'Past Simple Tense',
+        'past-continuous': 'Past Continuous Tense',
+        'past-perfect-simple': 'Past Perfect Simple',
+        'past-perfect-continuous': 'Past Perfect Continuous',
+        'future-simple': 'Future Simple Tense',
+        'future-continuous': 'Future Continuous Tense',
+        'future-perfect-simple': 'Future Perfect Simple',
+        'future-perfect-continuous': 'Future Perfect Continuous',
+        'other-future-forms': 'Other Future Forms'
+    }
+    return englishTitles[topicId] || 'English Tenses'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'present-simple': 'Habits, facts, schedules - the foundation of daily communication.',
+        'present-continuous': 'Actions happening now and temporary situations.',
+        'present-perfect-simple': 'Life experiences, present results, recent events.',
+        'present-perfect-continuous': 'Long-term actions with emphasis on duration.',
+        'past-simple': 'Completed actions in the definite past.',
+        'past-continuous': 'Actions in progress in the past, background for other events.',
+        'past-perfect-simple': 'Earlier past - actions before other past events.',
+        'past-perfect-continuous': 'Long-term actions before other past events.',
+        'future-simple': 'Spontaneous decisions, predictions, promises.',
+        'future-continuous': 'Actions that will be in progress at a specific future time.',
+        'future-perfect-simple': 'Actions that will be completed before a specific future time.',
+        'future-perfect-continuous': 'Long-term actions continuing up to a specific future time.',
+        'other-future-forms': 'Be going to, Present Continuous, Present Simple - different ways to express future.'
+    }
+    return englishExcerpts[topicId] || 'English tenses guide with examples and exercises.'
 }
