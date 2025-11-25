@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1382,9 +1384,22 @@ function Quiz({ topicId }) {
 export default function PassiveVoiceExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'simple'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/strona-bierna/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1633,4 +1648,124 @@ export default function PassiveVoiceExercises() {
       `}</style>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            simple: 'Ćwiczenia: Strona bierna w czasach Simple',
+            continuous: 'Ćwiczenia: Strona bierna w czasach Continuous',
+            perfect: 'Ćwiczenia: Strona bierna w czasach Perfect',
+            modals: 'Ćwiczenia: Strona bierna z czasownikami modalnymi',
+            'uzycie-wyjatki': 'Ćwiczenia: Użycie i wyjątki strony biernej'
+        },
+        en: {
+            simple: 'Exercises: Passive Voice in Simple Tenses',
+            continuous: 'Exercises: Passive Voice in Continuous Tenses',
+            perfect: 'Exercises: Passive Voice in Perfect Tenses',
+            modals: 'Exercises: Passive Voice with Modal Verbs',
+            'uzycie-wyjatki': 'Exercises: Usage and Exceptions in Passive Voice'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            simple: 'Interaktywne ćwiczenia ze strony biernej w czasach Simple. Present, Past i Future Simple Passive z przykładami.',
+            continuous: 'Ćwiczenia ze strony biernej w czasach Continuous. Present i Past Continuous Passive - czynności w toku.',
+            perfect: 'Interaktywne ćwiczenia ze strony biernej w czasach Perfect. Present, Past i Future Perfect Passive.',
+            modals: 'Ćwiczenia ze strony biernej z czasownikami modalnymi. Modal + be + past participle - możliwość, obowiązek.',
+            'uzycie-wyjatki': 'Interaktywne ćwiczenia z użyciem i wyjątków strony biernej. Kiedy używać, typowe błędy, czasowniki bez form biernych.'
+        },
+        en: {
+            simple: 'Interactive passive voice exercises in Simple tenses. Present, Past and Future Simple Passive with examples.',
+            continuous: 'Passive voice exercises in Continuous tenses. Present and Past Continuous Passive - ongoing actions.',
+            perfect: 'Interactive passive voice exercises in Perfect tenses. Present, Past and Future Perfect Passive.',
+            modals: 'Passive voice exercises with modal verbs. Modal + be + past participle - possibility, obligation, permission.',
+            'uzycie-wyjatki': 'Interactive exercises with passive voice usage and exceptions. When to use, common mistakes, verbs without passive forms.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/strona-bierna/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/passive-voice/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'passive-simple-forms': 'Passive Voice - Simple Tenses - Exercises',
+        'passive-simple-practice-15': 'Simple Passive - Practice - Exercises',
+        'passive-simple-advanced-12': 'Simple Passive - Advanced - Exercises',
+        'passive-cont-forms': 'Passive Voice - Continuous Tenses - Exercises',
+        'passive-cont-practice-15': 'Continuous Passive - Practice - Exercises',
+        'passive-cont-advanced-12': 'Continuous Passive - Advanced - Exercises',
+        'passive-perfect-forms': 'Passive Voice - Perfect Tenses - Exercises',
+        'passive-perfect-practice-15': 'Perfect Passive - Practice - Exercises',
+        'passive-perfect-advanced-12': 'Perfect Passive - Advanced - Exercises',
+        'passive-modals': 'Passive Voice with Modal Verbs - Exercises',
+        'passive-modals-practice-15': 'Modal Passive - Practice - Exercises',
+        'passive-modals-advanced-12': 'Modal Passive - Advanced - Exercises',
+        'passive-usage-exceptions': 'Passive Voice Usage and Exceptions - Exercises',
+        'passive-exceptions-practice-15': 'Passive Exceptions - Practice - Exercises',
+        'passive-exceptions-advanced-12': 'Passive Exceptions - Advanced - Exercises'
+    }
+    return englishTitles[topicId] || 'Passive Voice Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'passive-simple-forms': 'Basic passive voice constructions in Present, Past and Future Simple tenses.',
+        'passive-simple-practice-15': '15 practice questions with different Simple tenses in passive voice.',
+        'passive-simple-advanced-12': '12 more difficult questions with complex sentences in Simple passive.',
+        'passive-cont-forms': 'Ongoing actions in passive voice - Present and Past Continuous passive.',
+        'passive-cont-practice-15': '15 practice questions with Continuous tenses in passive voice.',
+        'passive-cont-advanced-12': '12 more difficult questions in formal contexts with Continuous passive.',
+        'passive-perfect-forms': 'Completed actions with present relevance in passive voice.',
+        'passive-perfect-practice-15': '15 practice questions with Perfect tenses in passive voice.',
+        'passive-perfect-advanced-12': '12 more difficult questions with Future Perfect passive.',
+        'passive-modals': 'Modal + be + past participle - expressing possibility, obligation, permission.',
+        'passive-modals-practice-15': '15 practice questions with modal verbs in passive voice.',
+        'passive-modals-advanced-12': '12 more difficult questions with Perfect Modal Passive constructions.',
+        'passive-usage-exceptions': 'When to use passive voice, common mistakes, verbs without passive forms.',
+        'passive-exceptions-practice-15': '15 practice questions with exceptions in passive voice.',
+        'passive-exceptions-advanced-12': '12 more difficult questions in academic contexts with passive voice exceptions.'
+    }
+    return englishExcerpts[topicId] || 'Passive voice exercises with examples and explanations.'
 }

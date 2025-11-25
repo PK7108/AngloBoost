@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1573,9 +1575,22 @@ function Quiz({ topicId }) {
 export default function PartsOfSpeechExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'przedimki'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/części-mowy/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1615,4 +1630,152 @@ export default function PartsOfSpeechExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            przedimki: 'Ćwiczenia: Przedimki angielskie',
+            rzeczowniki: 'Ćwiczenia: Rzeczowniki angielskie',
+            czasowniki: 'Ćwiczenia: Czasowniki angielskie',
+            przymiotniki: 'Ćwiczenia: Przymiotniki angielskie',
+            przyslowki: 'Ćwiczenia: Przysłówki angielskie',
+            zaimki: 'Ćwiczenia: Zaimki angielskie',
+            spojniki: 'Ćwiczenia: Spójniki angielskie',
+            liczebniki: 'Ćwiczenia: Liczebniki angielskie',
+            przyimki: 'Ćwiczenia: Przyimki angielskie'
+        },
+        en: {
+            przedimki: 'Exercises: English Articles',
+            rzeczowniki: 'Exercises: English Nouns',
+            czasowniki: 'Exercises: English Verbs',
+            przymiotniki: 'Exercises: English Adjectives',
+            przyslowki: 'Exercises: English Adverbs',
+            zaimki: 'Exercises: English Pronouns',
+            spojniki: 'Exercises: English Conjunctions',
+            liczebniki: 'Exercises: English Numerals',
+            przyimki: 'Exercises: English Prepositions'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            przedimki: 'Interaktywne ćwiczenia z przedimków angielskich. A, an, the i przedimek zerowy - kompletny przewodnik.',
+            rzeczowniki: 'Ćwiczenia z rzeczowników angielskich. Rodzaje rzeczowników, liczba mnoga, dzierżawczość.',
+            czasowniki: 'Interaktywne ćwiczenia z czasowników angielskich. Rodzaje czasowników, posiłkowe, modalne.',
+            przymiotniki: 'Ćwiczenia z przymiotników angielskich. Stopniowanie, kolejność przymiotników w zdaniu.',
+            przyslowki: 'Interaktywne ćwiczenia z przysłówków angielskich. Rodzaje przysłówków i ich pozycja w zdaniu.',
+            zaimki: 'Ćwiczenia z zaimków angielskich. Osobowe, dzierżawcze, wskazujące, względne.',
+            spojniki: 'Interaktywne ćwiczenia ze spójników angielskich. Podstawowe i złożone spójniki.',
+            liczebniki: 'Ćwiczenia z liczebników angielskich. Główne, porządkowe, daty, ułamki.',
+            przyimki: 'Interaktywne ćwiczenia z przyimków angielskich. Miejsca, czasu, ruchu.'
+        },
+        en: {
+            przedimki: 'Interactive English articles exercises. A, an, the and zero article - complete guide.',
+            rzeczowniki: 'English nouns exercises. Types of nouns, plural forms, possessive case.',
+            czasowniki: 'Interactive English verbs exercises. Types of verbs, auxiliary verbs, modal verbs.',
+            przymiotniki: 'English adjectives exercises. Comparative and superlative forms, adjective order.',
+            przyslowki: 'Interactive English adverbs exercises. Types of adverbs and their position in sentences.',
+            zaimki: 'English pronouns exercises. Personal, possessive, demonstrative, relative pronouns.',
+            spojniki: 'Interactive English conjunctions exercises. Basic and compound conjunctions.',
+            liczebniki: 'English numerals exercises. Cardinal and ordinal numbers, dates, fractions.',
+            przyimki: 'Interactive English prepositions exercises. Prepositions of place, time, movement.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/części-mowy/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/parts-of-speech/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'przedimki-nieokreslone': 'A or AN? - Exercises',
+        'przedimek-okreslony': 'The Definite Article - Exercises',
+        'przedimek-zerowy': 'Zero Article - Exercises',
+        'rodzaje-rzeczownikow': 'Types of Nouns - Exercises',
+        'liczba-mnoga': 'Plural Forms - Exercises',
+        'dzierzawczosc': 'Possessive Case - Exercises',
+        'rodzaje-czasownikow': 'Types of Verbs - Exercises',
+        'czasowniki-posilkowe': 'Auxiliary Verbs - Exercises',
+        'czasowniki-modalne': 'Modal Verbs - Exercises',
+        'stopniowanie-przymiotnikow': 'Adjective Comparison - Exercises',
+        'kolejnosc-przymiotnikow': 'Adjective Order - Exercises',
+        'rodzaje-przyslowkow': 'Types of Adverbs - Exercises',
+        'umiejscowienie-przyslowkow': 'Adverb Position - Exercises',
+        'zaimki-osobowe-dzierzawcze': 'Personal and Possessive Pronouns - Exercises',
+        'zaimki-wskazujace-wzgledne': 'Demonstrative and Relative Pronouns - Exercises',
+        'spojniki-podstawowe': 'Basic Conjunctions - Exercises',
+        'spojniki-zlozone': 'Compound Conjunctions - Exercises',
+        'liczebniki-glowne-porzadkowe': 'Cardinal and Ordinal Numbers - Exercises',
+        'daty-ulamki-liczby': 'Dates, Fractions, Numbers - Exercises',
+        'przyimki-miejsca-czasu': 'Prepositions of Place and Time - Exercises',
+        'przyimki-ruchu': 'Prepositions of Movement - Exercises'
+    }
+    return englishTitles[topicId] || 'Parts of Speech Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'przedimki-nieokreslone': 'Exercises with indefinite articles a and an in English.',
+        'przedimek-okreslony': 'Exercises with the definite article the in English.',
+        'przedimek-zerowy': 'Exercises with zero article - when not to use any article.',
+        'rodzaje-rzeczownikow': 'Exercises with countable, uncountable, proper and common nouns.',
+        'liczba-mnoga': 'Exercises with regular and irregular plural forms of nouns.',
+        'dzierzawczosc': "Exercises with Saxon genitive ('s) and of construction.",
+        'rodzaje-czasownikow': 'Exercises with stative, dynamic, auxiliary and modal verbs.',
+        'czasowniki-posilkowe': 'Exercises with do/does/did, have/has/had, be auxiliary verbs.',
+        'czasowniki-modalne': 'Exercises with can, could, may, might, must, should modal verbs.',
+        'stopniowanie-przymiotnikow': 'Exercises with comparative and superlative forms of adjectives.',
+        'kolejnosc-przymiotnikow': 'Exercises with OSAShCOMP - the magical acronym for adjective order.',
+        'rodzaje-przyslowkow': 'Exercises with adverbs of manner, place, time and frequency.',
+        'umiejscowienie-przyslowkow': 'Exercises with adverb position in English sentences.',
+        'zaimki-osobowe-dzierzawcze': 'Exercises with I/me/my/mine - complete guide to personal and possessive pronouns.',
+        'zaimki-wskazujace-wzgledne': 'Exercises with this/that and who/which/that pronouns.',
+        'spojniki-podstawowe': 'Exercises with and, but, or, so, because basic conjunctions.',
+        'spojniki-zlozone': 'Exercises with either/or, neither/nor, both/and compound conjunctions.',
+        'liczebniki-glowne-porzadkowe': 'Exercises with one/first, two/second cardinal and ordinal numbers.',
+        'daty-ulamki-liczby': 'Exercises with reading dates, fractions and large numbers.',
+        'przyimki-miejsca-czasu': 'Exercises with in/on/at prepositions of place and time.',
+        'przyimki-ruchu': 'Exercises with into, out of, through, across prepositions of movement.'
+    }
+    return englishExcerpts[topicId] || 'Parts of speech exercises with examples and explanations.'
 }

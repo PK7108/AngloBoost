@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1847,9 +1849,22 @@ function Quiz({ topicId }) {
 export default function PhrasesExpressionsExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'had-sth-done'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/wyrażenia-i-zwroty/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1889,4 +1904,144 @@ export default function PhrasesExpressionsExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            'had-sth-done': 'Ćwiczenia: Had something done - konstrukcja',
+            'indirect-questions': 'Ćwiczenia: Pytania pośrednie angielskie',
+            'unreal-past': 'Ćwiczenia: Unreal Past - wyrażanie żalów',
+            'cleft-sentences': 'Ćwiczenia: Cleft Sentences - podkreślanie',
+            'participle-clauses': 'Ćwiczenia: Zdania imiesłowowe angielskie',
+            'inversion': 'Ćwiczenia: Inwersja szyku angielska',
+            'inne-wyrażenia': 'Ćwiczenia: Inne wyrażenia angielskie'
+        },
+        en: {
+            'had-sth-done': 'Exercises: Had something done construction',
+            'indirect-questions': 'Exercises: English Indirect Questions',
+            'unreal-past': 'Exercises: Unreal Past - expressing regrets',
+            'cleft-sentences': 'Exercises: Cleft Sentences - emphasis',
+            'participle-clauses': 'Exercises: English Participle Clauses',
+            'inversion': 'Exercises: English Inversion',
+            'inne-wyrażenia': 'Exercises: Other English Expressions'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            'had-sth-done': 'Interaktywne ćwiczenia z konstrukcją have/get something done. Testy online z różnymi czasami i kontekstami.',
+            'indirect-questions': 'Ćwiczenia z pytań pośrednich angielskich. Praktyczne testy z szykiem zdania i formalnymi zwrotami.',
+            'unreal-past': 'Interaktywne ćwiczenia z unreal past: wishes, if only, would rather. Testy z wyrażaniem żalów i życzeń.',
+            'cleft-sentences': 'Ćwiczenia z cleft sentences: it-cleft i what-cleft. Testy online z podkreślaniem elementów zdania.',
+            'participle-clauses': 'Interaktywne ćwiczenia ze zdań imiesłowowych angielskich. Testy z perfect participle i redukcją zdań.',
+            'inversion': 'Ćwiczenia z inwersji szyku angielskiej. Testy online z wyrażeniami negatywnymi i warunkami.',
+            'inne-wyrażenia': 'Interaktywne ćwiczenia z różnych wyrażeń: so/such, be supposed to, would rather, used to. Testy praktyczne.'
+        },
+        en: {
+            'had-sth-done': 'Interactive exercises with have/get something done construction. Online tests with different tenses and contexts.',
+            'indirect-questions': 'English indirect questions exercises. Practical tests with word order and formal expressions.',
+            'unreal-past': 'Interactive exercises with unreal past: wishes, if only, would rather. Tests for expressing regrets and wishes.',
+            'cleft-sentences': 'Exercises with cleft sentences: it-cleft and what-cleft. Online tests for emphasizing sentence elements.',
+            'participle-clauses': 'Interactive exercises with English participle clauses. Tests with perfect participle and sentence reduction.',
+            'inversion': 'Exercises with English inversion. Online tests with negative expressions and conditionals.',
+            'inne-wyrażenia': 'Interactive exercises with various expressions: so/such, be supposed to, would rather, used to. Practical tests.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/wyrażenia-i-zwroty/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/phrases-expressions/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'had-sth-done-basics': 'Had sth done - Basics',
+        'had-sth-done-practice-15': 'Had sth done - Practice',
+        'had-sth-done-advanced-12': 'Had sth done - Advanced',
+        'indirect-questions-form': 'Indirect Questions - Form',
+        'indirect-questions-practice-15': 'Indirect Questions - Practice',
+        'indirect-questions-advanced-12': 'Indirect Questions - Advanced',
+        'unreal-past-wishes': 'Unreal Past - Wishes',
+        'unreal-past-practice-15': 'Unreal Past - Practice',
+        'unreal-past-advanced-12': 'Unreal Past - Advanced',
+        'cleft-it-what': 'Cleft Sentences - It/What',
+        'cleft-sentences-practice-15': 'Cleft Sentences - Practice',
+        'cleft-sentences-advanced-12': 'Cleft Sentences - Advanced',
+        'participle-reduction': 'Participle Clauses',
+        'participle-clauses-practice-15': 'Participle Clauses - Practice',
+        'participle-clauses-advanced-12': 'Participle Clauses - Advanced',
+        'inversion-negative': 'Inversion - Negative',
+        'inversion-practice-15': 'Inversion - Practice',
+        'inversion-advanced-12': 'Inversion - Advanced',
+        'misc-expressions': 'Other Expressions',
+        'misc-expressions-practice-15': 'Other Expressions - Practice',
+        'misc-expressions-advanced-12': 'Other Expressions - Advanced'
+    }
+    return englishTitles[topicId] || 'English Phrases and Expressions'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'had-sth-done-basics': 'Basic exercises with have/get something done construction.',
+        'had-sth-done-practice-15': '15 practice questions with different tenses.',
+        'had-sth-done-advanced-12': '12 more difficult questions with advanced constructions.',
+        'indirect-questions-form': 'Basic exercises with indirect questions.',
+        'indirect-questions-practice-15': '15 practice questions with different expressions.',
+        'indirect-questions-advanced-12': '12 more difficult questions with formal phrases.',
+        'unreal-past-wishes': 'Basic exercises with expressing wishes and regrets.',
+        'unreal-past-practice-15': '15 practice questions with different constructions.',
+        'unreal-past-advanced-12': '12 more difficult questions in business contexts.',
+        'cleft-it-what': 'Basic exercises with emphasizing sentence elements.',
+        'cleft-sentences-practice-15': '15 practice questions with different contexts.',
+        'cleft-sentences-advanced-12': '12 more difficult questions in formal contexts.',
+        'participle-reduction': 'Basic exercises with participle clauses.',
+        'participle-clauses-practice-15': '15 practice questions with different situations.',
+        'participle-clauses-advanced-12': '12 more difficult questions with perfect participle.',
+        'inversion-negative': 'Basic exercises with inversion after negative expressions.',
+        'inversion-practice-15': '15 practice questions with different types of inversion.',
+        'inversion-advanced-12': '12 more difficult questions in business contexts.',
+        'misc-expressions': 'Basic exercises: so/such, be supposed to, would rather, used to.',
+        'misc-expressions-practice-15': '15 practice questions with different constructions.',
+        'misc-expressions-advanced-12': '12 more difficult questions in formal contexts.'
+    }
+    return englishExcerpts[topicId] || 'English phrases and expressions exercises.'
 }

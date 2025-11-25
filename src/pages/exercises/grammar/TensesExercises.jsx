@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1015,9 +1017,22 @@ function Quiz({ topicId }) {
 export default function TensesExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'present'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/czasy-angielskie/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1057,4 +1072,112 @@ export default function TensesExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            present: 'Ćwiczenia: Czasy teraźniejsze angielskie',
+            past: 'Ćwiczenia: Czasy przeszłe angielskie',
+            future: 'Ćwiczenia: Czasy przyszłe angielskie'
+        },
+        en: {
+            present: 'Exercises: English Present Tenses',
+            past: 'Exercises: English Past Tenses',
+            future: 'Exercises: English Future Tenses'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            present: 'Interaktywne ćwiczenia z czasów teraźniejszych angielskich: Present Simple, Continuous, Perfect. Testy online z odpowiedziami.',
+            past: 'Ćwiczenia z czasów przeszłych angielskich: Past Simple, Continuous, Perfect. Interaktywne testy i quizy online.',
+            future: 'Interaktywne ćwiczenia z czasów przyszłych angielskich: Future Simple, Continuous, Perfect. Testy z natychmiastową weryfikacją.'
+        },
+        en: {
+            present: 'Interactive exercises with English present tenses: Present Simple, Continuous, Perfect. Online tests with answers.',
+            past: 'Exercises with English past tenses: Past Simple, Continuous, Perfect. Interactive online tests and quizzes.',
+            future: 'Interactive exercises with English future tenses: Future Simple, Continuous, Perfect. Tests with instant verification.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/czasy-angielskie/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/english-tenses/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'present-simple': 'Present Simple - Exercises',
+        'present-continuous': 'Present Continuous - Exercises',
+        'present-perfect-simple': 'Present Perfect Simple - Exercises',
+        'present-perfect-continuous': 'Present Perfect Continuous - Exercises',
+        'past-simple': 'Past Simple - Exercises',
+        'past-continuous': 'Past Continuous - Exercises',
+        'past-perfect-simple': 'Past Perfect Simple - Exercises',
+        'past-perfect-continuous': 'Past Perfect Continuous - Exercises',
+        'future-simple': 'Future Simple - Exercises',
+        'future-continuous': 'Future Continuous - Exercises',
+        'future-perfect-simple': 'Future Perfect Simple - Exercises',
+        'future-perfect-continuous': 'Future Perfect Continuous - Exercises',
+        'other-future-forms': 'Other Future Forms - Exercises'
+    }
+    return englishTitles[topicId] || 'English Tenses Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'present-simple': 'Present Simple tense exercises.',
+        'present-continuous': 'Present Continuous tense exercises.',
+        'present-perfect-simple': 'Present Perfect Simple tense exercises.',
+        'present-perfect-continuous': 'Present Perfect Continuous tense exercises.',
+        'past-simple': 'Past Simple tense exercises.',
+        'past-continuous': 'Past Continuous tense exercises.',
+        'past-perfect-simple': 'Past Perfect Simple tense exercises.',
+        'past-perfect-continuous': 'Past Perfect Continuous tense exercises.',
+        'future-simple': 'Future Simple tense exercises.',
+        'future-continuous': 'Future Continuous tense exercises.',
+        'future-perfect-simple': 'Future Perfect Simple tense exercises.',
+        'future-perfect-continuous': 'Future Perfect Continuous tense exercises.',
+        'other-future-forms': 'Be going to, Present Continuous for future exercises.'
+    }
+    return englishExcerpts[topicId] || 'English tenses exercises with examples.'
 }

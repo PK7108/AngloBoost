@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -757,9 +759,22 @@ function Quiz({ topicId }) {
 export default function PronunciationExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'alfabet'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/wymowa/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -799,4 +814,102 @@ export default function PronunciationExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            alfabet: 'Ćwiczenia: Alfabet angielski - wymowa',
+            'gloski-nieme': 'Ćwiczenia: Głoski nieme w angielskim',
+            'koncowki-wyrazow': 'Ćwiczenia: Końcówki wyrazów - wymowa'
+        },
+        en: {
+            alfabet: 'Exercises: English Alphabet - Pronunciation',
+            'gloski-nieme': 'Exercises: Silent Letters in English',
+            'koncowki-wyrazow': 'Exercises: Word Endings - Pronunciation'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            alfabet: 'Interaktywne ćwiczenia z wymowy alfabetu angielskiego. Testy i quizy z nazwami liter, różnicami BrE/AmE.',
+            'gloski-nieme': 'Ćwiczenia z niemych liter w języku angielskim. Testy online z k, w, b, gh i innymi niemymi literami.',
+            'koncowki-wyrazow': 'Interaktywne ćwiczenia z wymowy angielskich końcówek: -s, -ed, -ate, -ough. Testy online.'
+        },
+        en: {
+            alfabet: 'Interactive English alphabet pronunciation exercises. Tests and quizzes with letter names, BrE/AmE differences.',
+            'gloski-nieme': 'Silent letters exercises in English. Online tests with k, w, b, gh and other silent letters.',
+            'koncowki-wyrazow': 'Interactive English word endings pronunciation exercises: -s, -ed, -ate, -ough. Online tests.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/wymowa/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/pronunciation/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'alfabet-nazwy-liter': 'Alphabet Letter Names - Exercises',
+        'problematic-vowels': 'Problematic Vowels - Exercises',
+        'problematic-consonants': 'Problematic Consonants - Exercises',
+        'silent-letters-basic': 'Silent Letters - Basic Exercises',
+        'silent-letters-advanced': 'Silent Letters - Advanced Exercises',
+        'common-endings': 'Word Endings - Exercises',
+        'plural-s-es': '-s/-es Endings - Exercises',
+        'ending-ed': '-ed Ending - Exercises'
+    }
+    return englishTitles[topicId] || 'English Pronunciation Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'alfabet-nazwy-liter': 'Letter names and pronunciation exercises in British and American English.',
+        'problematic-vowels': 'Exercises with difficult vowels for Polish speakers.',
+        'problematic-consonants': 'Exercises with th, r, w and other consonants.',
+        'silent-letters-basic': 'Basic exercises with silent letters.',
+        'silent-letters-advanced': 'Advanced cases of silent letters.',
+        'common-endings': 'Comprehensive exercises with word endings.',
+        'plural-s-es': 'Pronunciation of /s/, /z/, /ɪz/ - when and why.',
+        'ending-ed': 'Pronunciation of /t/, /d/, /ɪd/ after different sounds.'
+    }
+    return englishExcerpts[topicId] || 'English pronunciation exercises with examples.'
 }

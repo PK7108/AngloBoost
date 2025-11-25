@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1531,9 +1533,22 @@ function Quiz({ topicId }) {
 export default function ReportedSpeechExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'present'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/mowa-zależna/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1573,4 +1588,128 @@ export default function ReportedSpeechExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            present: 'Ćwiczenia: Mowa zależna w czasie teraźniejszym',
+            past: 'Ćwiczenia: Mowa zależna w czasie przeszłym',
+            'pytania-rozkazy': 'Ćwiczenia: Pytania i rozkazy w mowie zależnej',
+            'czasowniki-modalne': 'Ćwiczenia: Czasowniki modalne w mowie zależnej',
+            'wyjatki-specjalne': 'Ćwiczenia: Wyjątki w mowie zależnej'
+        },
+        en: {
+            present: 'Exercises: Reported Speech in Present Tense',
+            past: 'Exercises: Reported Speech in Past Tense',
+            'pytania-rozkazy': 'Exercises: Questions and Commands in Reported Speech',
+            'czasowniki-modalne': 'Exercises: Modal Verbs in Reported Speech',
+            'wyjatki-specjalne': 'Exercises: Exceptions in Reported Speech'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            present: 'Interaktywne ćwiczenia z mowy zależnej w czasie teraźniejszym. Testy i quizy bez backshiftu.',
+            past: 'Ćwiczenia z mowy zależnej w czasie przeszłym. Testy online z backshifting i wyjątkami.',
+            'pytania-rozkazy': 'Interaktywne ćwiczenia z pytań i rozkazów w mowie zależnej. Zmiana szyku zdania.',
+            'czasowniki-modalne': 'Ćwiczenia z czasowników modalnych w mowie zależnej. Testy online z can, will, may, must.',
+            'wyjatki-specjalne': 'Interaktywne ćwiczenia z wyjątków w mowie zależnej. Fakty nauczne, sytuacje aktualne.'
+        },
+        en: {
+            present: 'Interactive reported speech exercises in present tense. Tests and quizzes without backshift.',
+            past: 'Reported speech exercises in past tense. Online tests with backshifting and exceptions.',
+            'pytania-rozkazy': 'Interactive exercises with questions and commands in reported speech. Word order changes.',
+            'czasowniki-modalne': 'Modal verbs exercises in reported speech. Online tests with can, will, may, must.',
+            'wyjatki-specjalne': 'Interactive exercises with exceptions in reported speech. Scientific facts, current situations.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/mowa-zależna/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/reported-speech/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'reported-present': 'Reported Speech - Present Tense - Exercises',
+        'reported-present-practice-15': 'Present Reported Speech - Practice - Exercises',
+        'reported-present-advanced-12': 'Present Reported Speech - Advanced - Exercises',
+        'reported-past-backshift': 'Backshifting - Exercises',
+        'past-perfect-exceptions': 'Past Perfect Exceptions - Exercises',
+        'reported-past-practice-15': 'Past Reported Speech - Practice - Exercises',
+        'reported-past-advanced-12': 'Past Reported Speech - Advanced - Exercises',
+        'reported-questions': 'Reported Questions - Exercises',
+        'reported-questions-practice-15': 'Reported Questions - Practice - Exercises',
+        'reported-commands-practice-15': 'Reported Commands - Practice - Exercises',
+        'reported-questions-advanced-12': 'Reported Questions - Advanced - Exercises',
+        'reported-modals': 'Reported Modal Verbs - Exercises',
+        'reported-modals-practice-15': 'Reported Modals - Practice - Exercises',
+        'reported-modals-advanced-12': 'Reported Modals - Advanced - Exercises',
+        'reported-exceptions': 'Reported Speech Exceptions - Exercises',
+        'reported-exceptions-practice-15': 'Reported Exceptions - Practice - Exercises',
+        'reported-exceptions-advanced-12': 'Reported Exceptions - Advanced - Exercises'
+    }
+    return englishTitles[topicId] || 'Reported Speech Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'reported-present': 'Basic exercises without backshift in reported speech.',
+        'reported-present-practice-15': '15 practice questions with different verbs in present reported speech.',
+        'reported-present-advanced-12': '12 more difficult questions with complex sentences in present reported speech.',
+        'reported-past-backshift': 'Basic exercises with backshifting in reported speech.',
+        'past-perfect-exceptions': 'Exercises with exceptions to backshift rules.',
+        'reported-past-practice-15': '15 practice questions with different tenses in past reported speech.',
+        'reported-past-advanced-12': '12 more difficult questions with complex constructions in past reported speech.',
+        'reported-questions': 'Basic exercises with questions in reported speech.',
+        'reported-questions-practice-15': '15 practice questions with different question types in reported speech.',
+        'reported-commands-practice-15': '15 questions with commands and requests in reported speech.',
+        'reported-questions-advanced-12': '12 more difficult questions with formal expressions in reported questions.',
+        'reported-modals': 'Basic exercises with modal verbs in reported speech.',
+        'reported-modals-practice-15': '15 practice questions with different modal verbs in reported speech.',
+        'reported-modals-advanced-12': '12 more difficult questions with perfect modals in reported speech.',
+        'reported-exceptions': 'Basic exercises with exceptions in reported speech.',
+        'reported-exceptions-practice-15': '15 practice questions with different exceptions in reported speech.',
+        'reported-exceptions-advanced-12': '12 more difficult questions in scientific contexts with reported speech exceptions.'
+    }
+    return englishExcerpts[topicId] || 'Reported speech exercises with examples and explanations.'
 }

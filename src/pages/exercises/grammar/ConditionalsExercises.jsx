@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -1373,9 +1375,22 @@ function Quiz({ topicId }) {
 export default function ConditionalsExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'zero'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/gramatyka/okresy-warunkowe/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1556,4 +1571,124 @@ export default function ConditionalsExercises() {
       `}</style>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            zero: 'Ćwiczenia: Zerowy okres warunkowy',
+            first: 'Ćwiczenia: Pierwszy okres warunkowy',
+            second: 'Ćwiczenia: Drugi okres warunkowy',
+            third: 'Ćwiczenia: Trzeci okres warunkowy',
+            mixed: 'Ćwiczenia: Mieszane okresy warunkowe'
+        },
+        en: {
+            zero: 'Exercises: Zero Conditional',
+            first: 'Exercises: First Conditional',
+            second: 'Exercises: Second Conditional',
+            third: 'Exercises: Third Conditional',
+            mixed: 'Exercises: Mixed Conditionals'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            zero: 'Interaktywne ćwiczenia z zerowego okresu warunkowego. If + Present, Present - fakty naukowe i ogólne prawdy.',
+            first: 'Ćwiczenia z pierwszego okresu warunkowego. If + Present, will - rzeczy możliwe w przyszłości.',
+            second: 'Interaktywne ćwiczenia z drugiego okresu warunkowego. If + Past, would - hipotetyczne sytuacje.',
+            third: 'Ćwiczenia z trzeciego okresu warunkowego. If + Past Perfect, would have - żal i hipotetyczna przeszłość.',
+            mixed: 'Interaktywne ćwiczenia z mieszanych okresów warunkowych. Połączenie różnych czasów w okresach warunkowych.'
+        },
+        en: {
+            zero: 'Interactive zero conditional exercises. If + Present, Present - scientific facts and general truths.',
+            first: 'First conditional exercises. If + Present, will - possible future events.',
+            second: 'Interactive second conditional exercises. If + Past, would - hypothetical situations.',
+            third: 'Third conditional exercises. If + Past Perfect, would have - regret and hypothetical past.',
+            mixed: 'Interactive mixed conditionals exercises. Combination of different tenses in conditional sentences.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/gramatyka/okresy-warunkowe/${activeSection}`
+        : `https://angloboost.pl/en/exercises/grammar/conditionals/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'zero-form': 'Zero Conditional - Basics - Exercises',
+        'zero-practice-15': 'Zero Conditional - Practice - Exercises',
+        'zero-advanced-12': 'Zero Conditional - Advanced - Exercises',
+        'first-form': 'First Conditional - Basics - Exercises',
+        'first-practice-15': 'First Conditional - Practice - Exercises',
+        'first-advanced-12': 'First Conditional - Advanced - Exercises',
+        'second-form': 'Second Conditional - Basics - Exercises',
+        'second-practice-15': 'Second Conditional - Practice - Exercises',
+        'second-advanced-12': 'Second Conditional - Advanced - Exercises',
+        'third-form': 'Third Conditional - Basics - Exercises',
+        'third-practice-15': 'Third Conditional - Practice - Exercises',
+        'third-advanced-12': 'Third Conditional - Advanced - Exercises',
+        'mixed-form': 'Mixed Conditionals - Basics - Exercises',
+        'mixed-practice-15': 'Mixed Conditionals - Practice - Exercises',
+        'mixed-advanced-12': 'Mixed Conditionals - Advanced - Exercises'
+    }
+    return englishTitles[topicId] || 'Conditionals Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'zero-form': 'If + Present, Present - scientific facts and general truths in conditional sentences.',
+        'zero-practice-15': '15 practice questions with zero conditional - general truths and scientific facts.',
+        'zero-advanced-12': '12 more difficult questions with modals and variations in zero conditional.',
+        'first-form': 'If + Present, will - possible and likely future events in conditional sentences.',
+        'first-practice-15': '15 practice questions with first conditional - possible future situations.',
+        'first-advanced-12': '12 more difficult questions with alternative forms in first conditional.',
+        'second-form': 'If + Past, would - hypothetical and unreal situations in conditional sentences.',
+        'second-practice-15': '15 practice questions with second conditional - hypothetical situations.',
+        'second-advanced-12': '12 more difficult questions with "were" and modals in second conditional.',
+        'third-form': 'If + Past Perfect, would have - regret and hypothetical past situations.',
+        'third-practice-15': '15 practice questions with third conditional - past hypothetical situations.',
+        'third-advanced-12': '12 more difficult questions with could/might/should have in third conditional.',
+        'mixed-form': 'Combination of different tenses in conditional sentences - mixed time references.',
+        'mixed-practice-15': '15 practice questions with mixed conditionals - different time combinations.',
+        'mixed-advanced-12': '12 more difficult questions with rare combinations in mixed conditionals.'
+    }
+    return englishExcerpts[topicId] || 'Conditionals exercises with examples and explanations.'
 }
