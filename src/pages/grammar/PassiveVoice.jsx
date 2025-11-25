@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
+import {useLanguage} from "../../context/LanguageContext.jsx";
 
 const sections = [
     { id: 'simple', label: 'Czasy Simple' },
@@ -2826,11 +2828,24 @@ function TopicDetail({ topic, onBack }) {
 export default function PassiveVoice() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'simple'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/gramatyka/strona-bierna/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -2865,4 +2880,92 @@ export default function PassiveVoice() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            'simple': 'Strona bierna w czasach Simple - formy i użycie',
+            'continuous': 'Strona bierna w czasach Continuous - formy i użycie',
+            'perfect': 'Strona bierna w czasach Perfect - formy i użycie',
+            'modals': 'Strona bierna z czasownikami modalnymi',
+            'uzycie-wyjatki': 'Strona bierna - użycie i wyjątki'
+        },
+        en: {
+            'simple': 'Passive Voice in Simple Tenses - Forms and Usage',
+            'continuous': 'Passive Voice in Continuous Tenses - Forms and Usage',
+            'perfect': 'Passive Voice in Perfect Tenses - Forms and Usage',
+            'modals': 'Passive Voice with Modal Verbs',
+            'uzycie-wyjatki': 'Passive Voice - Usage and Exceptions'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            'simple': 'Strona bierna w czasach Simple: Present, Past, Future Simple Passive. Zasady budowy, przykłady, ćwiczenia. Kompletny przewodnik.',
+            'continuous': 'Strona bierna w czasach Continuous: Present i Past Continuous Passive. Czynności w trakcie, wyjątki, praktyczne zastosowania.',
+            'perfect': 'Strona bierna w czasach Perfect: Present, Past, Future Perfect Passive. Rezultaty czynności, związki czasowe, zaawansowane użycie.',
+            'modals': 'Strona bierna z czasownikami modalnymi: must be done, can be seen, should be considered. Zasady budowy i przykłady.',
+            'uzycie-wyjatki': 'Strona bierna - użycie i wyjątki: kiedy używać, czasowniki bez form biernych, typowe błędy, praktyczne wskazówki.'
+        },
+        en: {
+            'simple': 'Passive voice in Simple tenses: Present, Past, Future Simple Passive. Construction rules, examples, exercises. Complete guide.',
+            'continuous': 'Passive voice in Continuous tenses: Present and Past Continuous Passive. Ongoing actions, exceptions, practical applications.',
+            'perfect': 'Passive voice in Perfect tenses: Present, Past, Future Perfect Passive. Action results, time relationships, advanced usage.',
+            'modals': 'Passive voice with modal verbs: must be done, can be seen, should be considered. Construction rules and examples.',
+            'uzycie-wyjatki': 'Passive voice - usage and exceptions: when to use, verbs without passive forms, common mistakes, practical tips.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/strona-bierna/${activeSection}`
+        : `https://angloboost.pl/en/grammar/passive-voice/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'passive-simple-forms-comprehensive': 'Forms in Simple Tenses 🎯',
+        'passive-cont-forms-comprehensive': 'Forms in Continuous Tenses 🔄',
+        'passive-perfect-forms-comprehensive': 'Forms in Perfect Tenses ✅',
+        'passive-usage-exceptions-comprehensive': 'Usage and Exceptions ⚠️'
+    }
+    return englishTitles[topicId] || 'Passive Voice'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'passive-simple-forms-comprehensive': 'Complete guide: be + past participle - rules, usage, exceptions and practical examples.',
+        'passive-cont-forms-comprehensive': 'Complete guide: be being + V3 - ongoing actions, processes, exceptions and practical applications.',
+        'passive-perfect-forms-comprehensive': 'Complete guide: have been + V3 - action results, time relationships, advanced usage.',
+        'passive-usage-exceptions-comprehensive': 'Complete guide: when to use passive voice, verbs without passive forms, common mistakes and practical tips.'
+    }
+    return englishExcerpts[topicId] || 'Passive voice guide with examples.'
 }

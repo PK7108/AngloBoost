@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 
 const sections = [
@@ -4646,11 +4648,24 @@ function TopicDetail({ topic, onBack }) {
 export default function Conditionals() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'zero'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/gramatyka/okresy-warunkowe/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -4685,4 +4700,102 @@ export default function Conditionals() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            zero: 'Zero Conditional - okres warunkowy zerowy',
+            first: 'First Conditional - okres warunkowy pierwszy',
+            second: 'Second Conditional - okres warunkowy drugi',
+            third: 'Third Conditional - okres warunkowy trzeci',
+            mixed: 'Mixed Conditionals - mieszane okresy warunkowe'
+        },
+        en: {
+            zero: 'Zero Conditional - Complete Guide',
+            first: 'First Conditional - Complete Guide',
+            second: 'Second Conditional - Complete Guide',
+            third: 'Third Conditional - Complete Guide',
+            mixed: 'Mixed Conditionals - Complete Guide'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            zero: 'Zero Conditional: If + Present, Present - fakty naukowe, ogólne prawdy, nawyki. Kompletny przewodnik z przykładami.',
+            first: 'First Conditional: If + Present, will + base - rzeczy możliwe w przyszłości, obietnice, ostrzeżenia. Przykłady i wyjaśnienia.',
+            second: 'Second Conditional: If + Past, would + base - sytuacje hipotetyczne, nierealne marzenia, rady. Szczegółowy przewodnik.',
+            third: 'Third Conditional: If + Past Perfect, would have + V3 - żal, hipotetyczna przeszłość, krytyka. Praktyczne zastosowania.',
+            mixed: 'Mixed Conditionals: połączenia różnych czasów w okresach warunkowych. Zaawansowane konstrukcje i przykłady.'
+        },
+        en: {
+            zero: 'Zero Conditional: If + Present, Present - scientific facts, general truths, habits. Complete guide with examples.',
+            first: 'First Conditional: If + Present, will + base - possible future situations, promises, warnings. Examples and explanations.',
+            second: 'Second Conditional: If + Past, would + base - hypothetical situations, unreal dreams, advice. Detailed guide.',
+            third: 'Third Conditional: If + Past Perfect, would have + V3 - regret, hypothetical past, criticism. Practical applications.',
+            mixed: 'Mixed Conditionals: combining different tenses in conditionals. Advanced structures and examples.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady z ćwiczeniami.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples with exercises.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/okresy-warunkowe/${activeSection}`
+        : `https://angloboost.pl/en/grammar/conditionals/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'zero-form-comprehensive': 'Zero Conditional - Complete Guide',
+        'zero-variations-comprehensive': 'Zero Conditional Variations',
+        'first-form-comprehensive': 'First Conditional - Complete Guide',
+        'first-alternatives-comprehensive': 'First Conditional Alternatives',
+        'second-form-comprehensive': 'Second Conditional - Complete Guide',
+        'second-practice-comprehensive': 'Second Conditional Practice',
+        'third-form-comprehensive': 'Third Conditional - Complete Guide',
+        'mixed-form-comprehensive': 'Mixed Conditionals - Complete Guide',
+        'mixed-combinations-comprehensive': 'Advanced Mixed Conditionals'
+    }
+    return englishTitles[topicId] || 'English Conditionals'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'zero-form-comprehensive': 'Complete guide: If + Present, Present - scientific facts, general truths, habits and practical applications.',
+        'zero-variations-comprehensive': 'Complete guide: modal verbs, alternative constructions, word order changes and special usage cases.',
+        'first-form-comprehensive': 'Complete guide: If + Present, will + base - possible future situations, promises, warnings and practical applications.',
+        'first-alternatives-comprehensive': 'Complete guide: going to, modal verbs, imperative mood and other First Conditional variants.',
+        'second-form-comprehensive': 'Complete guide: If + Past, would + base - hypothetical situations, unreal dreams, advice and practical applications.',
+        'second-practice-comprehensive': 'Complete guide: Past Continuous, comparisons with First Conditional, special cases and advanced applications.',
+        'third-form-comprehensive': 'Complete guide: If + Past Perfect, would have + V3 - regret, hypothetical past, criticism and speculation.',
+        'mixed-form-comprehensive': 'Combining different tenses in conditionals - past decisions affecting present and present traits affecting past.',
+        'mixed-combinations-comprehensive': 'Rarer forms, special cases and advanced applications of mixed conditionals.'
+    }
+    return englishExcerpts[topicId] || 'English conditionals guide with examples.'
 }

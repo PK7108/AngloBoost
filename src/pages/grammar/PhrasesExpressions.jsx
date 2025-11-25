@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/exercises.css'
 import { initializeGrammarExercises } from '../exercise-interactions.js';
@@ -3436,6 +3438,7 @@ function TopicDetail({ topic, onBack }) {
 export default function PhrasesExpressions() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'had-sth-done'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
@@ -3446,6 +3449,18 @@ export default function PhrasesExpressions() {
         // Zainicjalizuj logikę ćwiczeń po zamontowaniu i przy zmianie sekcji/tematu
         initializeGrammarExercises();
     }, [active, topicId]);
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -3484,4 +3499,108 @@ export default function PhrasesExpressions() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            'had-sth-done': 'Had sth done - konstrukcja kazać coś zrobić',
+            'indirect-questions': 'Pytania pośrednie - Indirect Questions',
+            'unreal-past': 'Unreal Past - wyrażanie życzeń i żalów',
+            'cleft-sentences': 'Cleft Sentences - podkreślanie elementów zdania',
+            'participle-clauses': 'Zdania imiesłowowe - Participle Clauses',
+            'inversion': 'Inwersja szyku zdania - Inversion',
+            'inne-wyrażenia': 'Inne przydatne wyrażenia i konstrukcje'
+        },
+        en: {
+            'had-sth-done': 'Had something done - causative construction',
+            'indirect-questions': 'Indirect Questions - polite questioning',
+            'unreal-past': 'Unreal Past - expressing wishes and regrets',
+            'cleft-sentences': 'Cleft Sentences - emphasizing sentence elements',
+            'participle-clauses': 'Participle Clauses - reduced clauses',
+            'inversion': 'Inversion - changing word order for emphasis',
+            'inne-wyrażenia': 'Other useful expressions and constructions'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            'had-sth-done': 'Konstrukcja have/get something done - kiedy ktoś robi coś dla nas. Zasady użycia, przykłady, ćwiczenia.',
+            'indirect-questions': 'Pytania pośrednie - grzeczniejsza forma zadawania pytań. Budowa, zasady, przykłady z życia.',
+            'unreal-past': 'Unreal Past - wyrażanie nierealnych życzeń i żalów. Konstrukcje I wish, If only, would rather.',
+            'cleft-sentences': 'Cleft sentences - specjalne konstrukcje do podkreślania elementów zdania. It-cleft, what-cleft, all-cleft.',
+            'participle-clauses': 'Zdania imiesłowowe - skrócona forma zdań podrzędnych. Present participle, past participle, perfect participle.',
+            'inversion': 'Inwersja szyku zdania - zmiana szyku dla podkreślenia. Inwersja po wyrażeniach negatywnych i warunkowa.',
+            'inne-wyrażenia': 'Inne przydatne wyrażenia: so/such, be supposed to, would rather, used to. Praktyczne zwroty angielskie.'
+        },
+        en: {
+            'had-sth-done': 'Have/get something done construction - when someone does something for us. Usage rules, examples, exercises.',
+            'indirect-questions': 'Indirect questions - more polite way of asking questions. Structure, rules, real-life examples.',
+            'unreal-past': 'Unreal Past - expressing unreal wishes and regrets. I wish, If only, would rather constructions.',
+            'cleft-sentences': 'Cleft sentences - special constructions for emphasizing sentence elements. It-cleft, what-cleft, all-cleft.',
+            'participle-clauses': 'Participle clauses - reduced subordinate clauses. Present participle, past participle, perfect participle.',
+            'inversion': 'Inversion - changing word order for emphasis. Inversion after negative expressions and conditional inversion.',
+            'inne-wyrażenia': 'Other useful expressions: so/such, be supposed to, would rather, used to. Practical English phrases.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/wyrażenia-i-zwroty/${activeSection}`
+        : `https://angloboost.pl/en/grammar/phrases-expressions/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'had-sth-done-basics': 'Construction and Usage 🛠️',
+        'had-sth-done-advanced': 'Advanced Usage 🎓',
+        'indirect-questions-form': 'Form and Word Order 🗣️',
+        'unreal-past-wishes': 'Wishes and If only 🙏',
+        'cleft-it-what': 'It-/What-cleft 🎯',
+        'participle-reduction': 'Participle Clauses 📝',
+        'inversion-negative': 'Word Order Inversion 🔄',
+        'misc-expressions': 'Other Useful Constructions 🎯'
+    }
+    return englishTitles[topicId] || 'English Expressions'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'had-sth-done-basics': 'Have/get + object + past participle - when someone does something for us.',
+        'had-sth-done-advanced': 'Meaning nuances, phrasal verbs and special situations.',
+        'indirect-questions-form': 'Could you tell me where the station is? - more polite questions.',
+        'unreal-past-wishes': 'I wish I knew. If only I had studied. - expressing wishes and regrets.',
+        'cleft-it-what': 'It was John who called. What I need is a break. - emphasizing sentence elements.',
+        'participle-reduction': 'Feeling tired, she went to bed. - reduced form of subordinate clauses.',
+        'inversion-negative': 'Never have I seen such a view. - changing word order for emphasis.',
+        'misc-expressions': 'so/such, be supposed to, would rather, used to - practical phrases.'
+    }
+    return englishExcerpts[topicId] || 'English expressions and constructions guide.'
 }

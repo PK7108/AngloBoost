@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 
 const sections = [
@@ -2097,11 +2099,24 @@ function TopicDetail({ topic, onBack }) {
 export default function ReportedSpeech() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'present'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/gramatyka/mowa-zależna/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, selected),
+        description: getMetaDescription(lang, active, selected),
+        canonical: getCanonicalUrl(lang, active, selected),
+        og: {
+            title: getMetaTitle(lang, active, selected),
+            description: getMetaDescription(lang, active, selected),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -2140,4 +2155,96 @@ export default function ReportedSpeech() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, selectedTopic) {
+    const sectionTitles = {
+        pl: {
+            'present': 'Mowa zależna w czasie teraźniejszym - brak backshiftu',
+            'past': 'Mowa zależna w czasie przeszłym - backshifting czasów',
+            'pytania-rozkazy': 'Pytania i rozkazy w mowie zależnej',
+            'czasowniki-modalne': 'Czasowniki modalne w mowie zależnej',
+            'wyjatki-specjalne': 'Wyjątki i przypadki specjalne w mowie zależnej'
+        },
+        en: {
+            'present': 'Reported Speech in Present Tense - No Backshift',
+            'past': 'Reported Speech in Past Tense - Backshifting',
+            'pytania-rozkazy': 'Questions and Commands in Reported Speech',
+            'czasowniki-modalne': 'Modal Verbs in Reported Speech',
+            'wyjatki-specjalne': 'Exceptions and Special Cases in Reported Speech'
+        }
+    }
+
+    if (selectedTopic) {
+        const topicTitle = lang === 'pl' ? selectedTopic.title : getEnglishTopicTitle(selectedTopic.id)
+        return `${topicTitle} — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, selectedTopic) {
+    const sectionDescriptions = {
+        pl: {
+            'present': 'Mowa zależna w czasie teraźniejszym: brak backshiftu, zmiany zaimków, określeń czasu i miejsca. Kompletny przewodnik z przykładami.',
+            'past': 'Mowa zależna w czasie przeszłym: backshifting czasów, zmiany czasowników modalnych. Zasady przekształcania z przykładami.',
+            'pytania-rozkazy': 'Pytania i rozkazy w mowie zależnej: zmiana szyku, użycie if/whether, tell/ask + bezokolicznik. Praktyczne przykłady.',
+            'czasowniki-modalne': 'Czasowniki modalne w mowie zależnej: will→would, can→could, may→might, must→had to. Szczegółowe zasady zmian.',
+            'wyjatki-specjalne': 'Wyjątki w mowie zależnej: fakty uniwersalne, sytuacje aktualne, zdania warunkowe. Kiedy nie stosować backshiftu.'
+        },
+        en: {
+            'present': 'Reported speech in present tense: no backshift, pronoun changes, time and place expressions. Complete guide with examples.',
+            'past': 'Reported speech in past tense: backshifting tenses, modal verb changes. Transformation rules with examples.',
+            'pytania-rozkazy': 'Questions and commands in reported speech: word order changes, if/whether usage, tell/ask + infinitive. Practical examples.',
+            'czasowniki-modalne': 'Modal verbs in reported speech: will→would, can→could, may→might, must→had to. Detailed change rules.',
+            'wyjatki-specjalne': 'Exceptions in reported speech: universal facts, current situations, conditional sentences. When not to use backshift.'
+        }
+    }
+
+    if (selectedTopic) {
+        return lang === 'pl'
+            ? `${selectedTopic.excerpt} Szczegółowe wyjaśnienia i przykłady.`
+            : `${getEnglishTopicExcerpt(selectedTopic.id)} Detailed explanations and examples.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/gramatyka/mowa-zależna/${activeSection}`
+        : `https://angloboost.pl/en/grammar/reported-speech/${activeSection}`
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic.id}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'reported-present-comprehensive': 'Reported Speech - Present Tense 🕒',
+        'reported-past-backshift': 'Backshifting - Tense Changes ⏪',
+        'past-perfect-exceptions': 'Past Perfect - Special Cases 🔄',
+        'reported-questions': 'Questions in Reported Speech ❓',
+        'reported-modals': 'Modal Verbs in Reported Speech 🔧',
+        'reported-exceptions': 'Exceptions and Special Cases ⚠️'
+    }
+    return englishTitles[topicId] || 'Reported Speech'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'reported-present-comprehensive': 'Complete guide: no backshift, introductory verbs, pronoun changes, time and place expressions.',
+        'reported-past-backshift': 'Say/tell in Past requires tense backshift - complete guide to backshifting.',
+        'past-perfect-exceptions': 'When Past Simple does not change to Past Perfect - exceptions to backshift rule.',
+        'reported-questions': 'How to transform questions - word order changes, no operators, if/whether usage.',
+        'reported-modals': 'Will→would, can→could, may→might, must→had to - modal verb changes.',
+        'reported-exceptions': 'General facts, universal truths, still relevant situations - when not to use backshift.'
+    }
+    return englishExcerpts[topicId] || 'Reported speech guide with examples.'
 }
