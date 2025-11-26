@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -371,11 +373,24 @@ function TopicDetail({ topic, onBack }) {
 export default function Slang() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'podstawowe-slowa'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/slownictwo/slang/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -421,4 +436,128 @@ export default function Slang() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            'podstawowe-slowa': 'Podstawowe słowa slangowe po angielsku',
+            'skroty': 'Skróty internetowe i slangowe po angielsku',
+            'zwroty-i-wyrazenia': 'Zwroty i wyrażenia slangowe',
+            'młodzieżowy': 'Slang młodzieżowy po angielsku',
+            'brytyjski': 'Slang brytyjski - charakterystyczne wyrażenia',
+            'amerykanski': 'Slang amerykański - popularne wyrażenia'
+        },
+        en: {
+            'podstawowe-slowa': 'Basic English Slang Words',
+            'skroty': 'Internet Abbreviations and English Slang',
+            'zwroty-i-wyrazenia': 'Slang Phrases and Expressions',
+            'młodzieżowy': 'Youth Slang in English',
+            'brytyjski': 'British Slang - Characteristic Expressions',
+            'amerykanski': 'American Slang - Popular Expressions'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.title} | AngloBoost`
+            : `${getEnglishTopicTitle(topicId)} | AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} - Kompletny przewodnik | AngloBoost`
+        : `${baseTitle} - Complete Guide | AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            'podstawowe-slowa': 'Podstawowe słowa slangowe po angielsku z przykładami użycia. Naucz się 150+ popularnych wyrażeń slangowych.',
+            'skroty': 'Skróty internetowe i slangowe po angielsku z tłumaczeniami. Kompletny przewodnik po skrótach używanych online.',
+            'zwroty-i-wyrazenia': 'Zwroty i wyrażenia slangowe z przykładami zdań. Poznaj naturalną codzienną angielszczyznę.',
+            'młodzieżowy': 'Slang młodzieżowy po angielsku - najnowsze trendy i wyrażenia. Bądź na bieżąco z językiem młodych.',
+            'brytyjski': 'Slang brytyjski - charakterystyczne wyrażenia z Wysp Brytyjskich. Poznaj kulturę przez język.',
+            'amerykanski': 'Slang amerykański - popularne wyrażenia z USA. Naucz się mówić jak native speaker.'
+        },
+        en: {
+            'podstawowe-slowa': 'Basic English slang words with usage examples. Learn 150+ popular slang expressions.',
+            'skroty': 'Internet abbreviations and English slang with translations. Complete guide to online abbreviations.',
+            'zwroty-i-wyrazenia': 'Slang phrases and expressions with sentence examples. Learn natural everyday English.',
+            'młodzieżowy': 'Youth slang in English - latest trends and expressions. Stay updated with young people\'s language.',
+            'brytyjski': 'British slang - characteristic expressions from the British Isles. Learn about culture through language.',
+            'amerykanski': 'American slang - popular expressions from the USA. Learn to speak like a native speaker.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Kompletny zestaw z przykładami użycia w zdaniach.`
+            : `${getEnglishTopicExcerpt(topicId)} Complete set with usage examples in sentences.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrls = {
+        pl: `https://angloboost.pl/pl/slownictwo/slang/${activeSection}`,
+        en: `https://angloboost.pl/en/vocabulary/slang/${activeSection}`
+    }
+
+    if (topicId) {
+        return `${baseUrls[lang] || baseUrls.pl}?topic=${topicId}`
+    }
+
+    return baseUrls[lang] || baseUrls.pl
+}
+
+function getSectionLabel(label, lang) {
+    const sectionLabels = {
+        pl: {
+            'Podstawowe słowa': 'Podstawowe słowa',
+            'Skróty internetowe': 'Skróty internetowe',
+            'Zwroty i wyrażenia': 'Zwroty i wyrażenia',
+            'Slang młodzieżowy': 'Slang młodzieżowy',
+            'Slang brytyjski': 'Slang brytyjski',
+            'Slang amerykański': 'Slang amerykański'
+        },
+        en: {
+            'Podstawowe słowa': 'Basic Words',
+            'Skróty internetowe': 'Internet Abbreviations',
+            'Zwroty i wyrażenia': 'Phrases & Expressions',
+            'Slang młodzieżowy': 'Youth Slang',
+            'Slang brytyjski': 'British Slang',
+            'Slang amerykański': 'American Slang'
+        }
+    }
+    return sectionLabels[lang]?.[label] || sectionLabels.pl[label] || label
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'podstawowe-slowa-list': 'Basic Slang Words',
+        'skroty-list': 'Internet Abbreviations',
+        'zwroty-i-wyrazenia-list': 'Slang Phrases and Expressions',
+        'młodzieżowy-list': 'Youth Slang',
+        'brytyjski-list': 'British Slang',
+        'amerykanski-list': 'American Slang'
+    }
+    return englishTitles[topicId] || 'English Slang'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const sectionId = topicId.replace('-list', '')
+    const count = SLANG[sectionId]?.length || 0
+    return `Set of ${count} popular slang words and expressions with usage examples.`
 }

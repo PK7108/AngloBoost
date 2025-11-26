@@ -1,4 +1,6 @@
 import React from 'react'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -57,6 +59,20 @@ const VERBS = [
 ]
 
 export default function IrregularVerbs() {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
   return (
     <main className="topic-layout">
       <div className="container">
@@ -92,4 +108,28 @@ export default function IrregularVerbs() {
       </div>
     </main>
   )
+}
+
+function getMetaTitle(lang) {
+    const titles = {
+        pl: 'Czasowniki nieregularne - kompletna lista z formami II i III | AngloBoost',
+        en: 'Irregular Verbs - complete list with 2nd and 3rd forms | AngloBoost'
+    }
+    return titles[lang] || titles.pl
+}
+
+function getMetaDescription(lang) {
+    const descriptions = {
+        pl: 'Kompletna lista 50 najważniejszych czasowników nieregularnych w języku angielskim. Formy II i III z tłumaczeniem na polski. Nauka przez praktyczne zestawienie.',
+        en: 'Complete list of 50 most important irregular verbs in English. 2nd and 3rd forms with Polish translation. Learn through practical comparison.'
+    }
+    return descriptions[lang] || descriptions.pl
+}
+
+function getCanonicalUrl(lang) {
+    const baseUrls = {
+        pl: 'https://angloboost.pl/pl/gramatyka/czasowniki-nieregularne',
+        en: 'https://angloboost.pl/en/grammar/irregular-verbs'
+    }
+    return baseUrls[lang] || baseUrls.pl
 }

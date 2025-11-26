@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -284,14 +286,144 @@ function TopicDetail({ topic, onBack }) {
     )
 }
 
+function getMetaTitle(lang, activeSection, topicId) {
+    if (!activeSection) {
+        return lang === 'pl'
+            ? 'Przysłowia angielskie - kompletny przewodnik | AngloBoost'
+            : 'English Proverbs - complete guide | AngloBoost'
+    }
+
+    const sectionTitles = {
+        pl: {
+            'najpopularniejsze': 'Najpopularniejsze przysłowia angielskie',
+            'zyciowe-madrosci': 'Życiowe mądrości - przysłowia angielskie',
+            'praca-biznes': 'Przysłowia o pracy i biznesie po angielsku',
+            'przyjazn-milosc': 'Przysłowia o przyjaźni i miłości',
+            'angielskie-brytyjskie': 'Angielskie i brytyjskie przysłowia',
+            'amerykanskie': 'Amerykańskie przysłowia i powiedzenia'
+        },
+        en: {
+            'najpopularniejsze': 'Most Popular English Proverbs',
+            'zyciowe-madrosci': 'Life Wisdom - English Proverbs',
+            'praca-biznes': 'Work and Business Proverbs in English',
+            'przyjazn-milosc': 'Friendship and Love Proverbs',
+            'angielskie-brytyjskie': 'English and British Proverbs',
+            'amerykanskie': 'American Proverbs and Sayings'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.title} | AngloBoost`
+            : `${getEnglishTopicTitle(topicId)} | AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} - Kompletny przewodnik | AngloBoost`
+        : `${baseTitle} - Complete Guide | AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    if (!activeSection) {
+        return lang === 'pl'
+            ? 'Ponad 80 popularnych przysłów angielskich z tłumaczeniami i wyjaśnieniami. Naucz się przysłów z przykładami użycia.'
+            : 'Over 80 popular English proverbs with translations and explanations. Learn proverbs with usage examples.'
+    }
+
+    const sectionDescriptions = {
+        pl: {
+            'najpopularniejsze': 'Najpopularniejsze przysłowia angielskie z tłumaczeniami i wyjaśnieniami. Naucz się 80+ przysłów z przykładami użycia.',
+            'zyciowe-madrosci': 'Życiowe mądrości w angielskich przysłowiach. Poznaj głębokie znaczenie popularnych powiedzeń z wyjaśnieniami.',
+            'praca-biznes': 'Przysłowia o pracy, biznesie i karierze po angielsku. Praktyczne porady w formie tradycyjnych powiedzeń.',
+            'przyjazn-milosc': 'Przysłowia o przyjaźni, miłości i relacjach. Angielskie mądrości na temat uczuć i związków.',
+            'angielskie-brytyjskie': 'Typowo angielskie i brytyjskie przysłowia. Poznaj kulturę Wielkiej Brytanii przez tradycyjne powiedzenia.',
+            'amerykanskie': 'Amerykańskie przysłowia i powiedzenia. Charakterystyczne wyrażenia z USA z tłumaczeniami.'
+        },
+        en: {
+            'najpopularniejsze': 'Most popular English proverbs with translations and explanations. Learn 80+ proverbs with usage examples.',
+            'zyciowe-madrosci': 'Life wisdom in English proverbs. Discover the deep meaning of popular sayings with explanations.',
+            'praca-biznes': 'Proverbs about work, business and career in English. Practical advice in the form of traditional sayings.',
+            'przyjazn-milosc': 'Proverbs about friendship, love and relationships. English wisdom about feelings and connections.',
+            'angielskie-brytyjskie': 'Typically English and British proverbs. Learn about British culture through traditional sayings.',
+            'amerykanskie': 'American proverbs and sayings. Characteristic expressions from the USA with translations.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Kompletny zestaw z wyjaśnieniami znaczenia.`
+            : `${getEnglishTopicExcerpt(topicId)} Complete set with meaning explanations.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const defaultSection = 'najpopularniejsze'
+    const sectionToUse = activeSection || defaultSection
+
+    const baseUrls = {
+        pl: `https://angloboost.pl/pl/slownictwo/przyslowia/${sectionToUse}`,
+        en: `https://angloboost.pl/en/vocabulary/proverbs/${sectionToUse}`
+    }
+
+    if (topicId) {
+        return `${baseUrls[lang] || baseUrls.pl}?topic=${topicId}`
+    }
+
+    return baseUrls[lang] || baseUrls.pl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'najpopularniejsze-list': 'Most Popular Proverbs',
+        'zyciowe-madrosci-list': 'Life Wisdom Proverbs',
+        'praca-biznes-list': 'Work and Business Proverbs',
+        'przyjazn-milosc-list': 'Friendship and Love Proverbs',
+        'angielskie-brytyjskie-list': 'English and British Proverbs',
+        'amerykanskie-list': 'American Proverbs'
+    }
+    return englishTitles[topicId] || 'English Proverbs'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const sectionId = topicId.replace('-list', '')
+    const count = PROVERBS[sectionId]?.length || 0
+    return `Set of ${count} popular English proverbs with translations and explanations.`
+}
+
 export default function Proverbs() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'najpopularniejsze'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/slownictwo/przyslowia/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">

@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -339,11 +341,54 @@ function TopicDetail({ topic, onBack }) {
 export default function Idioms() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'pieniądze'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/slownictwo/idiomy/${active}`
+
+    const getMetaTitle = () => {
+        if (topicId) {
+            return lang === 'pl'
+                ? 'Popularne idiomy angielskie - szczegóły | AngloBoost'
+                : 'Popular English Idioms - details | AngloBoost'
+        }
+        return lang === 'pl'
+            ? 'Popularne idiomy angielskie | AngloBoost'
+            : 'Popular English Idioms | AngloBoost'
+    }
+
+    const getMetaDescription = () => {
+        if (topicId) {
+            return lang === 'pl'
+                ? 'Angielskie idiomy z tłumaczeniami i przykładami użycia'
+                : 'English idioms with translations and usage examples'
+        }
+        return lang === 'pl'
+            ? 'Ponad 100 najczęściej używanych idiomów angielskich z tłumaczeniami i przykładami'
+            : 'Over 100 most used English idioms with translations and examples'
+    }
+
+    const getCanonicalUrl = () => {
+        const base = lang === 'pl'
+            ? `https://angloboost.pl/pl/slownictwo/idiomy/${active}`
+            : `https://angloboost.pl/en/vocabulary/idioms/${active}`
+
+        return topicId ? `${base}?topic=${topicId}` : base
+    }
+
+    useDocumentMeta({
+        title: getMetaTitle(),
+        description: getMetaDescription(),
+        canonical: getCanonicalUrl(),
+        og: {
+            title: getMetaTitle(),
+            description: getMetaDescription(),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">

@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -1620,11 +1622,24 @@ function TopicDetail({ topic, onBack }) {
 export default function ThematicDictionary() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'podstawowe-zwroty'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/slownictwo/slownik-tematyczny/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -1669,4 +1684,404 @@ export default function ThematicDictionary() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            'podstawowe-zwroty': 'Słownik: Podstawowe zwroty angielskie',
+            'clothes': 'Słownik: Ubrania po angielsku',
+            'accessories': 'Słownik: Akcesoria i dodatki',
+            'patterns-materials': 'Słownik: Wzory i materiały',
+            'appearance': 'Słownik: Wygląd zewnętrzny',
+            'appearance adjectives': 'Słownik: Przymiotniki opisujące wygląd',
+            'emotions': 'Słownik: Emocje i uczucia',
+            'house': 'Słownik: Dom i mieszkanie',
+            'home-furnishings': 'Słownik: Wyposażenie domu',
+            'school': 'Słownik: Szkoła i edukacja',
+            'school-life': 'Słownik: Życie szkolne',
+            'professions': 'Słownik: Zawody i profesje',
+            'podstawowe-czasowniki': 'Słownik: Podstawowe czasowniki',
+            'phrasal-verbs': 'Słownik: Czasowniki złożone',
+            'podstawowe-przymiotniki': 'Słownik: Podstawowe przymiotniki',
+            'at-work': 'Słownik: W pracy',
+            'life-family': 'Słownik: Życie i rodzina',
+            'everyday-life': 'Słownik: Życie codzienne',
+            'podstawowe-przysłówki': 'Słownik: Podstawowe przysłówki',
+            'free-time': 'Słownik: Czas wolny',
+            'horticulture': 'Słownik: Ogrodnictwo',
+            'entertainment': 'Słownik: Rozrywka',
+            'nutrition': 'Słownik: Odżywianie',
+            'arond-food': 'Słownik: Jedzenie i posiłki',
+            'stores': 'Słownik: Sklepy i zakupy',
+            'shopping': 'Słownik: Zakupy',
+            'economics': 'Słownik: Ekonomia',
+            'transport': 'Słownik: Transport',
+            'at-the-airport': 'Słownik: Na lotnisku',
+            'at-the-train-station': 'Słownik: Na dworcu kolejowym',
+            'in-the-taxi': 'Słownik: W taksówce',
+            'asking-for-direction': 'Słownik: Pytanie o drogę',
+            'journey': 'Słownik: Podróże',
+            'motorization': 'Słownik: Motoryzacja',
+            'art': 'Słownik: Sztuka',
+            'public-media': 'Słownik: Media publiczne',
+            'sport': 'Słownik: Sport',
+            'around-sport': 'Słownik: Wokół sportu',
+            'disease': 'Słownik: Choroby i zdrowie',
+            'collocations': 'Słownik: Kolokacje',
+            'body-parts': 'Słownik: Części ciała',
+            'in-the-hospital': 'Słownik: W szpitalu',
+            'information-technologies': 'Słownik: Technologie informatyczne',
+            'natural-science': 'Słownik: Nauki przyrodnicze',
+            'mathematics': 'Słownik: Matematyka',
+            'chemistry': 'Słownik: Chemia',
+            'geography': 'Słownik: Geografia',
+            'weather': 'Słownik: Pogoda',
+            'plants': 'Słownik: Rośliny',
+            'animals': 'Słownik: Zwierzęta',
+            'mammals': 'Słownik: Ssaki',
+            'state-and-society': 'Słownik: Państwo i społeczeństwo',
+            'misfortunes': 'Słownik: Nieszczęścia',
+            'offenses': 'Słownik: Wykroczenia',
+            'problems-and-conflicts': 'Słownik: Problemy i konflikty'
+        },
+        en: {
+            'podstawowe-zwroty': 'Dictionary: Basic English Phrases',
+            'clothes': 'Dictionary: Clothes Vocabulary',
+            'accessories': 'Dictionary: Accessories',
+            'patterns-materials': 'Dictionary: Patterns and Materials',
+            'appearance': 'Dictionary: Appearance',
+            'appearance adjectives': 'Dictionary: Appearance Adjectives',
+            'emotions': 'Dictionary: Emotions and Feelings',
+            'house': 'Dictionary: House and Home',
+            'home-furnishings': 'Dictionary: Home Furnishings',
+            'school': 'Dictionary: School and Education',
+            'school-life': 'Dictionary: School Life',
+            'professions': 'Dictionary: Professions and Jobs',
+            'podstawowe-czasowniki': 'Dictionary: Basic Verbs',
+            'phrasal-verbs': 'Dictionary: Phrasal Verbs',
+            'podstawowe-przymiotniki': 'Dictionary: Basic Adjectives',
+            'at-work': 'Dictionary: At Work',
+            'life-family': 'Dictionary: Life and Family',
+            'everyday-life': 'Dictionary: Everyday Life',
+            'podstawowe-przysłówki': 'Dictionary: Basic Adverbs',
+            'free-time': 'Dictionary: Free Time',
+            'horticulture': 'Dictionary: Horticulture',
+            'entertainment': 'Dictionary: Entertainment',
+            'nutrition': 'Dictionary: Nutrition',
+            'arond-food': 'Dictionary: Around Food',
+            'stores': 'Dictionary: Stores and Shopping',
+            'shopping': 'Dictionary: Shopping',
+            'economics': 'Dictionary: Economics',
+            'transport': 'Dictionary: Transport',
+            'at-the-airport': 'Dictionary: At the Airport',
+            'at-the-train-station': 'Dictionary: At the Train Station',
+            'in-the-taxi': 'Dictionary: In the Taxi',
+            'asking-for-direction': 'Dictionary: Asking for Directions',
+            'journey': 'Dictionary: Journey and Travel',
+            'motorization': 'Dictionary: Motorization',
+            'art': 'Dictionary: Art',
+            'public-media': 'Dictionary: Public Media',
+            'sport': 'Dictionary: Sport',
+            'around-sport': 'Dictionary: Around Sport',
+            'disease': 'Dictionary: Disease and Health',
+            'collocations': 'Dictionary: Collocations',
+            'body-parts': 'Dictionary: Body Parts',
+            'in-the-hospital': 'Dictionary: In the Hospital',
+            'information-technologies': 'Dictionary: Information Technologies',
+            'natural-science': 'Dictionary: Natural Science',
+            'mathematics': 'Dictionary: Mathematics',
+            'chemistry': 'Dictionary: Chemistry',
+            'geography': 'Dictionary: Geography',
+            'weather': 'Dictionary: Weather',
+            'plants': 'Dictionary: Plants',
+            'animals': 'Dictionary: Animals',
+            'mammals': 'Dictionary: Mammals',
+            'state-and-society': 'Dictionary: State and Society',
+            'misfortunes': 'Dictionary: Misfortunes',
+            'offenses': 'Dictionary: Offenses',
+            'problems-and-conflicts': 'Dictionary: Problems and Conflicts'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Słownik tematyczny — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            'podstawowe-zwroty': 'Podstawowe zwroty angielskie z przykładami zdań. Naucz się najważniejszych wyrażeń do codziennej komunikacji.',
+            'clothes': 'Słownictwo związane z ubraniami po angielsku. Kompletny zestaw słówek o odzieży z przykładami użycia.',
+            'accessories': 'Słownictwo dotyczące akcesoriów i dodatków. Biżuteria, torebki, okulary i inne dodatki po angielsku.',
+            'patterns-materials': 'Wzory i materiały po angielsku. Naucz się opisywać tkaniny, faktury i kolory.',
+            'appearance': 'Słownictwo do opisu wyglądu zewnętrznego. Części twarzy, fryzury, cechy charakterystyczne.',
+            'appearance adjectives': 'Przymiotniki opisujące wygląd po angielsku. Kompletny zestaw przymiotników do opisu osób.',
+            'emotions': 'Słownictwo związane z emocjami i uczuciami. Naucz się wyrażać swoje emocje po angielsku.',
+            'house': 'Słownictwo dotyczące domu i mieszkania. Pomieszczenia, elementy architektury, rodzaje domów.',
+            'home-furnishings': 'Wyposażenie domu po angielsku. Meble, sprzęty, dekoracje i akcesoria domowe.',
+            'school': 'Słownictwo szkolne i edukacyjne. Przedmioty, pomoce naukowe, życie szkoły.',
+            'school-life': 'Życie szkolne po angielsku. Zajęcia, obowiązki, relacje w szkole.',
+            'professions': 'Zawody i profesje po angielsku. Kompletny zestaw nazw zawodów z przykładami.',
+            'podstawowe-czasowniki': 'Podstawowe czasowniki angielskie. Najważniejsze czasowniki do codziennej komunikacji.',
+            'phrasal-verbs': 'Czasowniki złożone (phrasal verbs) po angielsku. Kompletny przewodnik z przykładami.',
+            'podstawowe-przymiotniki': 'Podstawowe przymiotniki angielskie. Najczęściej używane przymiotniki z przykładami.',
+            'at-work': 'Słownictwo związane z pracą i biurem. Zwroty przydatne w środowisku zawodowym.',
+            'life-family': 'Słownictwo dotyczące życia rodzinnego. Relacje rodzinne, codzienne sytuacje.',
+            'everyday-life': 'Słownictwo z życia codziennego. Rutynowe czynności, obowiązki domowe.',
+            'podstawowe-przysłówki': 'Podstawowe przysłówki angielskie. Przysłówki częstotliwości, sposobu, miejsca i czasu.',
+            'free-time': 'Słownictwo związane z czasem wolnym. Hobby, rozrywka, aktywności rekreacyjne.',
+            'horticulture': 'Słownictwo ogrodnicze. Rośliny, narzędzia, prace w ogrodzie.',
+            'entertainment': 'Słownictwo rozrywkowe. Kino, teatr, koncerty, wydarzenia kulturalne.',
+            'nutrition': 'Słownictwo dotyczące odżywiania. Składniki odżywcze, diety, zdrowy styl życia.',
+            'arond-food': 'Słownictwo związane z jedzeniem. Posiłki, gotowanie, przepisy kulinarne.',
+            'stores': 'Słownictwo dotyczące sklepów. Rodzaje sklepów, zakupy, usługi handlowe.',
+            'shopping': 'Słownictwo zakupowe. Proces zakupów, płatności, zwroty towarów.',
+            'economics': 'Słownictwo ekonomiczne. Pieniądze, finanse, gospodarka.',
+            'transport': 'Słownictwo transportowe. Środki transportu, podróże, komunikacja.',
+            'at-the-airport': 'Słownictwo lotniskowe. Odprawa, bagaż, procedury lotniskowe.',
+            'at-the-train-station': 'Słownictwo kolejowe. Dworce, pociągi, bilety kolejowe.',
+            'in-the-taxi': 'Słownictwo taksówkarskie. Zamawianie taksówki, trasa, płatności.',
+            'asking-for-direction': 'Słownictwo do pytania o drogę. Kierunki, lokalizacje, wskazówki.',
+            'journey': 'Słownictwo podróżnicze. Wycieczki, wakacje, zwiedzanie.',
+            'motorization': 'Słownictwo motoryzacyjne. Części samochodu, naprawy, jazda.',
+            'art': 'Słownictwo artystyczne. Sztuki piękne, rzemiosło, twórczość.',
+            'public-media': 'Słownictwo medialne. Prasa, telewizja, radio, internet.',
+            'sport': 'Słownictwo sportowe. Dyscypliny sportowe, zawody, trening.',
+            'around-sport': 'Słownictwo wokół sportu. Sprzęt, obiekty, wydarzenia sportowe.',
+            'disease': 'Słownictwo medyczne. Choroby, objawy, leczenie.',
+            'collocations': 'Kolokacje angielskie. Najczęstsze połączenia wyrazowe.',
+            'body-parts': 'Słownictwo anatomiczne. Części ciała, organy, zmysły.',
+            'in-the-hospital': 'Słownictwo szpitalne. Wizyty u lekarza, zabiegi, leczenie.',
+            'information-technologies': 'Słownictwo IT. Komputery, oprogramowanie, internet.',
+            'natural-science': 'Słownictwo przyrodnicze. Biologia, fizyka, nauki o Ziemi.',
+            'mathematics': 'Słownictwo matematyczne. Liczby, działania, figury geometryczne.',
+            'chemistry': 'Słownictwo chemiczne. Pierwiastki, związki, reakcje chemiczne.',
+            'geography': 'Słownictwo geograficzne. Kraje, miasta, ukształtowanie terenu.',
+            'weather': 'Słownictwo pogodowe. Zjawiska atmosferyczne, prognoza, klimat.',
+            'plants': 'Słownictwo botaniczne. Rośliny, kwiaty, drzewa, uprawa.',
+            'animals': 'Słownictwo zoologiczne. Zwierzęta, gatunki, środowiska naturalne.',
+            'mammals': 'Słownictwo dotyczące ssaków. Charakterystyka, gatunki, zwyczaje.',
+            'state-and-society': 'Słownictwo społeczno-polityczne. Państwo, prawo, obywatelstwo.',
+            'misfortunes': 'Słownictwo dotyczące nieszczęść. Wypadki, katastrofy, pomoc.',
+            'offenses': 'Słownictwo prawnicze. Przestępstwa, sądownictwo, kary.',
+            'problems-and-conflicts': 'Słownictwo konfliktowe. Problemy, spory, rozwiązywanie konfliktów.'
+        },
+        en: {
+            'podstawowe-zwroty': 'Basic English phrases with sentence examples. Learn essential expressions for daily communication.',
+            'clothes': 'English clothing vocabulary. Complete set of clothes-related words with usage examples.',
+            'accessories': 'Vocabulary about accessories and additions. Jewelry, bags, glasses and other accessories in English.',
+            'patterns-materials': 'Patterns and materials in English. Learn to describe fabrics, textures and colors.',
+            'appearance': 'Vocabulary for describing physical appearance. Facial features, hairstyles, distinctive characteristics.',
+            'appearance adjectives': 'Adjectives describing appearance in English. Complete set of adjectives for describing people.',
+            'emotions': 'Vocabulary related to emotions and feelings. Learn to express your emotions in English.',
+            'house': 'Vocabulary about house and home. Rooms, architectural elements, types of houses.',
+            'home-furnishings': 'Home furnishings in English. Furniture, appliances, decorations and home accessories.',
+            'school': 'School and educational vocabulary. Subjects, teaching aids, school life.',
+            'school-life': 'School life in English. Activities, duties, school relationships.',
+            'professions': 'Professions and jobs in English. Complete set of job names with examples.',
+            'podstawowe-czasowniki': 'Basic English verbs. Most important verbs for daily communication.',
+            'phrasal-verbs': 'Phrasal verbs in English. Complete guide with examples.',
+            'podstawowe-przymiotniki': 'Basic English adjectives. Most commonly used adjectives with examples.',
+            'at-work': 'Vocabulary related to work and office. Useful phrases in professional environment.',
+            'life-family': 'Vocabulary about family life. Family relationships, everyday situations.',
+            'everyday-life': 'Everyday life vocabulary. Routine activities, household chores.',
+            'podstawowe-przysłówki': 'Basic English adverbs. Adverbs of frequency, manner, place and time.',
+            'free-time': 'Vocabulary related to free time. Hobbies, entertainment, recreational activities.',
+            'horticulture': 'Gardening vocabulary. Plants, tools, garden work.',
+            'entertainment': 'Entertainment vocabulary. Cinema, theater, concerts, cultural events.',
+            'nutrition': 'Vocabulary about nutrition. Nutrients, diets, healthy lifestyle.',
+            'arond-food': 'Vocabulary related to food. Meals, cooking, recipes.',
+            'stores': 'Vocabulary about stores. Types of stores, shopping, commercial services.',
+            'shopping': 'Shopping vocabulary. Shopping process, payments, returns.',
+            'economics': 'Economic vocabulary. Money, finance, economy.',
+            'transport': 'Transport vocabulary. Means of transport, travel, communication.',
+            'at-the-airport': 'Airport vocabulary. Check-in, luggage, airport procedures.',
+            'at-the-train-station': 'Railway vocabulary. Stations, trains, train tickets.',
+            'in-the-taxi': 'Taxi vocabulary. Ordering taxi, route, payments.',
+            'asking-for-direction': 'Vocabulary for asking directions. Directions, locations, instructions.',
+            'journey': 'Travel vocabulary. Trips, vacations, sightseeing.',
+            'motorization': 'Automotive vocabulary. Car parts, repairs, driving.',
+            'art': 'Art vocabulary. Fine arts, crafts, creativity.',
+            'public-media': 'Media vocabulary. Press, television, radio, internet.',
+            'sport': 'Sports vocabulary. Sports disciplines, competitions, training.',
+            'around-sport': 'Vocabulary around sports. Equipment, facilities, sports events.',
+            'disease': 'Medical vocabulary. Diseases, symptoms, treatment.',
+            'collocations': 'English collocations. Most common word combinations.',
+            'body-parts': 'Anatomical vocabulary. Body parts, organs, senses.',
+            'in-the-hospital': 'Hospital vocabulary. Doctor visits, procedures, treatment.',
+            'information-technologies': 'IT vocabulary. Computers, software, internet.',
+            'natural-science': 'Natural science vocabulary. Biology, physics, earth sciences.',
+            'mathematics': 'Mathematical vocabulary. Numbers, operations, geometric figures.',
+            'chemistry': 'Chemical vocabulary. Elements, compounds, chemical reactions.',
+            'geography': 'Geographical vocabulary. Countries, cities, terrain.',
+            'weather': 'Weather vocabulary. Atmospheric phenomena, forecast, climate.',
+            'plants': 'Botanical vocabulary. Plants, flowers, trees, cultivation.',
+            'animals': 'Zoological vocabulary. Animals, species, natural habitats.',
+            'mammals': 'Vocabulary about mammals. Characteristics, species, habits.',
+            'state-and-society': 'Socio-political vocabulary. State, law, citizenship.',
+            'misfortunes': 'Vocabulary about misfortunes. Accidents, disasters, help.',
+            'offenses': 'Legal vocabulary. Crimes, judiciary, penalties.',
+            'problems-and-conflicts': 'Conflict vocabulary. Problems, disputes, conflict resolution.'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Słownik tematyczny z przykładami zdań i tłumaczeniami.`
+            : `${getEnglishTopicExcerpt(topicId)} Thematic dictionary with sentence examples and translations.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/slownictwo/slownik-tematyczny/${activeSection}`
+        : `https://angloboost.pl/en/vocabulary/thematic-dictionary/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'podstawowe-zwroty-list': 'Basic Phrases - Thematic Dictionary',
+        'clothes-list': 'Clothes - Thematic Dictionary',
+        'accessories-list': 'Accessories - Thematic Dictionary',
+        'patterns-materials-list': 'Patterns and Materials - Thematic Dictionary',
+        'appearance-list': 'Appearance - Thematic Dictionary',
+        'appearance adjectives-list': 'Appearance Adjectives - Thematic Dictionary',
+        'emotions-list': 'Emotions - Thematic Dictionary',
+        'house-list': 'House - Thematic Dictionary',
+        'home-furnishings-list': 'Home Furnishings - Thematic Dictionary',
+        'school-list': 'School - Thematic Dictionary',
+        'school-life-list': 'School Life - Thematic Dictionary',
+        'professions-list': 'Professions - Thematic Dictionary',
+        'podstawowe-czasowniki-list': 'Basic Verbs - Thematic Dictionary',
+        'phrasal-verbs-list': 'Phrasal Verbs - Thematic Dictionary',
+        'podstawowe-przymiotniki-list': 'Basic Adjectives - Thematic Dictionary',
+        'at-work-list': 'At Work - Thematic Dictionary',
+        'life-family-list': 'Life and Family - Thematic Dictionary',
+        'everyday-life-list': 'Everyday Life - Thematic Dictionary',
+        'podstawowe-przysłówki-list': 'Basic Adverbs - Thematic Dictionary',
+        'free-time-list': 'Free Time - Thematic Dictionary',
+        'horticulture-list': 'Horticulture - Thematic Dictionary',
+        'entertainment-list': 'Entertainment - Thematic Dictionary',
+        'nutrition-list': 'Nutrition - Thematic Dictionary',
+        'arond-food-list': 'Around Food - Thematic Dictionary',
+        'stores-list': 'Stores - Thematic Dictionary',
+        'shopping-list': 'Shopping - Thematic Dictionary',
+        'economics-list': 'Economics - Thematic Dictionary',
+        'transport-list': 'Transport - Thematic Dictionary',
+        'at-the-airport-list': 'At the Airport - Thematic Dictionary',
+        'at-the-train-station-list': 'At the Train Station - Thematic Dictionary',
+        'in-the-taxi-list': 'In the Taxi - Thematic Dictionary',
+        'asking-for-direction-list': 'Asking for Direction - Thematic Dictionary',
+        'journey-list': 'Journey - Thematic Dictionary',
+        'motorization-list': 'Motorization - Thematic Dictionary',
+        'art-list': 'Art - Thematic Dictionary',
+        'public-media-list': 'Public Media - Thematic Dictionary',
+        'sport-list': 'Sport - Thematic Dictionary',
+        'around-sport-list': 'Around Sport - Thematic Dictionary',
+        'disease-list': 'Disease - Thematic Dictionary',
+        'collocations-list': 'Collocations - Thematic Dictionary',
+        'body-parts-list': 'Body Parts - Thematic Dictionary',
+        'in-the-hospital-list': 'In the Hospital - Thematic Dictionary',
+        'information-technologies-list': 'Information Technologies - Thematic Dictionary',
+        'natural-science-list': 'Natural Science - Thematic Dictionary',
+        'mathematics-list': 'Mathematics - Thematic Dictionary',
+        'chemistry-list': 'Chemistry - Thematic Dictionary',
+        'geography-list': 'Geography - Thematic Dictionary',
+        'weather-list': 'Weather - Thematic Dictionary',
+        'plants-list': 'Plants - Thematic Dictionary',
+        'animals-list': 'Animals - Thematic Dictionary',
+        'mammals-list': 'Mammals - Thematic Dictionary',
+        'state-and-society-list': 'State and Society - Thematic Dictionary',
+        'misfortunes-list': 'Misfortunes - Thematic Dictionary',
+        'offenses-list': 'Offenses - Thematic Dictionary',
+        'problems-and-conflicts-list': 'Problems and Conflicts - Thematic Dictionary'
+    }
+    return englishTitles[topicId] || 'Thematic Dictionary - Vocabulary'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'podstawowe-zwroty-list': 'Basic English phrases with sentence examples for daily communication.',
+        'clothes-list': 'Complete clothing vocabulary with usage examples and translations.',
+        'accessories-list': 'Vocabulary about accessories, jewelry and fashion additions.',
+        'patterns-materials-list': 'Patterns, materials and textures vocabulary in English.',
+        'appearance-list': 'Vocabulary for describing physical appearance and characteristics.',
+        'appearance adjectives-list': 'Adjectives for describing people\'s appearance in English.',
+        'emotions-list': 'Emotions and feelings vocabulary with contextual examples.',
+        'house-list': 'House and home vocabulary including rooms and architectural elements.',
+        'home-furnishings-list': 'Home furnishings, furniture and decoration vocabulary.',
+        'school-list': 'School and educational vocabulary with practical examples.',
+        'school-life-list': 'Vocabulary related to school life, activities and relationships.',
+        'professions-list': 'Complete professions and jobs vocabulary in English.',
+        'podstawowe-czasowniki-list': 'Essential English verbs for everyday communication.',
+        'phrasal-verbs-list': 'Phrasal verbs with examples and usage contexts.',
+        'podstawowe-przymiotniki-list': 'Basic English adjectives with sentence examples.',
+        'at-work-list': 'Workplace and office vocabulary for professional environments.',
+        'life-family-list': 'Family life and relationships vocabulary.',
+        'everyday-life-list': 'Everyday life and routine activities vocabulary.',
+        'podstawowe-przysłówki-list': 'Basic English adverbs of frequency, manner, place and time.',
+        'free-time-list': 'Free time activities, hobbies and entertainment vocabulary.',
+        'horticulture-list': 'Gardening and plant cultivation vocabulary.',
+        'entertainment-list': 'Entertainment, cinema, theater and cultural events vocabulary.',
+        'nutrition-list': 'Nutrition, diets and healthy eating vocabulary.',
+        'arond-food-list': 'Food, meals and cooking vocabulary with examples.',
+        'stores-list': 'Stores, shops and commercial services vocabulary.',
+        'shopping-list': 'Shopping process, payments and customer service vocabulary.',
+        'economics-list': 'Economics, finance and money-related vocabulary.',
+        'transport-list': 'Transportation and travel vocabulary.',
+        'at-the-airport-list': 'Airport procedures and travel vocabulary.',
+        'at-the-train-station-list': 'Train station and railway travel vocabulary.',
+        'in-the-taxi-list': 'Taxi and transportation services vocabulary.',
+        'asking-for-direction-list': 'Asking for and giving directions vocabulary.',
+        'journey-list': 'Travel, trips and vacation vocabulary.',
+        'motorization-list': 'Automotive and car-related vocabulary.',
+        'art-list': 'Art, creativity and cultural vocabulary.',
+        'public-media-list': 'Media, journalism and communication vocabulary.',
+        'sport-list': 'Sports and athletic activities vocabulary.',
+        'around-sport-list': 'Sports equipment and facilities vocabulary.',
+        'disease-list': 'Diseases, health and medical vocabulary.',
+        'collocations-list': 'English collocations and word combinations.',
+        'body-parts-list': 'Body parts and anatomical vocabulary.',
+        'in-the-hospital-list': 'Hospital and medical treatment vocabulary.',
+        'information-technologies-list': 'Information technology and computing vocabulary.',
+        'natural-science-list': 'Natural sciences and scientific vocabulary.',
+        'mathematics-list': 'Mathematics and numbers vocabulary.',
+        'chemistry-list': 'Chemistry and chemical elements vocabulary.',
+        'geography-list': 'Geography and earth sciences vocabulary.',
+        'weather-list': 'Weather and climate vocabulary.',
+        'plants-list': 'Plants, flowers and botanical vocabulary.',
+        'animals-list': 'Animals and zoological vocabulary.',
+        'mammals-list': 'Mammals and animal characteristics vocabulary.',
+        'state-and-society-list': 'State, society and political vocabulary.',
+        'misfortunes-list': 'Misfortunes, accidents and emergency vocabulary.',
+        'offenses-list': 'Offenses, crimes and legal vocabulary.',
+        'problems-and-conflicts-list': 'Problems, conflicts and solutions vocabulary.'
+    }
+    return englishExcerpts[topicId] || 'English vocabulary with examples and translations.'
 }

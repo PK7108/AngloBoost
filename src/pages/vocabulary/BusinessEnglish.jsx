@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import '../../styles/vocabulary.css'
 
@@ -296,11 +298,54 @@ function TopicDetail({ topic, onBack }) {
 export default function BusinessEnglish() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'spotkania-prezentacje'
     const topicId = searchParams.get('topic')
     const topics = TOPICS[active] ?? []
     const selected = topics.find(t => t.id === topicId)
     const basePath = `/slownictwo/business-english/${active}`
+
+    const getMetaTitle = () => {
+        if (topicId) {
+            return lang === 'pl'
+                ? 'Business English - szczegóły | AngloBoost'
+                : 'Business English - details | AngloBoost'
+        }
+        return lang === 'pl'
+            ? 'Business English - kompletny przewodnik | AngloBoost'
+            : 'Business English - complete guide | AngloBoost'
+    }
+
+    const getMetaDescription = () => {
+        if (topicId) {
+            return lang === 'pl'
+                ? 'Profesjonalne zwroty biznesowe z przykładami użycia'
+                : 'Professional business phrases with usage examples'
+        }
+        return lang === 'pl'
+            ? 'Ponad 90 profesjonalnych zwrotów biznesowych z przykładami użycia'
+            : 'Over 90 professional business phrases with usage examples'
+    }
+
+    const getCanonicalUrl = () => {
+        const base = lang === 'pl'
+            ? `https://angloboost.pl/pl/slownictwo/business-english/${active}`
+            : `https://angloboost.pl/en/vocabulary/business-english/${active}`
+
+        return topicId ? `${base}?topic=${topicId}` : base
+    }
+
+    useDocumentMeta({
+        title: getMetaTitle(),
+        description: getMetaDescription(),
+        canonical: getCanonicalUrl(),
+        og: {
+            title: getMetaTitle(),
+            description: getMetaDescription(),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
