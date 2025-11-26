@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import './WritingStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak pisać artykuły po angielsku? Kompletny przewodnik'
+        : 'How to Write Articles in English? Complete Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po pisaniu artykułów po angielsku. Naucz się tworzyć angażujące artykuły publicystyczne, blogowe i informacyjne. Struktura, słownictwo, techniki pisarskie i przykłady.',
+        en: 'Complete guide to writing articles in English. Learn how to create engaging opinion pieces, blog posts and informational articles. Structure, vocabulary, writing techniques and examples.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/pisanie/jak-pisac-artykuly'
+        : 'https://angloboost.pl/en/writing/how-to-write-articles'
+}
+
 const Article = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="writing-article">
             <div className="writing-article__header">

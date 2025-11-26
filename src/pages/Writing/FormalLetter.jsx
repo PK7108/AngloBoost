@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './WritingStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak pisać formalne listy po angielsku? Kompletny przewodnik'
+        : 'How to Write Formal Letters in English? Complete Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po pisaniu formalnych listów po angielsku. Naucz się profesjonalnej korespondencji biznesowej i oficjalnej. Struktura, zwroty, przykłady i szablony.',
+        en: 'Complete guide to writing formal letters in English. Learn professional business and official correspondence. Structure, phrases, examples and templates.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/pisanie/jak-pisac-formalne-listy'
+        : 'https://angloboost.pl/en/writing/how-to-write-formal-letters'
+}
+
 const FormalLetter = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="writing-article">
             <div className="writing-article__header">

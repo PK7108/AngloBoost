@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './WritingStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak pisać rozprawki po angielsku? Kompletny przewodnik'
+        : 'How to Write Essays in English? Complete Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po pisaniu rozprawek po angielsku. Naucz się struktur for and against essay oraz opinion essay. Zwroty, przykłady i techniki pisania.',
+        en: 'Complete guide to writing essays in English. Learn structures for for and against essays and opinion essays. Phrases, examples and writing techniques.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/pisanie/jak-pisac-rozprawki'
+        : 'https://angloboost.pl/en/writing/how-to-write-essays'
+}
+
 const Essay = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="writing-article">
             <div className="writing-article__header">
