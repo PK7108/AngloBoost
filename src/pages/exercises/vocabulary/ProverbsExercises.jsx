@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -476,9 +478,22 @@ function Quiz({ topicId }) {
 export default function ProverbsExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'najpopularniejsze'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/slownictwo/przyslowia/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -565,4 +580,121 @@ export default function ProverbsExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, section, topicId) {
+    const baseTitle = lang === 'pl'
+        ? 'Ćwiczenia: Przysłowia angielskie - popularne powiedzenia i mądrości'
+        : 'Exercises: English Proverbs - popular sayings and wisdom'
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return `${sectionTitle} — Przysłowia — Ćwiczenia — AngloBoost`
+    }
+
+    // Domyślne (strona główna przysłów)
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, section, topicId) {
+    const baseDescription = {
+        pl: 'Interaktywne ćwiczenia z angielskich przysłów. Testy i quizy z popularnymi powiedzeniami i mądrościami życiowymi pogrupowanymi tematycznie.',
+        en: 'Interactive English proverbs exercises. Tests and quizzes with popular sayings and life wisdom grouped by topics.'
+    }
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicExcerpt = lang === 'pl' ? topic?.excerpt : getEnglishTopicExcerpt(topicId)
+        return lang === 'pl'
+            ? `${topicExcerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${topicExcerpt} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return lang === 'pl'
+            ? `Ćwiczenia z przysłów angielskich: ${sectionTitle}. Interaktywne quizy i testy z popularnymi powiedzeniami i mądrościami życiowymi.`
+            : `English proverbs exercises: ${sectionTitle}. Interactive quizzes and tests with popular sayings and life wisdom.`
+    }
+
+    // Domyślne (strona główna przysłów)
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang, section = null, topicId = null) {
+    const baseUrl = lang === 'pl'
+        ? 'https://angloboost.pl/pl/cwiczenia/slownictwo/przyslowia'
+        : 'https://angloboost.pl/en/exercises/vocabulary/proverbs'
+
+    if (topicId) {
+        return `${baseUrl}/${section}?topic=${topicId}`
+    }
+
+    if (section) {
+        return `${baseUrl}/${section}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishSectionTitle(sectionId) {
+    const englishTitles = {
+        'najpopularniejsze': 'Most Popular Proverbs',
+        'zyciowe-madrosci': 'Life Wisdom Proverbs',
+        'praca-biznes': 'Work and Business Proverbs',
+        'przyjazn-milosc': 'Friendship and Love Proverbs',
+        'angielskie-brytyjskie': 'English and British Proverbs',
+        'amerykanskie': 'American Proverbs'
+    }
+    return englishTitles[sectionId] || 'English Proverbs'
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'najpopularniejsze-praktyka': 'Popular Proverbs - Practice 📚',
+        'najpopularniejsze-zaawansowane': 'Popular Proverbs - Advanced 🚀',
+        'madrosci-praktyka': 'Life Wisdom Proverbs - Practice 📚',
+        'madrosci-zaawansowane': 'Life Wisdom Proverbs - Advanced 🚀',
+        'praca-praktyka': 'Work Proverbs - Practice 📚',
+        'praca-zaawansowane': 'Work Proverbs - Advanced 🚀',
+        'relacje-praktyka': 'Friendship and Love Proverbs - Practice 📚',
+        'relacje-zaawansowane': 'Friendship and Love Proverbs - Advanced 🚀',
+        'brytyjskie-praktyka': 'English Proverbs - Practice 📚',
+        'brytyjskie-zaawansowane': 'English Proverbs - Advanced 🚀',
+        'amerykanskie-praktyka': 'American Proverbs - Practice 📚',
+        'amerykanskie-zaawansowane': 'American Proverbs - Advanced 🚀'
+    }
+    return englishTitles[topicId] || 'English Proverbs Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'najpopularniejsze-praktyka': '20 practical questions with the most common proverbs.',
+        'najpopularniejsze-zaawansowane': '18 more difficult questions with advanced proverbs.',
+        'madrosci-praktyka': '20 practical questions with life wisdom proverbs.',
+        'madrosci-zaawansowane': '15 more difficult questions with philosophical proverbs.',
+        'praca-praktyka': '20 practical questions with business proverbs.',
+        'praca-zaawansowane': '15 more difficult questions with advanced proverbs.',
+        'relacje-praktyka': '20 practical questions with relationship proverbs.',
+        'relacje-zaawansowane': '15 more difficult questions with emotional proverbs.',
+        'brytyjskie-praktyka': '20 practical questions with typically British proverbs.',
+        'brytyjskie-zaawansowane': '15 more difficult questions with cultural proverbs.',
+        'amerykanskie-praktyka': '20 practical questions with American proverbs.',
+        'amerykanskie-zaawansowane': '15 more difficult questions with advanced proverbs.'
+    }
+    return englishExcerpts[topicId] || 'English proverbs exercises with examples.'
 }

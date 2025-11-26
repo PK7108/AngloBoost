@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -385,9 +387,22 @@ function Quiz({ topicId }) {
 export default function BusinessEnglishExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'spotkania-prezentacje'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/slownictwo/business-english/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -492,4 +507,122 @@ export default function BusinessEnglishExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, section, topicId) {
+    const baseTitle = lang === 'pl'
+        ? 'Ćwiczenia: Business English - profesjonalne zwroty biznesowe'
+        : 'Exercises: Business English - professional business phrases'
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return `${sectionTitle} — Business English — Ćwiczenia — AngloBoost`
+    }
+
+    // Domyślne (strona główna Business English)
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, section, topicId) {
+    const baseDescription = {
+        pl: 'Interaktywne ćwiczenia z Business English. Testy i quizy z profesjonalnymi zwrotami biznesowymi, terminologią korporacyjną i wyrażeniami używanymi w środowisku biznesowym.',
+        en: 'Interactive Business English exercises. Tests and quizzes with professional business phrases, corporate terminology and expressions used in business environment.'
+    }
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicExcerpt = lang === 'pl' ? topic?.excerpt : getEnglishTopicExcerpt(topicId)
+        return lang === 'pl'
+            ? `${topicExcerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${topicExcerpt} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return lang === 'pl'
+            ? `Ćwiczenia z Business English: ${sectionTitle}. Interaktywne quizy i testy z profesjonalnymi zwrotami biznesowymi i terminologią korporacyjną.`
+            : `Business English exercises: ${sectionTitle}. Interactive quizzes and tests with professional business phrases and corporate terminology.`
+    }
+
+    // Domyślne (strona główna Business English)
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang, section = null, topicId = null) {
+    const baseUrl = lang === 'pl'
+        ? 'https://angloboost.pl/pl/cwiczenia/slownictwo/business-english'
+        : 'https://angloboost.pl/en/exercises/vocabulary/business-english'
+
+    if (topicId) {
+        return `${baseUrl}/${section}?topic=${topicId}`
+    }
+
+    if (section) {
+        return `${baseUrl}/${section}`
+    }
+
+    return baseUrl
+}
+
+// Funkcje pomocnicze dla tłumaczeń
+function getEnglishSectionTitle(sectionId) {
+    const englishTitles = {
+        'spotkania-prezentacje': 'Meetings and Presentations',
+        'korespondencja': 'Business Correspondence',
+        'negocjacje': 'Negotiations',
+        'finanse-ekonomia': 'Finance and Economics',
+        'marketing-sprzedaz': 'Marketing and Sales',
+        'zarzadzanie': 'Management'
+    }
+    return englishTitles[sectionId] || 'Business English'
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'spotkania-podstawowe': 'Meetings - Basic 📚',
+        'spotkania-zaawansowane': 'Meetings - Advanced 🚀',
+        'korespondencja-podstawowe': 'Correspondence - Basic 📚',
+        'korespondencja-zaawansowane': 'Correspondence - Advanced 🚀',
+        'negocjacje-podstawowe': 'Negotiations - Basic 📚',
+        'negocjacje-zaawansowane': 'Negotiations - Advanced 🚀',
+        'finanse-podstawowe': 'Finance - Basic 📚',
+        'finanse-zaawansowane': 'Finance - Advanced 🚀',
+        'marketing-podstawowe': 'Marketing - Basic 📚',
+        'marketing-zaawansowane': 'Marketing - Advanced 🚀',
+        'zarzadzanie-podstawowe': 'Management - Basic 📚',
+        'zarzadzanie-zaawansowane': 'Management - Advanced 🚀'
+    }
+    return englishTitles[topicId] || 'Business English Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'spotkania-podstawowe': '12 basic phrases used in business meetings',
+        'spotkania-zaawansowane': '10 advanced expressions for professional presentations',
+        'korespondencja-podstawowe': '10 basic phrases for writing business emails',
+        'korespondencja-zaawansowane': '10 advanced expressions for formal correspondence',
+        'negocjacje-podstawowe': '10 basic negotiation terms',
+        'negocjacje-zaawansowane': '10 advanced negotiation strategies',
+        'finanse-podstawowe': '10 basic financial concepts',
+        'finanse-zaawansowane': '10 advanced economic terms',
+        'marketing-podstawowe': '10 basic marketing concepts',
+        'marketing-zaawansowane': '10 advanced marketing strategies',
+        'zarzadzanie-podstawowe': '10 basic management terms',
+        'zarzadzanie-zaawansowane': '10 advanced management concepts'
+    }
+    return englishExcerpts[topicId] || 'Business English exercises with examples.'
 }

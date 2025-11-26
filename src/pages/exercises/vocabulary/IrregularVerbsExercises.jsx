@@ -1,4 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -256,6 +258,19 @@ function Quiz({ topicId }) {
 
 export default function IrregularVerbsExercises() {
     const [selectedTopic, setSelectedTopic] = useState(null)
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, selectedTopic),
+        description: getMetaDescription(lang, selectedTopic),
+        canonical: getCanonicalUrl(lang, selectedTopic),
+        og: {
+            title: getMetaTitle(lang, selectedTopic),
+            description: getMetaDescription(lang, selectedTopic),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -326,4 +341,68 @@ export default function IrregularVerbsExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, selectedTopic) {
+    const baseTitle = lang === 'pl'
+        ? 'Ćwiczenia: Czasowniki nieregularne - Past Simple i Past Participle'
+        : 'Exercises: Irregular Verbs - Past Simple and Past Participle'
+
+    if (selectedTopic) {
+        const topic = TOPICS.find(t => t.id === selectedTopic)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(selectedTopic)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, selectedTopic) {
+    const baseDescription = {
+        pl: 'Interaktywne ćwiczenia z czasowników nieregularnych. Testy i quizy z formami Past Simple i Past Participle według poziomów trudności.',
+        en: 'Interactive irregular verbs exercises. Tests and quizzes with Past Simple and Past Participle forms by difficulty levels.'
+    }
+
+    if (selectedTopic) {
+        const topic = TOPICS.find(t => t.id === selectedTopic)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(selectedTopic)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang, selectedTopic) {
+    const baseUrl = lang === 'pl'
+        ? 'https://angloboost.pl/pl/cwiczenia/gramatyka/czasowniki-nieregularne'
+        : 'https://angloboost.pl/en/exercises/grammar/irregular-verbs'
+
+    if (selectedTopic) {
+        return `${baseUrl}?topic=${selectedTopic}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'podstawowe': 'Basic Irregular Verbs 📚',
+        'srednie': 'Intermediate Irregular Verbs 🔥',
+        'trudne': 'Advanced Irregular Verbs 🚀',
+        'mieszane': 'Mixed Irregular Verbs 💪'
+    }
+    return englishTitles[topicId] || 'Irregular Verbs Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'podstawowe': '15 most commonly used irregular verbs',
+        'srednie': '15 verbs with vowel changes',
+        'trudne': '15 verbs with unusual forms',
+        'mieszane': '18 different verbs for comprehensive testing'
+    }
+    return englishExcerpts[topicId] || 'English irregular verbs exercises with examples.'
 }

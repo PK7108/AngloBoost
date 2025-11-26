@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
-import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom' // DODAJ useSearchParams i Link
+import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -467,9 +469,22 @@ function Quiz({ topicId }) {
 export default function IdiomsExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'pieniądze'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/slownictwo/idiomy/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -555,4 +570,121 @@ export default function IdiomsExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, section, topicId) {
+    const baseTitle = lang === 'pl'
+        ? 'Ćwiczenia: Idiomy angielskie - popularne wyrażenia i zwroty'
+        : 'Exercises: English Idioms - popular expressions and phrases'
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return `${sectionTitle} — Idiomy — Ćwiczenia — AngloBoost`
+    }
+
+    // Domyślne (strona główna idiomów)
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, section, topicId) {
+    const baseDescription = {
+        pl: 'Interaktywne ćwiczenia z angielskich idiomów. Testy i quizy z popularnymi wyrażeniami idiomatycznymi pogrupowanymi tematycznie.',
+        en: 'Interactive English idioms exercises. Tests and quizzes with popular idiomatic expressions grouped by topics.'
+    }
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicExcerpt = lang === 'pl' ? topic?.excerpt : getEnglishTopicExcerpt(topicId)
+        return lang === 'pl'
+            ? `${topicExcerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${topicExcerpt} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return lang === 'pl'
+            ? `Ćwiczenia z idiomów angielskich: ${sectionTitle}. Interaktywne quizy i testy z popularnymi wyrażeniami idiomatycznymi.`
+            : `English idioms exercises: ${sectionTitle}. Interactive quizzes and tests with popular idiomatic expressions.`
+    }
+
+    // Domyślne (strona główna idiomów)
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang, section = null, topicId = null) {
+    const baseUrl = lang === 'pl'
+        ? 'https://angloboost.pl/pl/cwiczenia/slownictwo/idiomy'
+        : 'https://angloboost.pl/en/exercises/vocabulary/idioms'
+
+    if (topicId) {
+        return `${baseUrl}/${section}?topic=${topicId}`
+    }
+
+    if (section) {
+        return `${baseUrl}/${section}`
+    }
+
+    return baseUrl
+}
+
+function getEnglishSectionTitle(sectionId) {
+    const englishTitles = {
+        'pieniądze': 'Money Idioms',
+        'zwierzęta': 'Animal Idioms',
+        'najpopularniejsze': 'Most Popular Idioms',
+        'części-ciała': 'Body Parts Idioms',
+        'jedzenie': 'Food Idioms',
+        'praca-biznes': 'Work and Business Idioms'
+    }
+    return englishTitles[sectionId] || 'English Idioms'
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'pieniadze-praktyka': 'Money Idioms - Practice 📚',
+        'pieniadze-zaawansowane': 'Money Idioms - Advanced 🚀',
+        'zwierzeta-praktyka': 'Animal Idioms - Practice 📚',
+        'zwierzeta-zaawansowane': 'Animal Idioms - Advanced 🚀',
+        'popularne-praktyka': 'Popular Idioms - Practice 📚',
+        'popularne-zaawansowane': 'Popular Idioms - Advanced 🚀',
+        'cialo-praktyka': 'Body Parts Idioms - Practice 📚',
+        'cialo-zaawansowane': 'Body Parts Idioms - Advanced 🚀',
+        'jedzenie-praktyka': 'Food Idioms - Practice 📚',
+        'jedzenie-zaawansowane': 'Food Idioms - Advanced 🚀',
+        'praca-praktyka': 'Work Idioms - Practice 📚',
+        'praca-zaawansowane': 'Work Idioms - Advanced 🚀'
+    }
+    return englishTitles[topicId] || 'English Idioms Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'pieniadze-praktyka': '15 practical questions with financial idioms.',
+        'pieniadze-zaawansowane': '12 more difficult questions with advanced idioms.',
+        'zwierzeta-praktyka': '18 practical questions with animal idioms.',
+        'zwierzeta-zaawansowane': '15 more difficult questions with advanced idioms.',
+        'popularne-praktyka': '20 practical questions with the most common idioms.',
+        'popularne-zaawansowane': '18 more difficult questions with advanced idioms.',
+        'cialo-praktyka': '20 practical questions with anatomical idioms.',
+        'cialo-zaawansowane': '15 more difficult questions with advanced idioms.',
+        'jedzenie-praktyka': '20 practical questions with culinary idioms.',
+        'jedzenie-zaawansowane': '15 more difficult questions with advanced idioms.',
+        'praca-praktyka': '20 practical questions with business idioms.',
+        'praca-zaawansowane': '15 more difficult questions with advanced idioms.'
+    }
+    return englishExcerpts[topicId] || 'English idioms exercises with examples.'
 }

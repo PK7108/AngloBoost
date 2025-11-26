@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -387,9 +389,22 @@ function Quiz({ topicId }) {
 export default function SlangExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'podstawowe-slowa'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/slownictwo/slang-(mowa-potoczna)/${active}`
+
+    useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -494,4 +509,122 @@ export default function SlangExercises() {
             </div>
         </main>
     )
+}
+
+function getMetaTitle(lang, section, topicId) {
+    const baseTitle = lang === 'pl'
+        ? 'Ćwiczenia: Slang angielski - popularne słowa i wyrażenia potoczne'
+        : 'Exercises: English Slang - popular colloquial words and expressions'
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return `${sectionTitle} — Slang — Ćwiczenia — AngloBoost`
+    }
+
+    // Domyślne (strona główna slangu)
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, section, topicId) {
+    const baseDescription = {
+        pl: 'Interaktywne ćwiczenia z angielskiego slangu. Testy i quizy z popularnymi słowami potocznymi, skrótami internetowymi i wyrażeniami slangowymi pogrupowanymi tematycznie.',
+        en: 'Interactive English slang exercises. Tests and quizzes with popular colloquial words, internet abbreviations and slang expressions grouped by topics.'
+    }
+
+    // Jeśli mamy wybrany konkretny temat
+    if (topicId) {
+        const topic = Object.values(TOPICS).flat().find(t => t.id === topicId)
+        const topicExcerpt = lang === 'pl' ? topic?.excerpt : getEnglishTopicExcerpt(topicId)
+        return lang === 'pl'
+            ? `${topicExcerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${topicExcerpt} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    // Jeśli mamy wybraną sekcję
+    if (section) {
+        const sectionData = sections.find(s => s.id === section)
+        const sectionTitle = lang === 'pl' ? sectionData?.label : getEnglishSectionTitle(section)
+        return lang === 'pl'
+            ? `Ćwiczenia z angielskiego slangu: ${sectionTitle}. Interaktywne quizy i testy z popularnymi słowami potocznymi i wyrażeniami slangowymi.`
+            : `English slang exercises: ${sectionTitle}. Interactive quizzes and tests with popular colloquial words and slang expressions.`
+    }
+
+    // Domyślne (strona główna slangu)
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang, section = null, topicId = null) {
+    const baseUrl = lang === 'pl'
+        ? 'https://angloboost.pl/pl/cwiczenia/slownictwo/slang-(mowa-potoczna)'
+        : 'https://angloboost.pl/en/exercises/vocabulary/slang'
+
+    if (topicId) {
+        return `${baseUrl}/${section}?topic=${topicId}`
+    }
+
+    if (section) {
+        return `${baseUrl}/${section}`
+    }
+
+    return baseUrl
+}
+
+// Funkcje pomocnicze dla tłumaczeń
+function getEnglishSectionTitle(sectionId) {
+    const englishTitles = {
+        'podstawowe-slowa': 'Basic Slang Words',
+        'skroty': 'Internet Abbreviations',
+        'zwroty-i-wyrazenia': 'Phrases and Expressions',
+        'mlodziezowy': 'Youth Slang',
+        'brytyjski': 'British Slang',
+        'amerykanski': 'American Slang'
+    }
+    return englishTitles[sectionId] || 'English Slang'
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'podstawowe-czesc-1': 'Basic Slang Words - Part 1 📚',
+        'podstawowe-czesc-2': 'Basic Slang Words - Part 2 🔥',
+        'skroty-czesc-1': 'Internet Abbreviations - Part 1 📱',
+        'skroty-czesc-2': 'Internet Abbreviations - Part 2 💬',
+        'zwroty-czesc-1': 'Phrases and Expressions - Part 1 🗣️',
+        'zwroty-czesc-2': 'Phrases and Expressions - Part 2 💫',
+        'mlodziezowy-czesc-1': 'Youth Slang - Part 1 👦',
+        'mlodziezowy-czesc-2': 'Youth Slang - Part 2 🎮',
+        'brytyjski-czesc-1': 'British Slang - Part 1 🇬🇧',
+        'brytyjski-czesc-2': 'British Slang - Part 2 ☕',
+        'amerykanski-czesc-1': 'American Slang - Part 1 🇺🇸',
+        'amerykanski-czesc-2': 'American Slang - Part 2 🏙️'
+    }
+    return englishTitles[topicId] || 'English Slang Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'podstawowe-czesc-1': '12 basic slang words for everyday use',
+        'podstawowe-czesc-2': '12 more popular slang words',
+        'skroty-czesc-1': '10 most popular abbreviations used online',
+        'skroty-czesc-2': '10 more useful internet abbreviations',
+        'zwroty-czesc-1': '10 popular slang phrases',
+        'zwroty-czesc-2': '10 more colloquial expressions',
+        'mlodziezowy-czesc-1': '10 popular words among youth',
+        'mlodziezowy-czesc-2': '10 more youth expressions',
+        'brytyjski-czesc-1': '10 typically British slang expressions',
+        'brytyjski-czesc-2': '10 more British colloquial words',
+        'amerykanski-czesc-1': '10 American slang expressions',
+        'amerykanski-czesc-2': '10 more words from American slang'
+    }
+    return englishExcerpts[topicId] || 'English slang exercises with examples.'
 }

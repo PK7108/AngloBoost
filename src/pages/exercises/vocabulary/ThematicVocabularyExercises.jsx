@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../../useDocumentMeta'
 import '../../../styles/topic-cards.css'
 import { useExerciseScores } from '../useExerciseScores'
 
@@ -4309,9 +4311,22 @@ function Quiz({ topicId }) {
 export default function ThematicVocabularyExercises() {
     const { section } = useParams()
     const [searchParams] = useSearchParams()
+    const { lang } = useLanguage()
     const active = section ?? 'podstawowe-zwroty'
     const topicId = searchParams.get('topic')
     const basePath = `/cwiczenia/slownictwo/slownik-tematyczny/${active}`
+
+      useDocumentMeta({
+        title: getMetaTitle(lang, active, topicId),
+        description: getMetaDescription(lang, active, topicId),
+        canonical: getCanonicalUrl(lang, active, topicId),
+        og: {
+            title: getMetaTitle(lang, active, topicId),
+            description: getMetaDescription(lang, active, topicId),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">
@@ -4578,4 +4593,204 @@ export default function ThematicVocabularyExercises() {
       `}</style>
         </main>
     )
+}
+
+function getMetaTitle(lang, activeSection, topicId) {
+    const sectionTitles = {
+        pl: {
+            'podstawowe-zwroty': 'Ćwiczenia: Podstawowe zwroty angielskie',
+            'clothes': 'Ćwiczenia: Słownictwo - Ubrania',
+            'appearance': 'Ćwiczenia: Słownictwo - Wygląd',
+            'emotions': 'Ćwiczenia: Słownictwo - Emocje',
+            'house': 'Ćwiczenia: Słownictwo - Dom',
+            'home-furnishings': 'Ćwiczenia: Słownictwo - Wyposażenie domu',
+            'school': 'Ćwiczenia: Słownictwo - Szkoła',
+            'school-life': 'Ćwiczenia: Słownictwo - Życie szkolne',
+            'professions': 'Ćwiczenia: Słownictwo - Zawody',
+            'podstawowe-czasowniki': 'Ćwiczenia: Podstawowe czasowniki',
+            'phrasal-verbs': 'Ćwiczenia: Czasowniki frazowe',
+            'podstawowe-przymiotniki': 'Ćwiczenia: Podstawowe przymiotniki',
+            'at-work': 'Ćwiczenia: Słownictwo - W pracy',
+            'life-family': 'Ćwiczenia: Słownictwo - Życie i rodzina',
+            'everyday-life': 'Ćwiczenia: Słownictwo - Codzienne życie',
+            'podstawowe-przysłówki': 'Ćwiczenia: Podstawowe przysłówki',
+            'free-time': 'Ćwiczenia: Słownictwo - Czas wolny',
+            'horticulture': 'Ćwiczenia: Słownictwo - Ogrodnictwo',
+            'entertainment': 'Ćwiczenia: Słownictwo - Rozrywka',
+            'nutrition': 'Ćwiczenia: Słownictwo - Odżywianie',
+            'arond-food': 'Ćwiczenia: Słownictwo - Wokół jedzenia',
+            'stores': 'Ćwiczenia: Słownictwo - Sklepy',
+            'shopping': 'Ćwiczenia: Słownictwo - Zakupy',
+            'economics': 'Ćwiczenia: Słownictwo - Ekonomia',
+            'transport': 'Ćwiczenia: Słownictwo - Transport',
+            'at-the-airport': 'Ćwiczenia: Słownictwo - Na lotnisku',
+            'at-the-train-station': 'Ćwiczenia: Słownictwo - Na dworcu',
+            'in-the-taxi': 'Ćwiczenia: Słownictwo - W taksówce',
+            'asking-for-direction': 'Ćwiczenia: Słownictwo - Pytanie o drogę',
+            'journey': 'Ćwiczenia: Słownictwo - Podróż',
+            'motorization': 'Ćwiczenia: Słownictwo - Motoryzacja',
+            'art': 'Ćwiczenia: Słownictwo - Sztuka',
+            'public-media': 'Ćwiczenia: Słownictwo - Media',
+            'sport': 'Ćwiczenia: Słownictwo - Sport',
+            'around-sport': 'Ćwiczenia: Słownictwo - Wokół sportu',
+            'disease': 'Ćwiczenia: Słownictwo - Choroby',
+            'collocations': 'Ćwiczenia: Kolokacje angielskie',
+            'body-parts': 'Ćwiczenia: Słownictwo - Części ciała',
+            'in-the-hospital': 'Ćwiczenia: Słownictwo - W szpitalu',
+            'information-technologies': 'Ćwiczenia: Słownictwo - Technologie informacyjne',
+            'natural-science': 'Ćwiczenia: Słownictwo - Nauki przyrodnicze',
+            'mathematics': 'Ćwiczenia: Słownictwo - Matematyka',
+            'chemistry': 'Ćwiczenia: Słownictwo - Chemia',
+            'geography': 'Ćwiczenia: Słownictwo - Geografia',
+            'weather': 'Ćwiczenia: Słownictwo - Pogoda',
+            'plants': 'Ćwiczenia: Słownictwo - Rośliny',
+            'animals': 'Ćwiczenia: Słownictwo - Zwierzęta',
+            'mammals': 'Ćwiczenia: Słownictwo - Ssaki',
+            'state-and-society': 'Ćwiczenia: Słownictwo - Państwo i społeczeństwo',
+            'misfortunes': 'Ćwiczenia: Słownictwo - Nieszczęścia',
+            'offenses': 'Ćwiczenia: Słownictwo - Wykroczenia',
+            'problems-and-conflicts': 'Ćwiczenia: Słownictwo - Problemy i konflikty'
+        },
+        en: {
+            'podstawowe-zwroty': 'Exercises: Basic English Phrases',
+            'clothes': 'Exercises: Vocabulary - Clothes',
+            'appearance': 'Exercises: Vocabulary - Appearance',
+            'emotions': 'Exercises: Vocabulary - Emotions',
+            'house': 'Exercises: Vocabulary - House',
+            'home-furnishings': 'Exercises: Vocabulary - Home Furnishings',
+            'school': 'Exercises: Vocabulary - School',
+            'school-life': 'Exercises: Vocabulary - School Life',
+            'professions': 'Exercises: Vocabulary - Professions',
+            'podstawowe-czasowniki': 'Exercises: Basic Verbs',
+            'phrasal-verbs': 'Exercises: Phrasal Verbs',
+            'podstawowe-przymiotniki': 'Exercises: Basic Adjectives',
+            'at-work': 'Exercises: Vocabulary - At Work',
+            'life-family': 'Exercises: Vocabulary - Life & Family',
+            'everyday-life': 'Exercises: Vocabulary - Everyday Life',
+            'podstawowe-przysłówki': 'Exercises: Basic Adverbs',
+            'free-time': 'Exercises: Vocabulary - Free Time',
+            'horticulture': 'Exercises: Vocabulary - Horticulture',
+            'entertainment': 'Exercises: Vocabulary - Entertainment',
+            'nutrition': 'Exercises: Vocabulary - Nutrition',
+            'arond-food': 'Exercises: Vocabulary - Around Food',
+            'stores': 'Exercises: Vocabulary - Stores',
+            'shopping': 'Exercises: Vocabulary - Shopping',
+            'economics': 'Exercises: Vocabulary - Economics',
+            'transport': 'Exercises: Vocabulary - Transport',
+            'at-the-airport': 'Exercises: Vocabulary - At the Airport',
+            'at-the-train-station': 'Exercises: Vocabulary - At the Train Station',
+            'in-the-taxi': 'Exercises: Vocabulary - In the Taxi',
+            'asking-for-direction': 'Exercises: Vocabulary - Asking for Direction',
+            'journey': 'Exercises: Vocabulary - Journey',
+            'motorization': 'Exercises: Vocabulary - Motorization',
+            'art': 'Exercises: Vocabulary - Art',
+            'public-media': 'Exercises: Vocabulary - Public Media',
+            'sport': 'Exercises: Vocabulary - Sport',
+            'around-sport': 'Exercises: Vocabulary - Around Sport',
+            'disease': 'Exercises: Vocabulary - Disease',
+            'collocations': 'Exercises: English Collocations',
+            'body-parts': 'Exercises: Vocabulary - Body Parts',
+            'in-the-hospital': 'Exercises: Vocabulary - In the Hospital',
+            'information-technologies': 'Exercises: Vocabulary - Information Technologies',
+            'natural-science': 'Exercises: Vocabulary - Natural Science',
+            'mathematics': 'Exercises: Vocabulary - Mathematics',
+            'chemistry': 'Exercises: Vocabulary - Chemistry',
+            'geography': 'Exercises: Vocabulary - Geography',
+            'weather': 'Exercises: Vocabulary - Weather',
+            'plants': 'Exercises: Vocabulary - Plants',
+            'animals': 'Exercises: Vocabulary - Animals',
+            'mammals': 'Exercises: Vocabulary - Mammals',
+            'state-and-society': 'Exercises: Vocabulary - State and Society',
+            'misfortunes': 'Exercises: Vocabulary - Misfortunes',
+            'offenses': 'Exercises: Vocabulary - Offenses',
+            'problems-and-conflicts': 'Exercises: Vocabulary - Problems and Conflicts'
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        const topicTitle = lang === 'pl' ? topic?.title : getEnglishTopicTitle(topicId)
+        return `${topicTitle} — Ćwiczenia — AngloBoost`
+    }
+
+    const baseTitle = sectionTitles[lang]?.[activeSection] || sectionTitles.pl[activeSection]
+    return lang === 'pl'
+        ? `${baseTitle} — AngloBoost`
+        : `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang, activeSection, topicId) {
+    const sectionDescriptions = {
+        pl: {
+            'podstawowe-zwroty': 'Interaktywne ćwiczenia z podstawowych zwrotów angielskich. Testy i quizy z powitań, pożegnań, podziękowań.',
+            'clothes': 'Ćwiczenia ze słownictwa związanego z ubraniami. Testy online z nazwami ubrań, materiałów i stylów.',
+            'appearance': 'Ćwiczenia ze słownictwa opisującego wygląd. Testy online z cechami fizycznymi i wyglądem zewnętrznym.',
+            'emotions': 'Ćwiczenia ze słownictwa emocji i uczuć. Testy online z nazwami emocji i stanów psychicznych.',
+            'house': 'Ćwiczenia ze słownictwa związanego z domem. Testy online z pomieszczeniami i elementami domu.',
+            // ... (dodaj opisy dla pozostałych sekcji)
+        },
+        en: {
+            'podstawowe-zwroty': 'Interactive exercises with basic English phrases. Tests and quizzes with greetings, farewells, thanks.',
+            'clothes': 'Exercises with clothing vocabulary. Online tests with clothes names, materials and styles.',
+            'appearance': 'Exercises with appearance description vocabulary. Online tests with physical features and external appearance.',
+            'emotions': 'Exercises with emotions and feelings vocabulary. Online tests with emotion names and mental states.',
+            'house': 'Exercises with house-related vocabulary. Online tests with rooms and house elements.',
+            // ... (dodaj opisy dla pozostałych sekcji)
+        }
+    }
+
+    if (topicId) {
+        const topic = findTopicById(topicId)
+        return lang === 'pl'
+            ? `${topic?.excerpt} Interaktywne ćwiczenia i testy online z natychmiastową weryfikacją odpowiedzi.`
+            : `${getEnglishTopicExcerpt(topicId)} Interactive exercises and online tests with instant answer verification.`
+    }
+
+    return sectionDescriptions[lang]?.[activeSection] || sectionDescriptions.pl[activeSection]
+}
+
+function getCanonicalUrl(lang, activeSection, topicId) {
+    const baseUrl = lang === 'pl'
+        ? `https://angloboost.pl/pl/cwiczenia/slownictwo/slownik-tematyczny/${activeSection}`
+        : `https://angloboost.pl/en/exercises/vocabulary/thematic-vocabulary/${activeSection}`
+
+    if (topicId) {
+        return `${baseUrl}?topic=${topicId}`
+    }
+
+    return baseUrl
+}
+
+function findTopicById(topicId) {
+    for (const section of Object.values(TOPICS)) {
+        const topic = section.find(t => t.id === topicId)
+        if (topic) return topic
+    }
+    return null
+}
+
+function getEnglishTopicTitle(topicId) {
+    const englishTitles = {
+        'basic-phrases-beginners': 'Basic Phrases - Beginners',
+        'basic-phrases-practice-15': 'Basic Phrases - Practice',
+        'basic-phrases-advanced-12': 'Basic Phrases - Advanced',
+        'clothes-beginners': 'Clothes - Beginners',
+        'clothes-practice-15': 'Clothes - Practice',
+        'clothes-advanced-12': 'Clothes - Advanced',
+        // ... (dodaj tłumaczenia dla wszystkich topicId)
+    }
+    return englishTitles[topicId] || 'English Vocabulary Exercises'
+}
+
+function getEnglishTopicExcerpt(topicId) {
+    const englishExcerpts = {
+        'basic-phrases-beginners': 'Most important expressions to start with - greetings, farewells, thanks.',
+        'basic-phrases-practice-15': '15 practical questions with everyday expressions.',
+        'basic-phrases-advanced-12': '12 more difficult questions with formal phrases.',
+        'clothes-beginners': 'Basic vocabulary related to clothing and accessories.',
+        'clothes-practice-15': '15 practical questions with various clothing items.',
+        'clothes-advanced-12': '12 more difficult questions with materials and styles.',
+        // ... (dodaj tłumaczenia dla wszystkich topicId)
+    }
+    return englishExcerpts[topicId] || 'English vocabulary exercises with examples.'
 }
