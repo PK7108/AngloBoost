@@ -127,7 +127,7 @@ export default function Privacy() {
                         W sprawach związanych z ochroną danych osobowych, realizacją praw lub pytań dotyczących prywatności, skontaktuj się z nami:
                     </p>
                     <ul className="list">
-                        <li>E-mail: <a href="mailto:privacy@angloboost.pl">privacy@angloboost.pl</a></li>
+                        <li>E-mail: <a href="mailto:privacy@angloboost.pl">kontakt@angloboost.pl</a></li>
                         {/*<li>Poczta tradycyjna: [Adres siedziby firmy]</li>*/}
                     </ul>
                 </div>

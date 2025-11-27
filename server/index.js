@@ -11,9 +11,10 @@ import fs from 'fs'
 import bcrypt from 'bcryptjs'
 import {sendNewsletterWelcome} from "./mailer.js";
 
-// Load .env even if running from server/src directory
+// Load .env from server folder first, then fallback to project root if present
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+dotenv.config({ path: path.resolve(__dirname, '.env') })
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
 const app = express()
@@ -555,13 +556,11 @@ app.post('/api/newsletter/subscribe', async (req, res) => {
                 .run(email, now)
         }
 
-        // Wyślij email powitalny
-        try {
-            await sendNewsletterWelcome(email)
-        } catch (emailError) {
-            console.error('Błąd wysyłania emaila powitalnego:', emailError)
+        // Wyślij email powitalny asynchronicznie (nie blokuj odpowiedzi)
+        sendNewsletterWelcome(email).catch((emailError) => {
+            console.error('Błąd wysyłania emaila powitalnego (async):', emailError)
             // Kontynuuj mimo błędu emaila - subskrypcja i tak jest zapisana
-        }
+        })
 
         res.json({
             ok: true,

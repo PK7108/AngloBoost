@@ -15,9 +15,9 @@ export default function Contact() {
           <p>
             E-mail: <a href="mailto:kontakt@angloboost.pl">kontakt@angloboost.pl</a>
           </p>
-          <p>
-            W sprawach prywatności: <a href="mailto:privacy@angloboost.pl">privacy@angloboost.pl</a>
-          </p>
+          {/*<p>*/}
+          {/*  W sprawach prywatności: <a href="mailto:privacy@angloboost.pl">privacy@angloboost.pl</a>*/}
+          {/*</p>*/}
         </div>
 
         {/*<div className="card">*/}
