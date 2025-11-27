@@ -557,10 +557,15 @@ app.post('/api/newsletter/subscribe', async (req, res) => {
         }
 
         // Wyślij email powitalny asynchronicznie (nie blokuj odpowiedzi)
-        sendNewsletterWelcome(email).catch((emailError) => {
+        console.log('[NEWSLETTER] Scheduling welcome email for:', email)
+        sendNewsletterWelcome(email)
+          .then(() => {
+            console.log('[NEWSLETTER] Welcome email dispatched for:', email)
+          })
+          .catch((emailError) => {
             console.error('Błąd wysyłania emaila powitalnego (async):', emailError)
             // Kontynuuj mimo błędu emaila - subskrypcja i tak jest zapisana
-        })
+          })
 
         res.json({
             ok: true,
