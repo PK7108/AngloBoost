@@ -63,11 +63,36 @@ export async function sendResetEmail(to, resetLink) {
     subject: 'Reset hasła - AngloBoost',
     text: `Aby zresetować hasło, otwórz link: ${resetLink}`,
     html: `
-      <p>Otrzymaliśmy prośbę o reset hasła.</p>
-      <p>Aby ustawić nowe hasło, kliknij link:</p>
-      <p><a href="${resetLink}">${resetLink}</a></p>
-      <p>Jeśli to nie Ty, zignoruj tę wiadomość.</p>
-    `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #012169;">Resetowanie hasła 🔐</h2>
+      
+      <p>Otrzymaliśmy prośbę o resetowanie hasła do Twojego konta AngloBoost.</p>
+      
+      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3 style="color: #012169; margin-top: 0;">Kliknij przycisk, aby ustawić nowe hasło:</h3>
+        <a href="${resetLink}" 
+           style="display: inline-block; background: #012169; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 15px 0;">
+           🔓 Ustaw nowe hasło
+        </a>
+      </div>
+      
+      <p>Jeśli to nie Ty resetowałeś(-aś) hasło, możesz bezpiecznie zignorować tę wiadomość.</p>
+      
+      <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #eee;">
+        <p style="color: #888; font-size: 14px;">
+          Jeśli przycisk nie działa, skopiuj i wklej ten link w przeglądarce:<br>
+          <a href="${resetLink}" style="color: #012169; word-break: break-all;">${resetLink}</a>
+        </p>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+      
+      <p style="color: #666; font-size: 14px;">
+        Pozdrawiamy,<br>
+        <strong>Zespół AngloBoost</strong>
+      </p>
+    </div>
+  `
   })
 
   // If Ethereal, provide preview URL in logs

@@ -97,18 +97,23 @@ router.post('/forgot-password', async (req, res) => {
 
 router.post('/reset-password', async (req, res) => {
   try {
-    const { token, oldPassword, newPassword } = req.body || {}
-    if (!token || !newPassword || !oldPassword) {
+    const { token, newPassword, confirmPassword } = req.body || {}
+
+    if (!token || !newPassword || !confirmPassword) {
       return res.status(400).json({ error: 'Brak wymaganych pól' })
     }
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ error: 'Hasła nie są takie same' })
+    }
+    if (String(newPassword).length < 8) {
+      return res.status(400).json({ error: 'Hasło musi mieć co najmniej 8 znaków' })
+    }
+
     const row = db.prepare('SELECT * FROM password_resets WHERE token = ?').get(token)
     if (!row || row.used) return res.status(400).json({ error: 'Token jest nieprawidłowy' })
     if (Date.now() > row.expires_at) return res.status(400).json({ error: 'Token wygasł' })
     const user = db.prepare('SELECT * FROM users WHERE id = ?').get(row.user_id)
     if (!user) return res.status(400).json({ error: 'Użytkownik nie istnieje' })
-
-    const ok = await bcrypt.compare(oldPassword, user.password_hash)
-    if (!ok) return res.status(401).json({ error: 'Stare hasło jest niepoprawne' })
 
     const newHash = await bcrypt.hash(newPassword, 10)
     db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(newHash, user.id)

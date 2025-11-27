@@ -53,11 +53,22 @@ app.use(cors({
 }))
 app.use(express.json())
 
+// Debug: loguj wszystkie żądania newslettera i udostępnij GET-helper dla łatwej diagnostyki
+app.use('/api/newsletter', (req, res, next) => {
+  try {
+    console.log('[NEWSLETTER]', req.method, req.originalUrl, 'from', req.ip || req.headers['x-forwarded-for'] || 'unknown')
+  } catch (e) {}
+  next()
+})
+app.get('/api/newsletter/subscribe', (req, res) => {
+  res.status(405).json({ ok: false, error: 'Use POST for this endpoint' })
+})
+
 app.get('/', (req, res) => {
   res.json({
     name: 'AngloBoost Auth Server',
     ok: true,
-    endpoints: ['/api/health', '/api/auth/register', '/api/auth/login', '/api/auth/forgot-password', '/api/auth/reset-password']
+    endpoints: ['/api/health', '/api/auth/register', '/api/auth/login', '/api/auth/forgot-password', '/api/auth/reset-password', '/api/newsletter/subscribe (POST)']
   })
 })
 
