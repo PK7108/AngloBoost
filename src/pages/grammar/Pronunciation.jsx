@@ -217,54 +217,6 @@ const TOPICS = {
                 </>
             ),
         },
-        {
-            id: 'problematic-consonants',
-            title: 'Problematyczne spółgłoski',
-            excerpt: 'Spółgłoski angielskie, które różnią się od polskich - th, r, w, i inne.',
-            content: () => (
-                <>
-                    <section className="card">
-                        <h3>Trudne spółgłoski dla Polaków</h3>
-                        <p className="muted">Niektóre angielskie spółgłoski nie występują w języku polskim.</p>
-
-                        <div className="pronunciation-grid">
-                            <div className="pronunciation-group">
-                                <h4>/θ/ i /ð/ - dźwięki "th"</h4>
-                                <p><strong>/θ/</strong> - bezdźwięczne th: <em>think</em> /θɪŋk/, <em>thing</em> /θɪŋ/, <em>birthday</em> /ˈbɜːθ.deɪ/</p>
-                                <p><strong>/ð/</strong> - dźwięczne th: <em>this</em> /ðɪs/, <em>that</em> /ðæt/, <em>mother</em> /ˈmʌð.ər/</p>
-                            </div>
-
-                            <div className="pronunciation-group">
-                                <h4>/r/ - miękkie "r"</h4>
-                                <p><strong>/r/</strong> - angielskie r nie jest drżące jak polskie: <em>red</em> /red/, <em>car</em> /kɑːr/, <em>rain</em> /reɪn/</p>
-                            </div>
-
-                            <div className="pronunciation-group">
-                                <h4>/w/ vs /v/</h4>
-                                <p><strong>/w/</strong> - zaokrąglone u/j: <em>water</em> /ˈwɔː.tər/, <em>week</em> /wiːk/, <em>what</em> /wɒt/</p>
-                                <p><strong>/v/</strong> - polskie w: <em>very</em> /ˈver.i/, <em>love</em> /lʌv/, <em>have</em> /hæv/</p>
-                            </div>
-
-                            <div className="pronunciation-group">
-                                <h4>/ŋ/ - "ng" na końcu</h4>
-                                <p><strong>/ŋ/</strong> - jak w <em>sing</em> /sɪŋ/, <em>long</em> /lɒŋ/, <em>thinking</em> /ˈθɪŋ.kɪŋ/</p>
-                            </div>
-
-                            <div className="pronunciation-group">
-                                <h4>/dʒ/ i /tʃ/</h4>
-                                <p><strong>/dʒ/</strong> - dźwięczne dż: <em>job</em> /dʒɒb/, <em>bridge</em> /brɪdʒ/, <em>age</em> /eɪdʒ/</p>
-                                <p><strong>/tʃ/</strong> - bezdźwięczne cz: <em>church</em> /tʃɜːtʃ/, <em>watch</em> /wɒtʃ/, <em>cheese</em> /tʃiːz/</p>
-                            </div>
-
-                            <div className="pronunciation-group">
-                                <h4>/h/ - przydechowe "h"</h4>
-                                <p><strong>/h/</strong> - mocniejsze niż polskie h: <em>house</em> /haʊs/, <em>hello</em> /həˈləʊ/, <em>ahead</em> /əˈhed/</p>
-                            </div>
-                        </div>
-                    </section>
-                </>
-            ),
-        },
     ],
     'gloski-nieme': [
         {

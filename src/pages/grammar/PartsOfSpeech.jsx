@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams, useSearchParams, Link } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext.jsx'
+import useDocumentMeta from '../../useDocumentMeta'
 import '../../styles/topic-cards.css'
 import { initializeGrammarExercises } from '../exercise-interactions.js'
 
@@ -12821,6 +12823,21 @@ export default function PartsOfSpeech() {
     const selected = topics.find(t => t.id === topicId)
 
     const basePath = `/gramatyka/części-mowy/${active}`
+
+    useDocumentMeta({
+        title: selected ? `${selected.title} — Części mowy | Gramatyka angielska` : 'Części mowy — Gramatyka angielska',
+        description: selected
+            ? selected.excerpt
+            : 'Poznaj budulec języka angielskiego: przedimki, rzeczowniki, czasowniki, przymiotniki, przysłówki, zaimki, spójniki, liczebniki i przyimki.',
+        canonical: window.location.href,
+        og: {
+            title: selected ? `${selected.title} — Części mowy` : 'Części mowy — Gramatyka angielska',
+            description: selected
+                ? selected.excerpt
+                : 'Praktyczne wyjaśnienia i przykłady dla każdej części mowy.',
+            url: window.location.href
+        }
+    })
 
     return (
         <main className="topic-layout">

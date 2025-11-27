@@ -12,9 +12,7 @@ function Hero() {
         <div className="hero__content">
           <h1>{t('home.heroTitle', 'Nauka angielskiego za darmo')}</h1>
           <p className="lead">
-            {t('home.heroLead1', 'AngloBoost to Twoje centrum nauki języka angielskiego: gramatyka, słownictwo,')}<br/>
-            {t('home.heroLead2', 'artykuły, praktyczne ćwiczenia, gotowe materiały i wspierająca społeczność.')}<br/>
-            {t('home.heroLead3', 'Bez opłat, bez haczyków — ucz się skutecznie w rytmie dopasowanym do Ciebie.')}
+            {t('home.heroLead', 'AngloBoost to Twoje centrum nauki języka angielskiego: gramatyka, słownictwo, artykuły, praktyczne ćwiczenia, gotowe materiały i wspierająca społeczność. Bez opłat, bez haczyków — ucz się skutecznie w rytmie dopasowanym do Ciebie.')}<br/>
           </p>
           <div className="hero__actions">
             <Link className="btn btn--primary" to="/test-poziomujacy">{t('home.ctaPrimary', 'Zrób test poziomujący')}</Link>
