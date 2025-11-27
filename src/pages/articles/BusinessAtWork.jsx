@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Angielski w pracy i biznesie - Kompletny przewodnik komunikacji zawodowej'
+        : 'English at Work and Business - Complete Guide to Professional Communication'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po angielskim w pracy i biznesie. Naucz się pisać e-maile, prowadzić prezentacje, rozmowy telefoniczne i spotkania biznesowe po angielsku. Słownictwo i zwroty biznesowe.',
+        en: 'Complete guide to English at work and business. Learn how to write emails, give presentations, handle phone calls and business meetings in English. Business vocabulary and phrases.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/angielski-w-pracy-biznesie'
+        : 'https://angloboost.pl/en/articles/english-at-work-business'
+}
+
 const BusinessAtWork = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

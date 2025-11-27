@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Godziny po angielsku - Kompletny przewodnik z wymową i przykładami'
+        : 'Telling Time in English - Complete Guide with Pronunciation and Examples'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Naucz się poprawnie mówić i zapisywać godziny po angielsku. Różnice między formatami brytyjskim i amerykańskim, wymowa, AM/PM oraz praktyczne przykłady.',
+        en: 'Learn how to correctly tell and write time in English. Differences between British and American formats, pronunciation, AM/PM and practical examples.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/godziny-po-angielsku'
+        : 'https://angloboost.pl/en/articles/telling-time-in-english'
+}
+
 const TimeInEnglish = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/time-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

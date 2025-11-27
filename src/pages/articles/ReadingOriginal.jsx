@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Czytanie literatury w oryginale - Kompletny przewodnik po anglojęzycznej literaturze'
+        : 'Reading Literature in Original - Complete Guide to English-Language Books'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Dowiedz się jak wybierać książki po angielsku, dopasować poziom trudności i efektywnie uczyć się słownictwa. Praktyczne strategie czytania literatury w oryginale.',
+        en: 'Learn how to choose English books, match difficulty levels and effectively learn vocabulary. Practical strategies for reading literature in original language.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/czytanie-literatury-w-oryginale'
+        : 'https://angloboost.pl/en/articles/reading-literature-in-original'
+}
+
 const ReadingOriginal = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/literature-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

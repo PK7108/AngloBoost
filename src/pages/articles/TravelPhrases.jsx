@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Angielski w podróży - Praktyczne zwroty na lotnisko, hotel i restaurację'
+        : 'English for Travel - Practical Phrases for Airport, Hotel and Restaurant'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po angielskich zwrotach podróżnych. Naucz się kluczowych wyrażeń na lotnisko, do hotelu, restauracji i transportu. Zwiększ pewność siebie w podróży.',
+        en: 'Complete guide to English travel phrases. Learn key expressions for airport, hotel, restaurant and transportation. Boost your confidence while traveling.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/angielski-w-podrozy'
+        : 'https://angloboost.pl/en/articles/english-for-travel'
+}
+
 const TravelPhrases = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/travel-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

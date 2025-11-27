@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak słuchać po angielsku i rozumieć native speakerów? Kompletny przewodnik'
+        : 'How to Listen in English and Understand Native Speakers? Complete Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po słuchaniu i rozumieniu native speakerów. Poznaj techniki słuchania, najlepsze podcasty, seriale i metody nauki naturalnego języka mówionego.',
+        en: 'Complete guide to listening and understanding native speakers. Learn listening techniques, best podcasts, series and methods for learning natural spoken language.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/sluchanie-native-speakerow'
+        : 'https://angloboost.pl/en/articles/listening-to-native-speakers'
+}
+
 const ListeningNative = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

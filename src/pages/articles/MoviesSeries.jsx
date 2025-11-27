@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak uczyć się angielskiego przez filmy i seriale? Kompletny przewodnik'
+        : 'How to Learn English Through Movies and Series? Complete Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po nauce angielskiego przez filmy i seriale. Poznaj metody oglądania z napisami, polecane produkcje i techniki aktywnej nauki przez rozrywkę.',
+        en: 'Complete guide to learning English through movies and series. Learn watching methods with subtitles, recommended productions and active learning techniques through entertainment.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/nauka-angielskiego-przez-filmy-seriale'
+        : 'https://angloboost.pl/en/articles/learning-english-through-movies-series'
+}
+
 const MoviesSeries = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

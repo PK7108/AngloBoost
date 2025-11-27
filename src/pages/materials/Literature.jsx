@@ -1,14 +1,52 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './Literature.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Polecana literatura po angielsku - Książki na wszystkich poziomach'
+        : 'Recommended English Literature - Books for All Levels'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Najlepsze książki do nauki angielskiego od A1 do C2. Klasyki, fantasy, literatura współczesna - opisy, poziomy trudności i linki do zakupu.',
+        en: 'Best books for learning English from A1 to C2. Classics, fantasy, contemporary literature - descriptions, difficulty levels and purchase links.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/materialy/literatura'
+        : 'https://angloboost.pl/en/materials/literature'
+}
+
 const Literature = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/literature-social.png',
+            url: window.location.href
+        }
+    })
+
     // Stan dla filtrów i sortowania
     const [selectedLevel, setSelectedLevel] = useState('all');
     const [selectedGenre, setSelectedGenre] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Tablica z książkami
     // Tablica z książkami
     const books = [
         {

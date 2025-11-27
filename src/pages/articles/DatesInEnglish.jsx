@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Daty w języku angielskim - Wymowa i zapis lat, dni i miesięcy'
+        : 'Dates in English - Pronunciation and Writing of Years, Days and Months'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po wymowie i zapisie dat po angielsku. Naucz się poprawnie wymawiać lata, dni i miesiące. Różnice między angielskim brytyjskim a amerykańskim.',
+        en: 'Complete guide to pronunciation and writing of dates in English. Learn how to correctly pronounce years, days and months. Differences between British and American English.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/daty-w-angielskim-wymowa-zapis'
+        : 'https://angloboost.pl/en/articles/dates-in-english-pronunciation-writing'
+}
+
 const DatesInEnglish = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

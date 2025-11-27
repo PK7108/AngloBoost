@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak nauczyć się angielskiego od zera? Kompletny przewodnik dla początkujących'
+        : 'How to Learn English from Scratch? Complete Guide for Beginners'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik jak nauczyć się angielskiego od zera. Plan nauki, najlepsze narzędzia, typowe błędy i strategie dla początkujących. Zacznij mówić po angielsku już dziś!',
+        en: 'Complete guide on how to learn English from scratch. Learning plan, best tools, common mistakes and strategies for beginners. Start speaking English today!'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/angielski-od-zera'
+        : 'https://angloboost.pl/en/articles/english-from-scratch'
+}
+
 const EnglishFromZero = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

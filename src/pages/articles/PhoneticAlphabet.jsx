@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Alfabet fonetyczny IPA - Kompletny przewodnik po wymowie angielskiej'
+        : 'Phonetic Alphabet IPA - Complete Guide to English Pronunciation'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po międzynarodowym alfabecie fonetycznym IPA. Naucz się czytać transkrypcje fonetyczne, popraw wymowę i opanuj angielskie dźwięki jak native speaker.',
+        en: 'Complete guide to the International Phonetic Alphabet IPA. Learn to read phonetic transcriptions, improve pronunciation and master English sounds like a native speaker.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/alfabet-fonetyczny-ipa'
+        : 'https://angloboost.pl/en/articles/phonetic-alphabet-ipa'
+}
+
 const PhoneticAlphabet = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

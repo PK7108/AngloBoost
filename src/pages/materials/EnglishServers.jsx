@@ -1,9 +1,48 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 // import './ArticleStyles.css';
 import './DiscordServers.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Serwery Discord do nauki angielskiego - Polecane społeczności'
+        : 'Discord Servers for Learning English - Recommended Communities'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Najlepsze serwery Discord do nauki angielskiego. Dołącz do społeczności uczących się, praktykuj z native speakerami i rozwijaj umiejętności językowe.',
+        en: 'Best Discord servers for learning English. Join learning communities, practice with native speakers and develop language skills.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/materialy/serwery-discord'
+        : 'https://angloboost.pl/en/materials/discord-servers'
+}
+
 const EnglishServers = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/discord-social.png',
+            url: window.location.href
+        }
+    })
+
     // Stan dla filtrów i sortowania
     const [selectedLanguage, setSelectedLanguage] = useState('all');
     const [selectedFocus, setSelectedFocus] = useState('all');

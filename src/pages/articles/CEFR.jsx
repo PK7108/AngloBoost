@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Poziomy CEFR A1–C2 - Kompletny przewodnik po skali biegłości językowej'
+        : 'CEFR Levels A1–C2 - Complete Guide to Language Proficiency Scale'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po poziomach CEFR A1-C2. Dowiedz się, co oznacza każdy poziom językowy, jakie umiejętności posiadasz i jak długo trwa nauka do każdego poziomu.',
+        en: 'Complete guide to CEFR levels A1-C2. Learn what each language level means, what skills you have and how long it takes to reach each level.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/poziomy-cefr'
+        : 'https://angloboost.pl/en/articles/cefr-levels'
+}
+
 const CEFR = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

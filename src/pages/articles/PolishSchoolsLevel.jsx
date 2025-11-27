@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Angielski w polskiej szkole - Prawda i mity o poziomie nauczania'
+        : 'English in Polish Schools - Truth and Myths About Teaching Level'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompleksowa analiza nauczania angielskiego w polskich szkołach. Poznaj mocne i słabe strony systemu, poziomy po każdym etapie edukacji i strategie uzupełniania braków.',
+        en: 'Comprehensive analysis of English teaching in Polish schools. Learn the strengths and weaknesses of the system, levels after each education stage and strategies for filling gaps.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/angielski-w-polskiej-szkole'
+        : 'https://angloboost.pl/en/articles/english-in-polish-schools'
+}
+
 const PolishSchoolsLevel = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

@@ -1,9 +1,48 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 // import './ArticleStyles.css';
 import './ResourceSites.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Pomocne strony do nauki angielskiego - Najlepsze zasoby online'
+        : 'Helpful English Learning Websites - Best Online Resources'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kolekcja najlepszych stron, aplikacji i platform do nauki angielskiego. Słownictwo, gramatyka, słuchanie, mówienie - kompleksowe zasoby na wszystkich poziomach.',
+        en: 'Collection of the best websites, apps and platforms for learning English. Vocabulary, grammar, listening, speaking - comprehensive resources for all levels.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/materialy/pomocne-strony'
+        : 'https://angloboost.pl/en/materials/helpful-websites'
+}
+
 const EnglishSites = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/websites-social.png',
+            url: window.location.href
+        }
+    })
+
     // Stan dla filtrów i sortowania
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedLevel, setSelectedLevel] = useState('all');

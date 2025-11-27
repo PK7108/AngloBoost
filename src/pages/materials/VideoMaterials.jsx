@@ -1,9 +1,48 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 // import './ArticleStyles.css';
 import './VideoMaterials.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Materiały video do nauki angielskiego - Najlepsze filmy YouTube'
+        : 'Video Materials for Learning English - Best YouTube Videos'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kolekcja najlepszych materiałów video do nauki angielskiego. Filmy na wszystkich poziomach, metody nauki, gramatyka, słownictwo i konwersacje.',
+        en: 'Collection of the best video materials for learning English. Videos for all levels, learning methods, grammar, vocabulary and conversations.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/materialy/materialy-video'
+        : 'https://angloboost.pl/en/materials/video-materials'
+}
+
 const VideoMaterials = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/video-social.png',
+            url: window.location.href
+        }
+    })
+
     // Stan dla filtrów i sortowania
     const [selectedLevel, setSelectedLevel] = useState('all');
     const [sortBy, setSortBy] = useState('title');

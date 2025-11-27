@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak pisać po angielsku - E-maile, eseje, notatki i blogi'
+        : 'How to Write in English - Emails, Essays, Notes and Blogs'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po pisaniu po angielsku. Naucz się pisać profesjonalne e-maile, eseje akademickie, skuteczne notatki i angażujące blogi.',
+        en: 'Complete guide to writing in English. Learn to write professional emails, academic essays, effective notes and engaging blogs.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/jak-pisac-po-angielsku'
+        : 'https://angloboost.pl/en/articles/how-to-write-in-english'
+}
+
 const WritingEnglish = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/writing-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

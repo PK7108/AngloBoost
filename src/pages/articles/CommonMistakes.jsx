@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Najczęstsze błędy Polaków w angielskim - Jak ich unikać?'
+        : 'Most Common Mistakes Poles Make in English - How to Avoid Them?'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompleksowy przewodnik po najczęstszych błędach Polaków w angielskim. Poznaj pułapki gramatyczne, wymowy, false friends i naucz się mówić poprawnie jak native speaker.',
+        en: 'Comprehensive guide to the most common mistakes Poles make in English. Learn about grammar traps, pronunciation, false friends and learn to speak correctly like a native speaker.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/najczestsze-bledy-polakow-w-angielskim'
+        : 'https://angloboost.pl/en/articles/most-common-mistakes-poles-make-in-english'
+}
+
 const CommonMistakes = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

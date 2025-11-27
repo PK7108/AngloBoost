@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Czytanie książek po angielsku - Jak skutecznie uczyć się przez czytanie'
+        : 'Reading English Books - How to Learn Effectively Through Reading'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Poznaj skuteczne metody czytania książek po angielsku. Dowiedz się jak wybierać książki, techniki nauki przez czytanie i narzędzia, które pomogą Ci osiągnąć płynność językową.',
+        en: 'Discover effective methods for reading English books. Learn how to choose books, reading learning techniques and tools that will help you achieve language fluency.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/czytanie-ksiazek-po-angielsku'
+        : 'https://angloboost.pl/en/articles/reading-english-books'
+}
+
 const ReadingEnglishBooks = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/reading-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

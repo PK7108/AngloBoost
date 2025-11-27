@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak efektywnie uczyć się słownictwa - Sprawdzone metody i techniki'
+        : 'How to Learn Vocabulary Effectively - Proven Methods and Techniques'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Poznaj naukowo potwierdzone metody uczenia się słownictwa. System powtórek z odstępami, mapy myśli, fiszki i zaawansowane strategie zapamiętywania.',
+        en: 'Discover scientifically proven methods for learning vocabulary. Spaced repetition systems, mind maps, flashcards and advanced memorization strategies.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/jak-efektywnie-uczyc-sie-słownictwa'
+        : 'https://angloboost.pl/en/articles/how-to-learn-vocabulary-effectively'
+}
+
 const VocabularyLearning = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/vocabulary-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

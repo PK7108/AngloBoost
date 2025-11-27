@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'W jakim wieku najlepiej uczyć się angielskiego? Fakty i mity'
+        : 'What is the Best Age to Learn English? Facts and Myths'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po wpływie wieku na naukę angielskiego. Poznaj fakty naukowe, porównanie grup wiekowych i optymalne strategie nauki dla każdego wieku.',
+        en: 'Complete guide to age impact on learning English. Discover scientific facts, age group comparisons and optimal learning strategies for every age.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/wiek-nauka-angielskiego'
+        : 'https://angloboost.pl/en/articles/age-learning-english'
+}
+
 const BestAgeToLearn = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

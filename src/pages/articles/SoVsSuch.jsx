@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'So vs Such - Różnice, zasady użycia i ćwiczenia praktyczne'
+        : 'So vs Such - Differences, Usage Rules and Practical Exercises'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompletny przewodnik po różnicach między So i Such. Poznaj proste zasady, praktyczne przykłady i ćwiczenia. Naucz się poprawnie używać tych konstrukcji w mowie i piśmie.',
+        en: 'Complete guide to differences between So and Such. Learn simple rules, practical examples and exercises. Master correct usage of these constructions in speech and writing.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/so-vs-such'
+        : 'https://angloboost.pl/en/articles/so-vs-such'
+}
+
 const SoVsSuch = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/grammar-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

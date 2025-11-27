@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Najlepsze aplikacje i narzędzia do nauki angielskiego - Kompletny przegląd'
+        : 'Best Apps and Tools for Learning English - Complete Overview'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Przegląd najlepszych aplikacji i narzędzi do nauki angielskiego. Poznaj darmowe i płatne rozwiązania, które przyspieszą Twoją naukę i utrzymają motywację. Duolingo, Anki, Grammarly i inne.',
+        en: 'Overview of the best apps and tools for learning English. Discover free and paid solutions that will accelerate your learning and maintain motivation. Duolingo, Anki, Grammarly and more.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/najlepsze-aplikacje-do-nauki-angielskiego'
+        : 'https://angloboost.pl/en/articles/best-apps-for-learning-english'
+}
+
 const BestApps = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

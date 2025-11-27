@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css';
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Certyfikaty językowe - Czy warto? Kompletna analiza plusów i minusów'
+        : 'Language Certificates - Are They Worth It? Complete Pros and Cons Analysis'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Kompleksowa analiza certyfikatów językowych. Poznaj plusy i minusy popularnych egzaminów, koszty, czas przygotowania i kiedy naprawdę warto inwestować w certyfikat.',
+        en: 'Comprehensive analysis of language certificates. Learn the pros and cons of popular exams, costs, preparation time and when it is really worth investing in a certificate.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/certyfikaty-jezykowe-czy-warto'
+        : 'https://angloboost.pl/en/articles/language-certificates-worth-it'
+}
+
 const CertificatesWorth = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">

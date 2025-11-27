@@ -1,8 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../context/LanguageContext.jsx';
+import useDocumentMeta from '../../useDocumentMeta';
 import './ArticleStyles.css'; // Dodamy ten plik CSS
 
+function getMetaTitle(lang) {
+    const baseTitle = lang === 'pl'
+        ? 'Jak skutecznie uczyć się angielskiego? Praktyczny przewodnik'
+        : 'How to Effectively Learn English? Practical Guide'
+
+    return `${baseTitle} — AngloBoost`
+}
+
+function getMetaDescription(lang) {
+    const baseDescription = {
+        pl: 'Praktyczny przewodnik po skutecznych metodach nauki angielskiego. Poznaj sprawdzone techniki, plan nauki i błędy, których należy unikać.',
+        en: 'Practical guide to effective English learning methods. Discover proven techniques, learning plan and mistakes to avoid.'
+    }
+
+    return baseDescription[lang] || baseDescription.pl
+}
+
+function getCanonicalUrl(lang) {
+    return lang === 'pl'
+        ? 'https://angloboost.pl/pl/artykuly/jak-sie-uczyc-angielskiego'
+        : 'https://angloboost.pl/en/articles/how-to-learn-english'
+}
+
 const JakSieUczycAngielskiego = () => {
+    const { lang } = useLanguage()
+
+    useDocumentMeta({
+        title: getMetaTitle(lang),
+        description: getMetaDescription(lang),
+        canonical: getCanonicalUrl(lang),
+        og: {
+            title: getMetaTitle(lang),
+            description: getMetaDescription(lang),
+            image: 'https://angloboost.pl/UK-social.png',
+            url: window.location.href
+        }
+    })
+
     return (
         <article className="article">
             <div className="article__header">
