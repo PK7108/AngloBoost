@@ -345,8 +345,8 @@ const VocabularyLearning = () => {
                             <h3>🚀 Zacznij się uczyć już dziś!</h3>
                             <p>Nie tylko czytaj o efektywnej nauce słownictwa - wdrażaj te strategie w praktyce! Wybierz jedną metodę i zacznij ją stosować już dzisiaj.</p>
                             <div className="action-buttons">
-                                <Link to="/fiszki" className="btn btn--primary">Wypróbuj fiszki</Link>
-                                <Link to="/cwiczenia-slownictwo" className="btn btn--secondary">Ćwiczenia słownictwa</Link>
+                                <Link to="/materialy" className="btn btn--primary">Pomocne materiały</Link>
+                                <Link to="/cwiczenia" className="btn btn--secondary">Ćwiczenia słownictwa</Link>
                                 <Link to="/test-poziomujacy" className="btn btn--outline">Sprawdź swój poziom</Link>
                             </div>
                         </div>

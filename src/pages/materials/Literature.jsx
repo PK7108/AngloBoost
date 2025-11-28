@@ -737,7 +737,7 @@ const Literature = () => {
                             <span className="tag">#czytanieworyginale</span>
                         </div>
                         <div className="article__update">
-                            <p><strong>Ostatnia aktualizacja:</strong> Grudzień 2024 | Linki są regularnie weryfikowane</p>
+                            <p><strong>Ostatnia aktualizacja:</strong> Listopad 2025</p>
                         </div>
                     </footer>
                 </div>

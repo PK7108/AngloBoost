@@ -610,8 +610,8 @@ const TravelPhrases = () => {
                             <h3>✈️ Gotowy na podróż?</h3>
                             <p>Wybierz jedną sekcję z tego artykułu i opanuj ją w ciągu najbliższych 3 dni. Pamiętaj - nawet podstawowa znajomość tych zwrotów znacząco zwiększy Twój komfort podróżowania!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/slownictwo" className="btn btn--primary">Ćwiczenia Słownictwa</Link>
-                                <Link to="/slownictwo/slownik-tematyczny/podróże" className="btn btn--secondary">Słownictwo Podróżne</Link>
+                                <Link to="/cwiczenia/" className="btn btn--primary">Ćwiczenia</Link>
+                                <Link to="/slownictwo/slownik-tematyczny/journey" className="btn btn--secondary">Słownictwo Podróżne</Link>
                                 <Link to="/materialy" className="btn btn--outline">Dodatkowe Materiały</Link>
                             </div>
                         </div>

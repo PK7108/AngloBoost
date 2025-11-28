@@ -482,8 +482,8 @@ const TimeInEnglish = () => {
                             <h3>🎯 Opanuj godziny po angielsku!</h3>
                             <p>Pobierz nasze ćwiczenia z nagraniami native speakerów i naucz się pewnie mówić o godzinach!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/godziny" className="btn btn--primary">Ćwiczenia z godzinami</Link>
-                                <Link to="/nagrania/godziny" className="btn btn--secondary">Nagrania audio</Link>
+                                <Link to="/cwiczenia/" className="btn btn--primary">Ogólne ćwiczenia</Link>
+                                <Link to="/gramatyka/wymowa" className="btn btn--secondary">Poprawna wymowa</Link>
                             </div>
                         </div>
                     </section>

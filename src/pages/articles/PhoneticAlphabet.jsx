@@ -600,8 +600,8 @@ const PhoneticAlphabet = () => {
                             <h3>🎯 Zacznij od dziś!</h3>
                             <p>Wybierz 3 symbole IPA, które sprawiają Ci najwięcej trudności i ćwicz je przez 5 minut dziennie. Małe kroki prowadzą do wielkich zmian w wymowie!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/wymowa" className="btn btn--primary">Ćwiczenia wymowy</Link>
-                                <Link to="/slownictwo/fonetyka" className="btn btn--secondary">Słownictwo z transkrypcją</Link>
+                                <Link to="/cwiczenia/gramatyka/wymowa" className="btn btn--primary">Ćwiczenia wymowy</Link>
+                                <Link to="/gramatyka/wymowa" className="btn btn--secondary">Poprawna wymowa</Link>
                             </div>
                         </div>
                     </section>

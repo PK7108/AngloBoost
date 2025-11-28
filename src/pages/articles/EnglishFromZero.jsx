@@ -455,8 +455,8 @@ const EnglishFromZero = () => {
                             <h3>🚀 Zacznij już dziś!</h3>
                             <p>Nie czekaj na "od poniedziałku" czy "idealny moment". Pierwszy krok jest najtrudniejszy - zrób go teraz!</p>
                             <div className="action-buttons">
-                                <Link to="/kursy/dla-poczatkujacych" className="btn btn--primary">Kurs dla początkujących</Link>
-                                <Link to="/slownictwo/podstawowe" className="btn btn--secondary">Podstawowe słownictwo</Link>
+                                <Link to="/gramatyka" className="btn btn--primary">Zbiór gramatyki</Link>
+                                <Link to="/slownictwo/slownik-tematyczny/podstawowe-zwroty" className="btn btn--secondary">Podstawowe słownictwo</Link>
                             </div>
                         </div>
                     </section>

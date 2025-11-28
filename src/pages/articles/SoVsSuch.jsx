@@ -482,8 +482,8 @@ const SoVsSuch = () => {
                             <h3>🎯 Przetestuj swoją wiedzę!</h3>
                             <p>Teraz gdy znasz już zasady, czas je przećwiczyć w praktyce. Pamiętaj - praktyka czyni mistrza!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/gramatyka/so-such" className="btn btn--primary">Ćwiczenia So/Such</Link>
-                                <Link to="/cwiczenia/gramatyka" className="btn btn--secondary">Inne ćwiczenia gramatyczne</Link>
+                                <Link to="/gramatyka" className="btn btn--primary">Ogólna gramatyka</Link>
+                                <Link to="/cwiczenia/" className="btn btn--secondary">Ćwiczenia gramatyczne</Link>
                             </div>
                         </div>
                     </section>

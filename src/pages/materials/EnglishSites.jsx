@@ -568,7 +568,7 @@ const EnglishSites = () => {
                             <span className="tag">#platformy</span>
                         </div>
                         <div className="article__update">
-                            <p><strong>Ostatnia aktualizacja:</strong> Grudzień 2024 | Kolekcja regularnie uzupełniana</p>
+                            <p><strong>Ostatnia aktualizacja:</strong> Listopad 2025 | Kolekcja regularnie uzupełniana</p>
                         </div>
                     </footer>
                 </div>

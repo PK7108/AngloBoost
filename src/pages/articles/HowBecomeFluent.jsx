@@ -418,8 +418,8 @@ const BecomingFluent = () => {
                             <h3>🎯 Zacznij już dziś!</h3>
                             <p>Wybierz jedną metodę z tego artykułu i zastosuj ją przez najbliższe 7 dni. Małe kroki prowadzą do wielkich zmian!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/mowienie" className="btn btn--primary">Ćwiczenia mówienia</Link>
-                                <Link to="/slownictwo/konwersacje" className="btn btn--secondary">Zwroty konwersacyjne</Link>
+                                <Link to="/gramatyka/wymowa" className="btn btn--primary">Sekcja o wymowie</Link>
+                                <Link to="/slownictwo/" className="btn btn--secondary">Słownictwo</Link>
                             </div>
                         </div>
                     </section>

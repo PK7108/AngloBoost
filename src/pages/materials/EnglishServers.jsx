@@ -626,7 +626,7 @@ const EnglishServers = () => {
                             <span className="tag">#języki</span>
                         </div>
                         <div className="article__update">
-                            <p><strong>Ostatnia aktualizacja:</strong> Grudzień 2024 | Linki zaproszeń są regularnie weryfikowane</p>
+                            <p><strong>Ostatnia aktualizacja:</strong> Listopad 2025 | Linki zaproszeń są regularnie weryfikowane</p>
                         </div>
                     </footer>
                 </div>

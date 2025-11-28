@@ -386,8 +386,8 @@ const DatesInEnglish = () => {
                             <h3>🎯 Opanuj wymowę dat i lat!</h3>
                             <p>Pobierz nasze specjalne nagrania z wymową lat od native speakerów i pozbądź się wątpliwości!</p>
                             <div className="action-buttons">
-                                <Link to="/cwiczenia/wymowa-lat" className="btn btn--primary">Ćwiczenia wymowy lat</Link>
-                                <Link to="/nagrania/lata" className="btn btn--secondary">Nagrania audio</Link>
+                                <Link to="/cwiczenia/" className="btn btn--primary">Ogólne ćwiczenia</Link>
+                                <Link to="/gramatyka/wymowa" className="btn btn--secondary">Poprawna wymowa</Link>
                             </div>
                         </div>
                     </section>
@@ -400,9 +400,6 @@ const DatesInEnglish = () => {
                             <span className="tag">#lata</span>
                             <span className="tag">#brytyjskivsamerykanski</span>
                             <span className="tag">#naukaangielskiego</span>
-                        </div>
-                        <div className="article__update">
-                            <p><strong>Ostatnia aktualizacja:</strong> Grudzień 2024</p>
                         </div>
                     </footer>
                 </div>

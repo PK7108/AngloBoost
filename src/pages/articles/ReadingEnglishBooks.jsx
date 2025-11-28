@@ -484,8 +484,8 @@ const ReadingEnglishBooks = () => {
                             <h3>🎯 Zacznij swoją przygodę z czytaniem!</h3>
                             <p>Wybierz pierwszą książkę już dziś. Pamiętaj - nawet 10 minut dziennie zmieni Twój angielski!</p>
                             <div className="action-buttons">
-                                <Link to="/slownictwo/czytanie" className="btn btn--primary">Słownictwo do czytania</Link>
-                                <Link to="/cwiczenia/czytanie" className="btn btn--secondary">Ćwiczenia czytania</Link>
+                                <Link to="/gramatyka/wymowa" className="btn btn--primary">Sekcja o wymowie</Link>
+                                <Link to="/cwiczenia/gramatyka/wymowa" className="btn btn--secondary">Ćwiczenia czytania</Link>
                             </div>
                         </div>
                     </section>
