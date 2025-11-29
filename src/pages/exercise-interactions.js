@@ -424,6 +424,18 @@ function initializeExercise(exerciseContainer) {
             'perfect_continuous_past5': '✅ Doskonale! Tymczasowa sytuacja przed przeszłym momentem: had been living',
             'perfect_continuous_past6': '✅ Bardzo dobrze! Czynność prowadząca do punktu kulminacyjnego: had been raining',
             'perfect_continuous_past7': '✅ Świetnie! Przeczenie: hadn\'t been + V-ing',
+
+            // DODANE FEEDBACKI DLA SO VS SUCH - podstawowe
+            'ss1': '✅ Doskonale! "such" z rzeczownikiem "music" (niepoliczalny)',
+            'ss2': '✅ Poprawnie! "such an" z przymiotnikiem i rzeczownikiem policzalnym',
+            'ss3': '✅ Świetnie! "so many" z rzeczownikami policzalnymi w liczbie mnogiej',
+            'ss4': '✅ Dobrze! "so" z przymiotnikiem "difficult" (bez rzeczownika)',
+
+// DODANE FEEDBACKI DLA SO VS SUCH - zaawansowane
+            'ssadv1': '✅ Doskonale! "such... that" z rzeczownikiem "problem"',
+            'ssadv2': '✅ Poprawnie! "so... as to" w prośbach formalnych',
+            'ssadv3': '✅ Świetnie! "such as" do podawania przykładów',
+            'ssadv4': '✅ Dobrze! "so... that" z przymiotnikiem "loud"',
         };
 
         // DODATKOWE FEEDBACKI KATEGORII dla części mowy (PartsOfSpeech)
@@ -724,6 +736,18 @@ function initializeExercise(exerciseContainer) {
             'other_future4': '❌ Ustalone plany używają Present Continuous',
             'other_future5': '❌ Przewidywania bez oznak używają "will"',
             'other_future6': '❌ Harmonogramy wydarzeń używają Present Simple',
+
+            // DODANE FEEDBACKI NIEPOPRAWNE DLA SO VS SUCH - podstawowe
+            'ss1': '❌ Pamiętaj: "such" używamy z rzeczownikami, "so" z przymiotnikami. Music jest niepoliczalne',
+            'ss2': '❌ Poprawnie: "such a/an" + przymiotnik + rzeczownik policzalny',
+            'ss3': '❌ Powinno być: "so many" z rzeczownikami policzalnymi w liczbie mnogiej',
+            'ss4': '❌ "so" używamy z przymiotnikami bez rzeczownika',
+
+            // DODANE FEEDBACKI NIEPOPRAWNE DLA SO VS SUCH - zaawansowane
+            'ssadv1': '❌ Pamiętaj: "such... that" z rzeczownikami, "so... that" z przymiotnikami',
+            'ssadv2': '❌ Poprawnie: "so... as to" w formalnych prośbach i celach',
+            'ssadv3': '❌ "such as" służy do podawania przykładów, "so as" do celów',
+            'ssadv4': '❌ "so... that" wymaga przymiotnika, nie rzeczownika',
         };
 
         if (isCorrect) {
@@ -1106,6 +1130,18 @@ function detectCorrectAnswers(container) {
         'perfect_continuous_past5': 'c',
         'perfect_continuous_past6': 'c',
         'perfect_continuous_past7': 'a',
+
+        // SO VS SUCH - podstawowe
+        'ss1': 'b',  // such beautiful music
+        'ss2': 'c',  // such an intelligent person
+        'ss3': 'a',  // so many things
+        'ss4': 'a',  // so difficult
+
+// SO VS SUCH - zaawansowane
+        'ssadv1': 'b',  // such... that
+        'ssadv2': 'a',  // so... as
+        'ssadv3': 'b',  // such as
+        'ssadv4': 'a',  // so... that
     };
 
     // UZUPEŁNIENIE: odpowiedzi dla wszystkich ćwiczeń z PartsOfSpeech.jsx

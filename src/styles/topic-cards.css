@@ -4642,8 +4642,14 @@ h6{
 .example h5 {
     margin-bottom: 10px;
     color: #374151;
-    font-size: 1em;
     font-weight: 600;
+}
+
+.construction-type h5{
+    margin: 15px 0 20px;
+    color: #374151;
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 .example .translation {

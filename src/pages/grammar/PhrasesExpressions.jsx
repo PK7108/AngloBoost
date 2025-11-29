@@ -12,6 +12,7 @@ const sections = [
     { id: 'unreal-past', label: 'Unreal Past' },
     { id: 'cleft-sentences', label: 'Cleft Sentences' },
     { id: 'participle-clauses', label: 'Zdania imiesłowowe' },
+    { id: 'so-vs-such', label: 'So vs Such' },
     { id: 'inversion', label: 'Inwersja' },
     { id: 'inne-wyrażenia', label: 'Inne wyrażenia' },
 ]
@@ -2402,6 +2403,729 @@ const TOPICS = {
             ),
         },
     ],
+    'so-vs-such': [
+        {
+            id: 'so-such-basics',
+            title: 'So vs Such - podstawy 🎯',
+            excerpt: 'So beautiful vs such a beautiful day - różnice w użyciu i konstrukcjach.',
+            content: () => (
+                <>
+                    <section className="card">
+                        <h3>So vs Such - różnice w użyciu</h3>
+                        <p className="muted">Poznaj kluczowe różnice między "so" i "such" oraz ich poprawne zastosowanie</p>
+
+                        <div className="grammar-grid">
+                            <div className="grammar-rule">
+                                <h4>📝 Konstrukcja z SO</h4>
+                                <div className="construction">
+                                    <div className="construction-formula">
+                                        <span className="keyword">SO</span> +
+                                        <span className="adjective">przymiotnik</span> /
+                                        <span className="adverb">przysłówek</span>
+                                    </div>
+
+                                    <div className="construction-examples">
+                                        <div className="example">
+                                            <h5>So + przymiotnik</h5>
+                                            <p>"The movie was <em>so interesting</em>." - Film był taki interesujący.</p>
+                                            <p>"She is <em>so intelligent</em>." - Ona jest taka inteligentna.</p>
+                                            <p>"The weather is <em>so beautiful</em> today." - Pogoda jest taka piękna dziś.</p>
+                                        </div>
+
+                                        <div className="example">
+                                            <h5>So + przysłówek</h5>
+                                            <p>"He speaks <em>so quickly</em>." - Mówi tak szybko.</p>
+                                            <p>"She sings <em>so beautifully</em>." - Ona śpiewa tak pięknie.</p>
+                                            <p>"They work <em>so efficiently</em>." - Pracują tak efektywnie.</p>
+                                        </div>
+
+                                        <div className="example">
+                                            <h5>So + many/much/few/little</h5>
+                                            <p>"There were <em>so many people</em> at the concert." - Na koncercie było tak wielu ludzi.</p>
+                                            <p>"I have <em>so much work</em> to do." - Mam tak dużo pracy do zrobienia.</p>
+                                            <p>"We have <em>so little time</em>." - Mamy tak mało czasu.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grammar-usage">
+                                <h4>📝 Konstrukcja z SUCH</h4>
+                                <div className="construction">
+                                    <div className="construction-formula">
+                                        <span className="keyword">SUCH</span> +
+                                        <span className="article">a/an</span> +
+                                        <span className="adjective">przymiotnik</span> +
+                                        <span className="noun">rzeczownik</span>
+                                    </div>
+
+                                    <div className="construction-examples">
+                                        <div className="example">
+                                            <h5>Such + a/an + przymiotnik + rzeczownik (policzalny)</h5>
+                                            <p>"It was <em>such an interesting movie</em>." - To był taki interesujący film.</p>
+                                            <p>"He is <em>such a nice person</em>." - On jest taką miłą osobą.</p>
+                                            <p>"It's <em>such a beautiful day</em>!" - To taki piękny dzień!</p>
+                                        </div>
+
+                                        <div className="example">
+                                            <h5>Such + przymiotnik + rzeczownik (niepoliczalny/l.mn.)</h5>
+                                            <p>"They are <em>such nice people</em>." - To tacy mili ludzie.</p>
+                                            <p>"He has <em>such amazing talent</em>." - On ma tak niesamowity talent.</p>
+                                            <p>"We had <em>such wonderful weather</em>." - Mieliśmy taką wspaniałą pogodę.</p>
+                                        </div>
+
+                                        <div className="example">
+                                            <h5>Such + rzeczownik (bez przymiotnika)</h5>
+                                            <p>"He is <em>such a fool</em>!" - On jest takim głupcem!</p>
+                                            <p>"It was <em>such a surprise</em>." - To była taka niespodzianka.</p>
+                                            <p>"She has <em>such patience</em>." - Ona ma taką cierpliwość.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🎯 Wyrażenia używane tylko z SO</h4>
+                        <div className="special-expressions">
+                            <div className="expression-group">
+                                <h5>So w wyrażeniach z that (konsekwencja)</h5>
+                                <div className="example-group-expanded">
+                                    <p>"It was <em>so cold that</em> we stayed home." - Było tak zimno, że zostaliśmy w domu.</p>
+                                    <p>"He was <em>so tired that</em> he fell asleep immediately." - Był tak zmęczony, że natychmiast zasnął.</p>
+                                    <p>"The test was <em>so difficult that</em> many students failed." - Test był tak trudny, że wielu studentów oblało.</p>
+                                    <p>"She spoke <em>so quickly that</em> I couldn't understand her." - Mówiła tak szybko, że nie mogłem jej zrozumieć.</p>
+                                </div>
+                            </div>
+
+                            <div className="expression-group">
+                                <h5>So w odpowiedziach krótkich</h5>
+                                <div className="example-group-expanded">
+                                    <p>"Is she really coming?" "<em>I think so</em>." - Chyba tak.</p>
+                                    <p>"Will it rain tomorrow?" "<em>I hope so</em>." - Mam taką nadzieję.</p>
+                                    <p>"Is this the right way?" "<em>I believe so</em>." - Wierzę, że tak.</p>
+                                    <p>"Do you need help?" "<em>I guess so</em>." - Chyba tak.</p>
+                                </div>
+                            </div>
+
+                            <div className="expression-group">
+                                <h5>So w konstrukcjach inwersyjnych</h5>
+                                <div className="example-group-expanded">
+                                    <p>"<em>So beautiful was the music that</em> everyone was silent." - Tak piękna była muzyka, że wszyscy zamilkli.</p>
+                                    <p>"<em>So quickly did he run that</em> no one could catch him." - Tak szybko biegł, że nikt nie mógł go złapać.</p>
+                                    <p>"<em>So intense was the heat that</em> we had to stop." - Tak intensywny był upał, że musieliśmy się zatrzymać.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🎯 Wyrażenia używane tylko z SUCH</h4>
+                        <div className="special-expressions">
+                            <div className="expression-group">
+                                <h5>Such w wyrażeniach z that (konsekwencja)</h5>
+                                <div className="example-group-expanded">
+                                    <p>"It was <em>such a cold day that</em> we stayed home." - To był tak zimny dzień, że zostaliśmy w domu.</p>
+                                    <p>"It was <em>such a difficult exam that</em> many students failed." - To był tak trudny egzamin, że wielu studentów oblało.</p>
+                                    <p>"He told <em>such a funny story that</em> everyone laughed." - Opowiedział tak zabawną historię, że wszyscy się śmiali.</p>
+                                    <p>"It was <em>such a long journey that</em> we were exhausted." - To była tak długa podróż, że byliśmy wyczerpani.</p>
+                                </div>
+                            </div>
+
+                            <div className="expression-group">
+                                <h5>Such jako... (w znaczeniu "taki jak")</h5>
+                                <div className="example-group-expanded">
+                                    <p>"Companies <em>such as Google and Apple</em> are very innovative." - Firmy takie jak Google i Apple są bardzo innowacyjne.</p>
+                                    <p>"Cities <em>such as Paris and Rome</em> are very romantic." - Miasta takie jak Paryż i Rzym są bardzo romantyczne.</p>
+                                    <p>"Foods <em>such as pizza and pasta</em> are very popular." - Potrawy takie jak pizza i makaron są bardzo popularne.</p>
+                                </div>
+                            </div>
+
+                            <div className="expression-group">
+                                <h5>Such w konstrukcjach inwersyjnych</h5>
+                                <div className="example-group-expanded">
+                                    <p>"<em>Such was his anger that</em> he couldn't speak." - Tak wielki był jego gniew, że nie mógł mówić.</p>
+                                    <p>"<em>Such is the nature of</em> this problem." - Taka jest natura tego problemu.</p>
+                                    <p>"<em>Such were the circumstances that</em> we had to act quickly." - Takie były okoliczności, że musieliśmy działać szybko.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>💡 Praktyczne różnice i porównania</h4>
+                        <div className="comparison">
+                            <div className="comparison-case">
+                                <h5>SO - bez rzeczownika</h5>
+                                <div className="example-pair">
+                                    <p>"The music is <em>so beautiful</em>."</p>
+                                    <p className="translation">Muzyka jest taka piękna.</p>
+                                </div>
+                                <div className="example-pair">
+                                    <p>"He works <em>so hard</em>."</p>
+                                    <p className="translation">On pracuje tak ciężko.</p>
+                                </div>
+                                <div className="example-pair">
+                                    <p>"There are <em>so many</em> options."</p>
+                                    <p className="translation">Jest tak wiele opcji.</p>
+                                </div>
+                            </div>
+
+                            <div className="comparison-case">
+                                <h5>SUCH - z rzeczownikiem</h5>
+                                <div className="example-pair">
+                                    <p>"It's <em>such beautiful music</em>."</p>
+                                    <p className="translation">To taka piękna muzyka.</p>
+                                </div>
+                                <div className="example-pair">
+                                    <p>"He does <em>such hard work</em>."</p>
+                                    <p className="translation">On wykonuje tak ciężką pracę.</p>
+                                </div>
+                                <div className="example-pair">
+                                    <p>"These are <em>such good options</em>."</p>
+                                    <p className="translation">To są tak dobre opcje.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="grammar-tip">
+                            <h5>💡 Złota zasada</h5>
+                            <p><strong>SO</strong> używamy z <strong>przymiotnikami i przysłówkami</strong> (bez rzeczownika)<br/>
+                                <strong>SUCH</strong> używamy z <strong>rzeczownikami</strong> (z przymiotnikiem lub bez)</p>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>⚠️ Częste błędy i wyjątki</h4>
+                        <div className="common-mistakes">
+                            <div className="mistake-group">
+                                <h5>❌ Mieszanie SO i SUCH</h5>
+                                <div className="mistake-list">
+                                    <div className="mistake-item">
+                                        <span className="incorrect">It was so beautiful day.</span>
+                                        <span className="arrow">→</span>
+                                        <span className="correct">It was such a beautiful day.</span>
+                                        <span className="reason">("such" z rzeczownikiem)</span>
+                                    </div>
+                                    <div className="mistake-item">
+                                        <span className="incorrect">She is such intelligent.</span>
+                                        <span className="arrow">→</span>
+                                        <span className="correct">She is so intelligent.</span>
+                                        <span className="reason">("so" z przymiotnikiem bez rzeczownika)</span>
+                                    </div>
+                                    <div className="mistake-item">
+                                        <span className="incorrect">They are so nice people.</span>
+                                        <span className="arrow">→</span>
+                                        <span className="correct">They are such nice people.</span>
+                                        <span className="reason">("such" z przymiotnikiem i rzeczownikiem)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mistake-group">
+                                <h5>❌ Błędne użycie artykułów</h5>
+                                <div className="mistake-list">
+                                    <div className="mistake-item">
+                                        <span className="incorrect">It was such beautiful day.</span>
+                                        <span className="arrow">→</span>
+                                        <span className="correct">It was such a beautiful day.</span>
+                                        <span className="reason">(rzeczownik policzalny wymaga "a/an")</span>
+                                    </div>
+                                    <div className="mistake-item">
+                                        <span className="incorrect">She has such a patience.</span>
+                                        <span className="arrow">→</span>
+                                        <span className="correct">She has such patience.</span>
+                                        <span className="reason">(rzeczownik niepoliczalny bez "a/an")</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grammar-tip warning">
+                                <h5>💡 Wyjątki z SO</h5>
+                                <div className="comparison-examples">
+                                    <div className="comparison-pair">
+                                        <div className="case">
+                                            <span className="title">SO + many/few + rzeczownik policzalny:</span>
+                                            <p>"<em>so many books</em>" - tak wiele książek</p>
+                                            <p>"<em>so few opportunities</em>" - tak mało okazji</p>
+                                        </div>
+                                        <div className="case">
+                                            <span className="title">SO + much/little + rzeczownik niepoliczalny:</span>
+                                            <p>"<em>so much time</em>" - tak dużo czasu</p>
+                                            <p>"<em>so little information</em>" - tak mało informacji</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🔍 Ćwiczenie praktyczne</h4>
+                        <div className="practice-exercise">
+                            <div className="exercise-question">
+                                <h5>Wybierz poprawną formę - SO lub SUCH:</h5>
+                                <div className="exercise-items">
+                                    <div className="exercise-item">
+                                        <p><strong>1.</strong> It was ______ beautiful music that I cried.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ss1" value="a" />
+                                                <span>so</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss1" value="b" />
+                                                <span>such</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss1" value="c" />
+                                                <span>such a</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"such" z rzeczownikiem "music" (niepoliczalny)</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>2.</strong> She is ______ intelligent person.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ss2" value="a" />
+                                                <span>so</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss2" value="b" />
+                                                <span>such</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss2" value="c" />
+                                                <span>such an</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"such an" z przymiotnikiem i rzeczownikiem policzalnym</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>3.</strong> I have ______ many things to do today.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ss3" value="a" />
+                                                <span>so</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss3" value="b" />
+                                                <span>such</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss3" value="c" />
+                                                <span>such a</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"so many" z rzeczownikami policzalnymi w liczbie mnogiej</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>4.</strong> The test was ______ difficult that I failed.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ss4" value="a" />
+                                                <span>so</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss4" value="b" />
+                                                <span>such</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ss4" value="c" />
+                                                <span>such a</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"so" z przymiotnikiem "difficult" (bez rzeczownika)</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="exercise-actions">
+                                    <button className="btn btn-primary check-answers" disabled>Sprawdź odpowiedzi</button>
+                                    <button className="btn btn-secondary reset-exercise" style={{display: 'none'}}>Spróbuj ponownie</button>
+                                    <div className="exercise-result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>📚 Podsumowanie - Kiedy używać?</h4>
+                        <div className="summary-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Konstrukcja</th>
+                                    <th>Przykład</th>
+                                    <th>Użycie</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>SO + przymiotnik</td>
+                                    <td>so beautiful</td>
+                                    <td>Bez rzeczownika</td>
+                                </tr>
+                                <tr>
+                                    <td>SO + przysłówek</td>
+                                    <td>so quickly</td>
+                                    <td>Opisuje sposób działania</td>
+                                </tr>
+                                <tr>
+                                    <td>SO + many/much</td>
+                                    <td>so many people</td>
+                                    <td>Określa ilość</td>
+                                </tr>
+                                <tr>
+                                    <td>SUCH + a/an + przymiotnik + rzeczownik</td>
+                                    <td>such a beautiful day</td>
+                                    <td>Rzeczownik policzalny</td>
+                                </tr>
+                                <tr>
+                                    <td>SUCH + przymiotnik + rzeczownik</td>
+                                    <td>such beautiful weather</td>
+                                    <td>Rzeczownik niepoliczalny/l.mn.</td>
+                                </tr>
+                                <tr>
+                                    <td>SUCH + rzeczownik</td>
+                                    <td>such nonsense</td>
+                                    <td>Bez przymiotnika</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="grammar-tip">
+                            <h5>💡 Praktyczna wskazówka</h5>
+                            <p>Zapamiętaj: <strong>SO</strong> opisuje <strong>jakość</strong> (przymiotniki/przysłówki), <strong>SUCH</strong> opisuje <strong>rzeczy/ludzi/sytuacje</strong> (rzeczowniki). Jeśli możesz dodać rzeczownik - użyj SUCH, jeśli nie - użyj SO!</p>
+                        </div>
+                    </section>
+                </>
+            ),
+        },
+        {
+            id: 'so-such-advanced',
+            title: 'So vs Such - zaawansowane 🚀',
+            excerpt: 'Zaawansowane konstrukcje, wyrażenia idiomatyczne i specjalne użycia.',
+            content: () => (
+                <>
+                    <section className="card">
+                        <h3>Zaawansowane użycie SO i SUCH</h3>
+                        <p className="muted">Idiomy, konstrukcje formalne i specjalne przypadki użycia</p>
+
+                        <div className="grammar-grid">
+                            <div className="grammar-rule">
+                                <h4>📝 Zaawansowane konstrukcje z SO</h4>
+                                <div className="advanced-constructions">
+                                    <div className="construction-type">
+                                        <h5>So as to + infinitive (cel)</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"She arrived early <em>so as to get</em> a good seat." - Przyjechała wcześnie, aby zająć dobre miejsce.</p>
+                                            <p>"He studied hard <em>so as to pass</em> the exam." - Uczył się ciężko, aby zdać egzamin.</p>
+                                            <p>"We left quietly <em>so as not to wake</em> the baby." - Wyszliśmy cicho, aby nie obudzić dziecka.</p>
+                                            <p>"They saved money <em>so as to buy</em> a house." - Oszczędzali pieniądze, aby kupić dom.</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="construction-type">
+                                        <h5>So + adjective + as + to + infinitive</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"Would you be <em>so kind as to help</em> me?" - Czy byłbyś tak miły i pomógłbyś mi?</p>
+                                            <p>"He was <em>so foolish as to believe</em> that story." - Był tak głupi, że uwierzył w tę historię.</p>
+                                            <p>"She was <em>so careless as to leave</em> her keys in the car." - Była tak nieostrożna, że zostawiła kluczyki w samochodzie.</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="construction-type">
+                                        <h5>So that + zdanie (cel)</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"I'll call you <em>so that you know</em> I arrived safely." - Zadzwonię do ciebie, żebyś wiedział, że dotarłem bezpiecznie.</p>
+                                            <p>"She wrote it down <em>so that she wouldn't forget</em>." - Zapisała to, żeby nie zapomnieć.</p>
+                                            <p>"We arrived early <em>so that we could get</em> good seats." - Przyjechaliśmy wcześnie, żeby móc zająć dobre miejsca.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grammar-usage">
+                                <h4>📝 Zaawansowane konstrukcje z SUCH</h4>
+                                <div className="advanced-constructions">
+                                    <div className="construction-type">
+                                        <h5>Such as + przykłady</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"I enjoy outdoor activities, <em>such as hiking and cycling</em>." - Lubię aktywności na świeżym powietrzu, takie jak wędrówki i jazda na rowerze.</p>
+                                            <p>"They visited several countries, <em>such as France, Italy, and Spain</em>." - Odwiedzili kilka krajów, takich jak Francja, Włochy i Hiszpania.</p>
+                                            <p>"We need various tools, <em>such as hammers, screwdrivers, and pliers</em>." - Potrzebujemy różnych narzędzi, takich jak młotki, śrubokręty i szczypce.</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="construction-type">
+                                        <h5>Such + that (skutek w zdaniach złożonych)</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"It was <em>such a compelling argument that</em> everyone agreed immediately." - To był tak przekonujący argument, że wszyscy natychmiast się zgodzili.</p>
+                                            <p>"He showed <em>such remarkable talent that</em> he was offered a scholarship." - Wykazał się tak niezwykłym talentem, że zaoferowano mu stypendium.</p>
+                                            <p>"There was <em>such confusion that</em> the meeting had to be postponed." - Było takie zamieszanie, że spotkanie musiało zostać przełożone.</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="construction-type">
+                                        <h5>No such thing as</h5>
+                                        <div className="example-group-expanded">
+                                            <p>"There's <em>no such thing as</em> a free lunch." - Nie ma czegoś takiego jak darmowy lunch.</p>
+                                            <p>"<em>No such thing as</em> perfection exists." - Nie istnieje coś takiego jak perfekcja.</p>
+                                            <p>"He believes there's <em>no such thing as</em> coincidence." - Wierzy, że nie ma czegoś takiego jak przypadek.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🎯 Wyrażenia idiomatyczne</h4>
+                        <div className="idiomatic-expressions">
+                            <div className="idiom-group">
+                                <h5>Wyrażenia z SO</h5>
+                                <div className="example-group-expanded">
+                                    <p>"<em>So far, so good</em>." - Na razie dobrze.</p>
+                                    <p>"<em>So be it</em>." - Niech tak będzie.</p>
+                                    <p>"<em>So to speak</em>." - Żeby tak powiedzieć.</p>
+                                    <p>"<em>So what?</em>" - I co z tego?</p>
+                                    <p>"<em>So long!</em>" - Na razie! (pożegnanie)</p>
+                                    <p>"<em>So-called</em> experts." - Tak zwani eksperci.</p>
+                                </div>
+                            </div>
+
+                            <div className="idiom-group">
+                                <h5>Wyrażenia z SUCH</h5>
+                                <div className="example-group-expanded">
+                                    <p>"<em>Such is life</em>." - Takie jest życie.</p>
+                                    <p>"<em>In such cases</em>..." - W takich przypadkach...</p>
+                                    <p>"<em>To such an extent that</em>..." - Do takiego stopnia, że...</p>
+                                    <p>"<em>All such matters</em>..." - Wszystkie takie sprawy...</p>
+                                    <p>"<em>Such and such</em>..." - Ten a ten, taka a taka...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>⚡ Specjalne przypadki użycia</h4>
+                        <div className="special-cases">
+                            <div className="case-group">
+                                <h5>So vs Very - różnice</h5>
+                                <div className="comparison">
+                                    <div className="comparison-case">
+                                        <h6>SO (emocje, subiektywne)</h6>
+                                        <p>"I'm <em>so happy</em> to see you!" - Jestem taki szczęśliwy, że cię widzę!</p>
+                                        <p>"This soup is <em>so delicious</em>!" - Ta zupa jest taka pyszna!</p>
+                                        <p className="explanation">Wyraża silne emocje i subiektywną opinię</p>
+                                    </div>
+
+                                    <div className="comparison-case">
+                                        <h6>VERY (fakty, obiektywne)</h6>
+                                        <p>"The building is <em>very tall</em>." - Budynek jest bardzo wysoki.</p>
+                                        <p>"She speaks <em>very quickly</em>." - Ona mówi bardzo szybko.</p>
+                                        <p className="explanation">Opisuje obiektywne fakty bez emocjonalnego zabarwienia</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="case-group">
+                                <h5>Such w języku formalnym</h5>
+                                <div className="example-group-expanded">
+                                    <p>"<em>Such behavior</em> will not be tolerated." - Takie zachowanie nie będzie tolerowane.</p>
+                                    <p>"<em>Such circumstances</em> require immediate action." - Takie okoliczności wymagają natychmiastowego działania.</p>
+                                    <p>"<em>Such is the nature</em> of our business." - Taka jest natura naszego biznesu.</p>
+                                    <p>"We have never encountered <em>such difficulties</em> before." - Nigdy wcześniej nie napotkaliśmy takich trudności.</p>
+                                </div>
+                            </div>
+
+                            <div className="case-group">
+                                <h5>So w mowie zależnej</h5>
+                                <div className="example-group-expanded">
+                                    <p>"He said he was <em>so tired</em> that he could barely stand." - Powiedział, że jest tak zmęczony, że ledwo może stać.</p>
+                                    <p>"She thought the movie was <em>so boring</em> that she fell asleep." - Myślała, że film jest tak nudny, że zasnęła.</p>
+                                    <p>"They claimed the food was <em>so spicy</em> that they couldn't eat it." - Twierdzili, że jedzenie jest tak ostre, że nie mogą go jeść.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🔍 Zaawansowane ćwiczenie praktyczne</h4>
+                        <div className="practice-exercise">
+                            <div className="exercise-question">
+                                <h5>Uzupełnij zdania odpowiednią formą SO lub SUCH:</h5>
+                                <div className="exercise-items">
+                                    <div className="exercise-item">
+                                        <p><strong>1.</strong> It was ______ a complicated problem ______ we needed expert help.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ssadv1" value="a" />
+                                                <span>so... that</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv1" value="b" />
+                                                <span>such... that</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv1" value="c" />
+                                                <span>so... as</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"such... that" z rzeczownikiem "problem"</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>2.</strong> Would you be ______ kind ______ to pass me the salt?</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ssadv2" value="a" />
+                                                <span>so... as</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv2" value="b" />
+                                                <span>such... as</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv2" value="c" />
+                                                <span>so... that</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"so... as to" w prośbach formalnych</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>3.</strong> We need various supplies, ______ paper, pens, and folders.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ssadv3" value="a" />
+                                                <span>so as</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv3" value="b" />
+                                                <span>such as</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv3" value="c" />
+                                                <span>so that</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"such as" do podawania przykładów</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="exercise-item">
+                                        <p><strong>4.</strong> The music was ______ loud ______ we couldn't hear each other.</p>
+                                        <div className="options">
+                                            <label className="option">
+                                                <input type="radio" name="ssadv4" value="a" />
+                                                <span>so... that</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv4" value="b" />
+                                                <span>such... that</span>
+                                            </label>
+                                            <label className="option">
+                                                <input type="radio" name="ssadv4" value="c" />
+                                                <span>so... as</span>
+                                            </label>
+                                        </div>
+                                        <div className="exercise-feedback">
+                                            <div className="explanation">"so... that" z przymiotnikiem "loud"</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="exercise-actions">
+                                    <button className="btn btn-primary check-answers" disabled>Sprawdź odpowiedzi</button>
+                                    <button className="btn btn-secondary reset-exercise" style={{display: 'none'}}>Spróbuj ponownie</button>
+                                    <div className="exercise-result"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>🎯 Podsumowanie zaawansowanych konstrukcji</h4>
+                        <div className="summary-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Konstrukcja</th>
+                                    <th>Znaczenie</th>
+                                    <th>Przykład</th>
+                                    <th>Użycie</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>so as to</td>
+                                    <td>w celu, aby</td>
+                                    <td>so as to improve</td>
+                                    <td>Formalny cel</td>
+                                </tr>
+                                <tr>
+                                    <td>so... as to</td>
+                                    <td>na tyle... że</td>
+                                    <td>so kind as to help</td>
+                                    <td>Prośby formalne</td>
+                                </tr>
+                                <tr>
+                                    <td>so that</td>
+                                    <td>żeby, aby</td>
+                                    <td>so that you know</td>
+                                    <td>Cel w zdaniu złożonym</td>
+                                </tr>
+                                <tr>
+                                    <td>such as</td>
+                                    <td>takie jak</td>
+                                    <td>cities such as Paris</td>
+                                    <td>Podawanie przykładów</td>
+                                </tr>
+                                <tr>
+                                    <td>such... that</td>
+                                    <td>taki... że</td>
+                                    <td>such a big house that</td>
+                                    <td>Skutek z rzeczownikiem</td>
+                                </tr>
+                                <tr>
+                                    <td>no such thing</td>
+                                    <td>nie ma czegoś takiego</td>
+                                    <td>no such thing as</td>
+                                    <td>Zaprzeczenie istnienia</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="grammar-tip">
+                            <h5>💡 Mistrzowskie użycie</h5>
+                            <p>Zaawansowane konstrukcje z SO i SUCH pozwalają na bardziej precyzyjne i wyrafinowane wyrażanie myśli. Używaj ich świadomie, aby Twoje wypowiedzi w języku angielskim brzmiały naturalnie i profesjonalnie!</p>
+                        </div>
+                    </section>
+                </>
+            ),
+        }
+    ],
     'inversion': [
         {
             id: 'inversion-negative',
@@ -3509,6 +4233,7 @@ function getMetaTitle(lang, activeSection, selectedTopic) {
             'unreal-past': 'Unreal Past - wyrażanie życzeń i żalów',
             'cleft-sentences': 'Cleft Sentences - podkreślanie elementów zdania',
             'participle-clauses': 'Zdania imiesłowowe - Participle Clauses',
+            'so-vs-such': 'So vs Such - różnice w użyciu i konstrukcje',
             'inversion': 'Inwersja szyku zdania - Inversion',
             'inne-wyrażenia': 'Inne przydatne wyrażenia i konstrukcje'
         },
@@ -3518,6 +4243,7 @@ function getMetaTitle(lang, activeSection, selectedTopic) {
             'unreal-past': 'Unreal Past - expressing wishes and regrets',
             'cleft-sentences': 'Cleft Sentences - emphasizing sentence elements',
             'participle-clauses': 'Participle Clauses - reduced clauses',
+            'so-vs-such': 'So vs Such - differences in usage and constructions',
             'inversion': 'Inversion - changing word order for emphasis',
             'inne-wyrażenia': 'Other useful expressions and constructions'
         }
@@ -3542,6 +4268,7 @@ function getMetaDescription(lang, activeSection, selectedTopic) {
             'unreal-past': 'Unreal Past - wyrażanie nierealnych życzeń i żalów. Konstrukcje I wish, If only, would rather.',
             'cleft-sentences': 'Cleft sentences - specjalne konstrukcje do podkreślania elementów zdania. It-cleft, what-cleft, all-cleft.',
             'participle-clauses': 'Zdania imiesłowowe - skrócona forma zdań podrzędnych. Present participle, past participle, perfect participle.',
+            'so-vs-such': 'So vs Such - differences in usage and constructions',
             'inversion': 'Inwersja szyku zdania - zmiana szyku dla podkreślenia. Inwersja po wyrażeniach negatywnych i warunkowa.',
             'inne-wyrażenia': 'Inne przydatne wyrażenia: so/such, be supposed to, would rather, used to. Praktyczne zwroty angielskie.'
         },
@@ -3551,6 +4278,7 @@ function getMetaDescription(lang, activeSection, selectedTopic) {
             'unreal-past': 'Unreal Past - expressing unreal wishes and regrets. I wish, If only, would rather constructions.',
             'cleft-sentences': 'Cleft sentences - special constructions for emphasizing sentence elements. It-cleft, what-cleft, all-cleft.',
             'participle-clauses': 'Participle clauses - reduced subordinate clauses. Present participle, past participle, perfect participle.',
+            'so-vs-such': 'So vs Such - key differences in usage. When to use SO and when SUCH? Practical examples and exercises.',
             'inversion': 'Inversion - changing word order for emphasis. Inversion after negative expressions and conditional inversion.',
             'inne-wyrażenia': 'Other useful expressions: so/such, be supposed to, would rather, used to. Practical English phrases.'
         }
@@ -3585,6 +4313,8 @@ function getEnglishTopicTitle(topicId) {
         'unreal-past-wishes': 'Wishes and If only 🙏',
         'cleft-it-what': 'It-/What-cleft 🎯',
         'participle-reduction': 'Participle Clauses 📝',
+        'so-such-basics': 'So vs Such - Basics 🎯',
+        'so-such-advanced': 'So vs Such - Advanced 🚀',
         'inversion-negative': 'Word Order Inversion 🔄',
         'misc-expressions': 'Other Useful Constructions 🎯'
     }
@@ -3599,6 +4329,8 @@ function getEnglishTopicExcerpt(topicId) {
         'unreal-past-wishes': 'I wish I knew. If only I had studied. - expressing wishes and regrets.',
         'cleft-it-what': 'It was John who called. What I need is a break. - emphasizing sentence elements.',
         'participle-reduction': 'Feeling tired, she went to bed. - reduced form of subordinate clauses.',
+        'so-such-basics': 'So beautiful vs such a beautiful day - differences in usage and constructions.',
+        'so-such-advanced': 'Advanced constructions, idiomatic expressions and special uses.',
         'inversion-negative': 'Never have I seen such a view. - changing word order for emphasis.',
         'misc-expressions': 'so/such, be supposed to, would rather, used to - practical phrases.'
     }
