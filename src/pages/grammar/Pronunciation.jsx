@@ -42,6 +42,259 @@ const TOPICS = {
             ),
         },
         {
+            id: 'problematic-vowels',
+            title: 'Problematyczne samogłoski',
+            excerpt: 'Samogłoski angielskie, które różnią się od polskich - i, ɪ, æ, ʌ i inne.',
+            content: () => (
+                <>
+                    <section className="card">
+                        <h3>Trudne samogłoski dla Polaków</h3>
+                        <p className="muted">System samogłoskowy angielskiego jest bogatszy niż polski i zawiera dźwięki nieistniejące w naszym języku.</p>
+
+                        <div className="homophones-grid">
+                            <div className="homophone-group">
+                                <h4>/iː/ vs /ɪ/ - "długie i" vs "krótkie i"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/iː/</strong> - długie, napięte i: <em>sheep</em> /ʃiːp/, <em>see</em> /siː/, <em>beat</em> /biːt/
+                                        </div>
+                                        <div className="homophone-item">
+                                            <strong>/ɪ/</strong> - krótkie, luźne i: <em>ship</em> /ʃɪp/, <em>sit</em> /sɪt/, <em>bit</em> /bɪt/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Dla /iː/ rozciągnij usta w szerokim uśmiechu, dla /ɪ/ - usta są bardziej zrelaksowane.
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/æ/ - "a" jak w cat</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/æ/</strong> - otwarte a: <em>cat</em> /kæt/, <em>hat</em> /hæt/, <em>man</em> /mæn/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Usta szeroko otwarte, język nisko. Brzmi jak polskie "e" z otwartymi ustami.
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ʌ/ - "krótkie a" jak w cup</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ʌ/</strong> - krótkie, centralne a: <em>cup</em> /kʌp/, <em>love</em> /lʌv/, <em>sun</em> /sʌn/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Usta lekko otwarte, język w pozycji neutralnej. Brzmi jak krótkie polskie "a".
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ʊ/ vs /uː/ - "krótkie u" vs "długie u"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ʊ/</strong> - krótkie, luźne u: <em>book</em> /bʊk/, <em>put</em> /pʊt/, <em>good</em> /ɡʊd/
+                                        </div>
+                                        <div className="homophone-item">
+                                            <strong>/uː/</strong> - długie, napięte u: <em>food</em> /fuːd/, <em>blue</em> /bluː/, <em>shoe</em> /ʃuː/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Dla /uː/ zaokrągl usta mocniej niż dla /ʊ/. Angielskie /ʊ/ jest krótsze niż polskie "u".
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ɜː/ - "długie er" jak w bird</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ɜː/</strong> - długie, neutralne er: <em>bird</em> /bɜːd/, <em>work</em> /wɜːk/, <em>learn</em> /lɜːn/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Usta lekko zaokrąglone, język płaski. Brzmi jak polskie "e" z zaokrąglonymi ustami.
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ə/ - "szwa" - najczęstsza samogłoska</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ə/</strong> - neutralna samogłoska: <em>about</em> /əˈbaʊt/, <em>computer</em> /kəmˈpjuːtər/, <em>sofa</em> /ˈsəʊfə/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Występuje w nieakcentowanych sylabach. Usta i język w pozycji całkowicie zrelaksowanej.
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/e/ vs /æ/ - "e" jak w bed vs "a" jak w bad</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/e/</strong> - krótkie e: <em>bed</em> /bed/, <em>red</em> /red/, <em>head</em> /hed/
+                                        </div>
+                                        <div className="homophone-item">
+                                            <strong>/æ/</strong> - otwarte a: <em>bad</em> /bæd/, <em>had</em> /hæd/, <em>man</em> /mæn/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Dla /e/ usta są bardziej zamknięte niż dla /æ/. To częsty problem dla Polaków.
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ɒ/ vs /ɔː/ - "krótkie o" vs "długie o"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ɒ/</strong> - krótkie, otwarte o: <em>hot</em> /hɒt/, <em>dog</em> /dɒɡ/, <em>stop</em> /stɒp/
+                                        </div>
+                                        <div className="homophone-item">
+                                            <strong>/ɔː/</strong> - długie, zaokrąglone o: <em>thought</em> /θɔːt/, <em>law</em> /lɔː/, <em>saw</em> /sɔː/
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="pronunciation-tip">
+                                    <strong>Wskazówka:</strong> Dla /ɔː/ usta są mocniej zaokrąglone niż dla /ɒ/. W AmE /ɒ/ często brzmi jak /ɑː/.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>Ćwiczenia praktyczne - minimalne pary samogłosek</h4>
+                        <div className="homophone-examples">
+                            <div className="example">
+                                <p><em>ship</em> /ʃɪp/ - statek vs <em>sheep</em> /ʃiːp/ - owca</p>
+                                <p className="muted">(Różnica między /ɪ/ a /iː/ zmienia znaczenie)</p>
+                            </div>
+                            <div className="example">
+                                <p><em>bad</em> /bæd/ - zły vs <em>bed</em> /bed/ - łóżko</p>
+                                <p className="muted">(Różnica między /æ/ a /e/ zmienia znaczenie)</p>
+                            </div>
+                            <div className="example">
+                                <p><em>cup</em> /kʌp/ - kubek vs <em>cap</em> /kæp/ - czapka</p>
+                                <p className="muted">(Różnica między /ʌ/ a /æ/ zmienia znaczenie)</p>
+                            </div>
+                            <div className="example">
+                                <p><em>full</em> /fʊl/ - pełny vs <em>fool</em> /fuːl/ - głupiec</p>
+                                <p className="muted">(Różnica między /ʊ/ a /uː/ zmienia znaczenie)</p>
+                            </div>
+                            <div className="example">
+                                <p><em>cot</em> /kɒt/ - łóżeczko vs <em>caught</em> /kɔːt/ - złapany</p>
+                                <p className="muted">(Różnica między /ɒ/ a /ɔː/ zmienia znaczenie)</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>Dyftongi - połączenia samogłosek</h4>
+                        <div className="homophones-grid">
+                            <div className="homophone-group">
+                                <h4>/aɪ/ - jak w "I"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/aɪ/</strong> - przejście od a do i: <em>time</em> /taɪm/, <em>my</em> /maɪ/, <em>like</em> /laɪk/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/aʊ/ - jak w "now"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/aʊ/</strong> - przejście od a do u: <em>house</em> /haʊs/, <em>now</em> /naʊ/, <em>cloud</em> /klaʊd/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/eɪ/ - jak w "day"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/eɪ/</strong> - przejście od e do i: <em>day</em> /deɪ/, <em>make</em> /meɪk/, <em>way</em> /weɪ/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/əʊ/ - jak w "go"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/əʊ/</strong> - przejście od neutralnego do u: <em>go</em> /ɡəʊ/, <em>home</em> /həʊm/, <em>show</em> /ʃəʊ/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="homophone-group">
+                                <h4>/ɔɪ/ - jak w "boy"</h4>
+                                <div className="homophone-pairs">
+                                    <div className="homophone-pair">
+                                        <div className="homophone-item">
+                                            <strong>/ɔɪ/</strong> - przejście od o do i: <em>boy</em> /bɔɪ/, <em>toy</em> /tɔɪ/, <em>coin</em> /kɔɪn/
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="card">
+                        <h4>Wskazówki dotyczące samogłosek</h4>
+                        <ul className="list">
+                            <li><strong>Długość ma znaczenie</strong> - w angielskim rozróżniamy samogłoski długie i krótkie</li>
+                            <li><strong>Obserwuj usta native speakerów</strong> - kształt ust jest kluczowy dla poprawnej wymowy</li>
+                            <li><strong>Używaj lustra</strong> - ćwicz przed lustrem, porównując ułożenie ust z opisami</li>
+                            <li><strong>Nagrywaj się</strong> - porównuj swoją wymowę z nagraniami native speakerów</li>
+                            <li><strong>Najczęstsze błędy</strong> to pomylenie /ɪ/ z /iː/, /æ/ z /e/, /ʊ/ z /uː/</li>
+                            <li><strong>Pamiętaj o szwie</strong> - /ə/ występuje w większości nieakcentowanych sylab</li>
+                        </ul>
+                    </section>
+
+                    <style jsx>{`
+                .pronunciation-tip {
+                    margin-top: 1rem;
+                    padding: 1rem;
+                    background: #f0f9ff;
+                    border-radius: 8px;
+                    border-left: 4px solid #0ea5e9;
+                    font-size: 0.95em;
+                    margin-bottom: 10px;
+                }
+
+                .pronunciation-tip strong {
+                    color: #0369a1;
+                }
+            `}</style>
+                </>
+            ),
+        },
+        {
             id: 'problematic-consonants',
             title: 'Problematyczne spółgłoski',
             excerpt: 'Spółgłoski angielskie, które różnią się od polskich - th, r, w, i inne.',
